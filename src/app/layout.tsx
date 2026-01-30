@@ -13,8 +13,11 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Lorenz Tazan - Systems Engineer | 7+ Years IT Experience",
-  description: "Systems Engineer with 7+ years IT experience specializing in Linux/Windows administration, Docker/Kubernetes, and DevOps CI/CD pipelines. 99.9% uptime across 24-server distributed infrastructure.",
+  title: "Lorenz Tazan - Systems Engineer | Network Architecture & Cloud Infrastructure",
+  description: "Systems Engineer specializing in high-performance network architecture, zero-trust security, and automated cloud deployments. Expert in MPLS/BGP, AWS/Azure, and DevOps automation.",
+  icons: {
+    icon: '/favicon.svg',
+  },
 };
 
 export default function RootLayout({

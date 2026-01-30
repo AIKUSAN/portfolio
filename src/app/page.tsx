@@ -1,298 +1,170 @@
-import Link from 'next/link';
-import { Github, Mail, Download, ExternalLink, Phone } from 'lucide-react';
+import Link from "next/link";
+import { 
+  Server, 
+  Terminal, 
+  Shield 
+} from "lucide-react";
+import ProjectCard from "@/components/ui/ProjectCard";
+import { projects } from "@/data/projects";
 
 export default function Home() {
+  const featuredProjects = projects.slice(0, 3); // Show top 3
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
+    <div className="flex flex-col min-h-screen">
       {/* Hero Section */}
-      <section className="relative px-6 py-20 lg:px-8">
-        <div className="mx-auto max-w-4xl">
-          {/* Status Badge */}
-          <div className="mb-8 flex justify-center">
-            <div className="inline-flex items-center gap-2 rounded-full bg-green-500/10 px-4 py-2 text-sm font-medium text-green-400 ring-1 ring-green-500/20">
-              <span className="relative flex h-2 w-2">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-75"></span>
-                <span className="relative inline-flex h-2 w-2 rounded-full bg-green-500"></span>
-              </span>
-              Available for immediate hire
-            </div>
+      <section className="flex flex-col items-center justify-center min-h-screen px-4 text-center relative overflow-hidden">
+        {/* Abstract Background Element */}
+        <div className="absolute inset-0 bg-blue-500/5 radial-gradient blur-3xl rounded-full scale-150 -z-10 animate-pulse" />
+        
+        <div className="space-y-6 max-w-4xl z-10">
+          <div className="inline-flex items-center px-3 py-1 rounded-full border border-blue-500/30 bg-blue-500/10 text-blue-400 text-sm font-medium mb-4">
+            <span className="relative flex h-2 w-2 mr-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
+            </span>
+            Available for Hire
           </div>
 
-          {/* Main Heading */}
-          <h1 className="text-center text-5xl font-bold tracking-tight text-white sm:text-7xl">
-            Systems Engineer
+          <h1 className="text-5xl md:text-7xl font-bold tracking-tight bg-gradient-to-r from-white via-gray-200 to-gray-400 bg-clip-text text-transparent">
+            Digital Infrastructure <br />
+            <span className="text-blue-500">Engineered to Scale</span>
           </h1>
-          <p className="mt-6 text-center text-xl leading-8 text-gray-300">
-            Infrastructure • Java Systems • Network Administration • DevOps
+          
+          <p className="text-xl text-gray-400 max-w-2xl mx-auto leading-relaxed">
+            I am a Systems Engineer specializing in high-performance network architecture, automated deployments, and secure enterprise environments.
           </p>
-
-          {/* Introduction */}
-          <div className="mt-10 text-center text-lg leading-8 text-gray-400">
-            <p className="mb-4">
-              IT Infrastructure Specialist with <span className="font-semibold text-white">7+ years IT experience, 3+ years Systems Engineering</span> architecting and managing 
-              <span className="font-semibold text-white"> 24-server distributed ecosystems</span> maintaining 99.9% uptime.
-            </p>
-            <p>
-              Specialized in <span className="font-semibold text-white">Linux/Windows administration</span>, 
-              application performance optimization, Docker/Kubernetes containerization, and <span className="font-semibold text-white">DevOps CI/CD pipelines</span>.
-            </p>
-          </div>
-
-          {/* CTA Buttons */}
-          <div className="mt-10 flex items-center justify-center gap-x-6">
-            <a
-              href="#experience"
-              className="rounded-md bg-blue-600 px-6 py-3 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-all"
+          
+          <div className="flex flex-col sm:flex-row gap-4 justify-center pt-8">
+            <Link 
+              href="/projects"
+              className="px-8 py-4 bg-white text-black font-semibold rounded-lg hover:bg-gray-200 transition-all transform hover:scale-105"
             >
-              View Experience
-            </a>
-            <a
-              href="#projects"
-              className="text-sm font-semibold leading-6 text-gray-300 hover:text-white transition-colors"
-            >
-              See Projects <span aria-hidden="true">→</span>
-            </a>
-          </div>
-
-          {/* Social Links */}
-          <div className="mt-10 flex justify-center gap-6">
-            <a
-              href="https://github.com/AIKUSAN"
+              View Projects
+            </Link>
+            <a 
+              href="/resume.pdf"
               target="_blank"
-              rel="noopener noreferrer"
-              className="text-gray-400 hover:text-white transition-colors"
-              aria-label="GitHub"
+              className="px-8 py-4 bg-white/10 text-white font-semibold rounded-lg border border-white/20 hover:bg-white/20 transition-all"
             >
-              <Github className="h-6 w-6" />
+              Download Resume
             </a>
-            <a
-              href="mailto:lorenztazan@gmail.com"
-              className="text-gray-400 hover:text-white transition-colors"
-              aria-label="Email"
-            >
-              <Mail className="h-6 w-6" />
-            </a>
-            <a
-              href="tel:+12402562410"
-              className="text-gray-400 hover:text-white transition-colors"
-              aria-label="Phone"
-            >
-              <Phone className="h-6 w-6" />
-            </a>
+          </div>
+
+          <div className="flex gap-6 justify-center pt-12 items-center">
+             <div className="flex flex-col items-center gap-2">
+                <div className="p-3 bg-white/5 rounded-full border border-white/10">
+                  <Server className="w-6 h-6 text-blue-400" />
+                </div>
+                <span className="text-xs text-gray-500 uppercase tracking-wider">Systems</span>
+             </div>
+             <div className="w-16 h-[1px] bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+             <div className="flex flex-col items-center gap-2">
+                <div className="p-3 bg-white/5 rounded-full border border-white/10">
+                  <Terminal className="w-6 h-6 text-purple-400" />
+                </div>
+                <span className="text-xs text-gray-500 uppercase tracking-wider">Automation</span>
+             </div>
+             <div className="w-16 h-[1px] bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+             <div className="flex flex-col items-center gap-2">
+                <div className="p-3 bg-white/5 rounded-full border border-white/10">
+                  <Shield className="w-6 h-6 text-green-400" />
+                </div>
+                <span className="text-xs text-gray-500 uppercase tracking-wider">Security</span>
+             </div>
           </div>
         </div>
       </section>
 
-      {/* Quick Stats */}
-      <section className="px-6 py-16 lg:px-8">
-        <div className="mx-auto max-w-4xl">
-          <div className="grid grid-cols-2 gap-8 sm:grid-cols-4">
-            <div className="text-center">
-              <div className="text-4xl font-bold text-blue-400">300+</div>
-              <div className="mt-2 text-sm text-gray-400">Concurrent Users</div>
+      {/* Featured Projects Section */}
+      <section className="py-24 px-4 sm:px-6 lg:px-8 bg-black/50">
+        <div className="max-w-7xl mx-auto">
+          <div className="flex justify-between items-end mb-12">
+            <div>
+              <h2 className="text-3xl font-bold text-white mb-2">Featured Work</h2>
+              <p className="text-gray-400">Selected infrastructure and engineering projects.</p>
             </div>
-            <div className="text-center">
-              <div className="text-4xl font-bold text-blue-400">24</div>
-              <div className="mt-2 text-sm text-gray-400">Distributed Nodes</div>
-            </div>
-            <div className="text-center">
-              <div className="text-4xl font-bold text-blue-400">99.9%</div>
-              <div className="mt-2 text-sm text-gray-400">Uptime SLA</div>
-            </div>
-            <div className="text-center">
-              <div className="text-4xl font-bold text-blue-400">7+</div>
-              <div className="mt-2 text-sm text-gray-400">Years Experience</div>
-            </div>
+            <Link href="/projects" className="hidden md:inline-flex text-blue-400 hover:text-blue-300 items-center">
+              View All <span className="ml-2">→</span>
+            </Link>
           </div>
-        </div>
-      </section>
-
-      {/* Key Projects Preview */}
-      <section id="projects" className="px-6 py-16 lg:px-8">
-        <div className="mx-auto max-w-4xl">
-          <h2 className="text-3xl font-bold text-white mb-12 text-center">Featured Projects</h2>
           
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {/* Network Infrastructure Portfolio */}
-            <div className="rounded-lg bg-slate-800/50 p-6 ring-1 ring-slate-700 hover:ring-blue-500/50 transition-all">
-              <h3 className="text-xl font-semibold text-white mb-2">Network Infrastructure Portfolio</h3>
-              <p className="text-gray-400 text-sm mb-4">
-                Interactive viewer showcasing professional network topologies from ISP and DoD contractor deployments with complete documentation.
-              </p>
-              <div className="flex flex-wrap gap-2 mb-4">
-                <span className="px-2 py-1 text-xs bg-blue-500/10 text-blue-400 rounded">Draw.io</span>
-                <span className="px-2 py-1 text-xs bg-green-500/10 text-green-400 rounded">Glassmorphism UI</span>
-                <span className="px-2 py-1 text-xs bg-purple-500/10 text-purple-400 rounded">GitHub Pages</span>
-              </div>
-              <a
-                href="https://github.com/AIKUSAN/network-infrastructure-diagrams"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-sm text-blue-400 hover:text-blue-300"
-              >
-                View on GitHub <ExternalLink className="h-4 w-4" />
-              </a>
-            </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {featuredProjects.map((project) => (
+              <ProjectCard key={project.id} project={project} />
+            ))}
+          </div>
 
-            {/* Regional Fiber ISP */}
-            <div className="rounded-lg bg-slate-800/50 p-6 ring-1 ring-slate-700 hover:ring-blue-500/50 transition-all">
-              <h3 className="text-xl font-semibold text-white mb-2">Regional Fiber ISP</h3>
-              <p className="text-gray-400 text-sm mb-4">
-                ISP core network deployment serving 700+ subscribers with 10Gbps backbone, MikroTik routing, and 99.8% uptime.
-              </p>
-              <div className="flex flex-wrap gap-2 mb-4">
-                <span className="px-2 py-1 text-xs bg-orange-500/10 text-orange-400 rounded">MikroTik</span>
-                <span className="px-2 py-1 text-xs bg-red-500/10 text-red-400 rounded">pfSense</span>
-                <span className="px-2 py-1 text-xs bg-blue-500/10 text-blue-400 rounded">BGP</span>
-              </div>
-              <a
-                href="https://github.com/AIKUSAN/regional-fiber-isp"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-sm text-blue-400 hover:text-blue-300"
-              >
-                View on GitHub <ExternalLink className="h-4 w-4" />
-              </a>
-            </div>
-
-            {/* Government Contractor Network */}
-            <div className="rounded-lg bg-slate-800/50 p-6 ring-1 ring-slate-700 hover:ring-blue-500/50 transition-all">
-              <h3 className="text-xl font-semibold text-white mb-2">DoD Contractor Network</h3>
-              <p className="text-gray-400 text-sm mb-4">
-                Government compliance network with 3-VLAN segmentation, strict firewall rules, and 0 audit findings.
-              </p>
-              <div className="flex flex-wrap gap-2 mb-4">
-                <span className="px-2 py-1 text-xs bg-blue-500/10 text-blue-400 rounded">Ubiquiti</span>
-                <span className="px-2 py-1 text-xs bg-red-500/10 text-red-400 rounded">Security</span>
-                <span className="px-2 py-1 text-xs bg-green-500/10 text-green-400 rounded">Compliance</span>
-              </div>
-              <a
-                href="https://github.com/AIKUSAN/government-contractor-network"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-sm text-blue-400 hover:text-blue-300"
-              >
-                View on GitHub <ExternalLink className="h-4 w-4" />
-              </a>
-            </div>
-
-            {/* Docker Kubernetes Automation */}
-            <div className="rounded-lg bg-slate-800/50 p-6 ring-1 ring-slate-700 hover:ring-blue-500/50 transition-all">
-              <h3 className="text-xl font-semibold text-white mb-2">Docker/Kubernetes Automation</h3>
-              <p className="text-gray-400 text-sm mb-4">
-                Production deployment toolkit with MariaDB clustering, monitoring stacks, and Pterodactyl panel automation.
-              </p>
-              <div className="flex flex-wrap gap-2 mb-4">
-                <span className="px-2 py-1 text-xs bg-blue-500/10 text-blue-400 rounded">Docker</span>
-                <span className="px-2 py-1 text-xs bg-purple-500/10 text-purple-400 rounded">Kubernetes</span>
-                <span className="px-2 py-1 text-xs bg-orange-500/10 text-orange-400 rounded">IaC</span>
-              </div>
-              <a
-                href="https://github.com/AIKUSAN/docker-kubernetes-automation"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-sm text-blue-400 hover:text-blue-300"
-              >
-                View on GitHub <ExternalLink className="h-4 w-4" />
-              </a>
-            </div>
-
-            {/* MariaDB Optimization */}
-            <div className="rounded-lg bg-slate-800/50 p-6 ring-1 ring-slate-700 hover:ring-blue-500/50 transition-all">
-              <h3 className="text-xl font-semibold text-white mb-2">MariaDB Optimization Guide</h3>
-              <p className="text-gray-400 text-sm mb-4">
-                Performance tuning and clustering documentation for production MariaDB deployments with Galera replication.
-              </p>
-              <div className="flex flex-wrap gap-2 mb-4">
-                <span className="px-2 py-1 text-xs bg-green-500/10 text-green-400 rounded">MariaDB</span>
-                <span className="px-2 py-1 text-xs bg-blue-500/10 text-blue-400 rounded">Galera</span>
-                <span className="px-2 py-1 text-xs bg-orange-500/10 text-orange-400 rounded">Performance</span>
-              </div>
-              <a
-                href="https://github.com/AIKUSAN/mariadb-optimization-guide"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-sm text-blue-400 hover:text-blue-300"
-              >
-                View on GitHub <ExternalLink className="h-4 w-4" />
-              </a>
-            </div>
-
-            {/* Java Spring Microservices */}
-            <div className="rounded-lg bg-slate-800/50 p-6 ring-1 ring-slate-700 hover:ring-blue-500/50 transition-all">
-              <h3 className="text-xl font-semibold text-white mb-2">Java Spring Microservices</h3>
-              <p className="text-gray-400 text-sm mb-4">
-                Event-driven microservices architecture demo using Spring Boot, with service discovery and API gateway patterns.
-              </p>
-              <div className="flex flex-wrap gap-2 mb-4">
-                <span className="px-2 py-1 text-xs bg-green-500/10 text-green-400 rounded">Spring Boot</span>
-                <span className="px-2 py-1 text-xs bg-orange-500/10 text-orange-400 rounded">Java</span>
-                <span className="px-2 py-1 text-xs bg-purple-500/10 text-purple-400 rounded">Microservices</span>
-              </div>
-              <a
-                href="https://github.com/AIKUSAN/java-spring-microservices-demo"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-sm text-blue-400 hover:text-blue-300"
-              >
-                View on GitHub <ExternalLink className="h-4 w-4" />
-              </a>
-            </div>
+          <div className="mt-8 text-center md:hidden">
+            <Link href="/projects" className="text-blue-400 hover:text-blue-300 inline-flex items-center">
+              View All Projects <span className="ml-2">→</span>
+            </Link>
           </div>
         </div>
       </section>
 
-      {/* Experience Section Preview */}
-      <section id="experience" className="px-6 py-16 lg:px-8 bg-slate-800/30">
-        <div className="mx-auto max-w-4xl">
-          <h2 className="text-3xl font-bold text-white mb-8">Experience</h2>
+      {/* Experience Section */}
+      <section className="py-24 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-3xl font-bold text-white mb-12 text-center">Professional Experience</h2>
           
-          <div className="space-y-8">
-            {/* Land of Promise */}
-            <div className="relative pl-8 border-l-2 border-blue-500">
-              <div className="absolute -left-[9px] top-0 h-4 w-4 rounded-full bg-blue-500"></div>
-              <div className="mb-1 text-sm text-gray-400">Jan 2023 - Present</div>
-              <h3 className="text-xl font-semibold text-white">Systems Engineer</h3>
-              <div className="text-blue-400 mb-3">Land of Promise • Remote</div>
-              <p className="text-gray-400 mb-4">
-                Distributed Java Application Platform & Server Infrastructure
-              </p>
-              <ul className="space-y-2 text-sm text-gray-400">
-                <li className="flex gap-2">
-                  <span className="text-blue-400 mt-1">▸</span>
-                  <span>Managed 24-server distributed ecosystem serving 300+ concurrent users with 99.9% uptime</span>
-                </li>
-                <li className="flex gap-2">
-                  <span className="text-blue-400 mt-1">▸</span>
-                  <span>Reduced operational costs by 65% through migration to bare-metal Debian architecture</span>
-                </li>
-                <li className="flex gap-2">
-                  <span className="text-blue-400 mt-1">▸</span>
-                  <span>Optimized JVM performance reducing latency by 56% (80ms to 35ms) under peak load</span>
-                </li>
+          <div className="space-y-12">
+            <div className="relative border-l-2 border-white/10 pl-8 md:pl-12 py-2">
+              <div className="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-blue-500 shadow-[0_0_10px_rgba(59,130,246,0.5)]"></div>
+              <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between mb-2">
+                <h3 className="text-xl font-bold text-white">Systems Engineer</h3>
+                <span className="text-sm text-blue-400 font-mono">Jan 2023 - Present</span>
+              </div>
+              <h4 className="text-lg text-gray-400 mb-4">Land of Promise • Remote</h4>
+              <ul className="list-disc list-outside ml-4 space-y-2 text-gray-300">
+                <li>Managed 24-server distributed ecosystem serving 300+ concurrent users with 99.9% uptime through load balancing and failover protocols</li>
+                <li>Optimized JVM performance, reducing latency 56% (80ms to 35ms). Migrated to Debian 12 bare-metal, cutting costs 65%</li>
+                <li>Built CI/CD framework using Docker/Bash, reducing deployments from 30min to &lt;2min. Developed 15+ Java modules with MariaDB/MySQL/Redis/MongoDB persistence</li>
+                <li>Implemented 24/7 monitoring and alerting, reducing downtime 80%. Led 7-person distributed technical team</li>
+              </ul>
+            </div>
+
+            <div className="relative border-l-2 border-white/10 pl-8 md:pl-12 py-2">
+              <div className="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-purple-500"></div>
+              <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between mb-2">
+                <h3 className="text-xl font-bold text-white">Network Infrastructure Consultant</h3>
+                <span className="text-sm text-purple-400 font-mono">Mar 2025</span>
+              </div>
+              <h4 className="text-lg text-gray-400 mb-4">DoD Contractor • On-site</h4>
+              <ul className="list-disc list-outside ml-4 space-y-2 text-gray-300">
+                <li>Designed secure enterprise network using Ubiquiti (UDM Pro, Switch Pro 24 PoE, Wi-Fi 6) for DoD contractor facility</li>
+                <li>Produced technical documentation: BoM, CAT6 schematics, rack layouts, UPS redundancy plans</li>
+                <li>Implemented firewall rules, VLAN segmentation, VPN controls aligned with defense security standards - achieved 0 audit findings</li>
+              </ul>
+            </div>
+
+            <div className="relative border-l-2 border-white/10 pl-8 md:pl-12 py-2">
+              <div className="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-gray-600"></div>
+              <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between mb-2">
+                <h3 className="text-xl font-bold text-white">Network Administrator / IT Specialist</h3>
+                <span className="text-sm text-gray-500 font-mono">2021 - 2022</span>
+              </div>
+              <h4 className="text-lg text-gray-400 mb-4">Regional Fiber ISP • Independent Contractor</h4>
+              <ul className="list-disc list-outside ml-4 space-y-2 text-gray-300">
+                <li>Deployed ISP-grade infrastructure using MikroTik routing for 700+ subscribers across multi-site telecommunications network</li>
+                <li>Implemented pfSense firewall and load-balancing for optimized traffic distribution with 99.8% uptime</li>
+                <li>Applied server security: ACLs, patch management, network segmentation. Provided on-site support for outages and optimization</li>
               </ul>
             </div>
           </div>
-
+          
           <div className="mt-12 text-center">
             <a
               href="/resume.pdf"
               download
-              className="inline-flex items-center gap-2 rounded-md bg-slate-700 px-6 py-3 text-sm font-semibold text-white hover:bg-slate-600 transition-all"
+              className="inline-flex items-center gap-2 px-8 py-4 bg-white text-black font-semibold rounded-lg hover:bg-gray-200 transition-all transform hover:scale-105"
             >
-              <Download className="h-4 w-4" />
               Download Full Resume
             </a>
           </div>
         </div>
       </section>
-
-      {/* Footer */}
-      <footer className="px-6 py-12 lg:px-8">
-        <div className="mx-auto max-w-4xl text-center text-sm text-gray-500">
-          <p>© 2026 Lorenz Tazan. Built with Next.js and deployed on GitHub Pages.</p>
-        </div>
-      </footer>
     </div>
   );
 }
+

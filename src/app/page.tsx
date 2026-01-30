@@ -88,8 +88,8 @@ export default function Home() {
         <div className="mx-auto max-w-4xl">
           <div className="grid grid-cols-2 gap-8 sm:grid-cols-4">
             <div className="text-center">
-              <div className="text-4xl font-bold text-blue-400">700+</div>
-              <div className="mt-2 text-sm text-gray-400">ISP Subscribers</div>
+              <div className="text-4xl font-bold text-blue-400">300+</div>
+              <div className="mt-2 text-sm text-gray-400">Concurrent Users</div>
             </div>
             <div className="text-center">
               <div className="text-4xl font-bold text-blue-400">24</div>
@@ -117,12 +117,12 @@ export default function Home() {
             <div className="rounded-lg bg-slate-800/50 p-6 ring-1 ring-slate-700 hover:ring-blue-500/50 transition-all">
               <h3 className="text-xl font-semibold text-white mb-2">Network Infrastructure Portfolio</h3>
               <p className="text-gray-400 text-sm mb-4">
-                Interactive viewer showcasing professional network topologies from ISP and DoD contractor deployments with complete anonymization.
+                Interactive viewer showcasing professional network topologies from ISP and DoD contractor deployments with complete documentation.
               </p>
               <div className="flex flex-wrap gap-2 mb-4">
                 <span className="px-2 py-1 text-xs bg-blue-500/10 text-blue-400 rounded">Draw.io</span>
-                <span className="px-2 py-1 text-xs bg-purple-500/10 text-purple-400 rounded">HTML/CSS</span>
-                <span className="px-2 py-1 text-xs bg-orange-500/10 text-orange-400 rounded">GitHub Pages</span>
+                <span className="px-2 py-1 text-xs bg-green-500/10 text-green-400 rounded">Glassmorphism UI</span>
+                <span className="px-2 py-1 text-xs bg-purple-500/10 text-purple-400 rounded">GitHub Pages</span>
               </div>
               <a
                 href="https://github.com/AIKUSAN/network-infrastructure-diagrams"
@@ -136,14 +136,14 @@ export default function Home() {
 
             {/* Regional Fiber ISP */}
             <div className="rounded-lg bg-slate-800/50 p-6 ring-1 ring-slate-700 hover:ring-blue-500/50 transition-all">
-              <h3 className="text-xl font-semibold text-white mb-2">Regional Fiber ISP Network</h3>
+              <h3 className="text-xl font-semibold text-white mb-2">Regional Fiber ISP</h3>
               <p className="text-gray-400 text-sm mb-4">
-                ISP core network infrastructure serving 700+ subscribers with 10Gbps backbone, MikroTik routing, and BGP implementation.
+                ISP core network deployment serving 700+ subscribers with 10Gbps backbone, MikroTik routing, and 99.8% uptime.
               </p>
               <div className="flex flex-wrap gap-2 mb-4">
-                <span className="px-2 py-1 text-xs bg-blue-500/10 text-blue-400 rounded">MikroTik</span>
-                <span className="px-2 py-1 text-xs bg-green-500/10 text-green-400 rounded">BGP</span>
-                <span className="px-2 py-1 text-xs bg-orange-500/10 text-orange-400 rounded">ISP Infrastructure</span>
+                <span className="px-2 py-1 text-xs bg-orange-500/10 text-orange-400 rounded">MikroTik</span>
+                <span className="px-2 py-1 text-xs bg-red-500/10 text-red-400 rounded">pfSense</span>
+                <span className="px-2 py-1 text-xs bg-blue-500/10 text-blue-400 rounded">BGP</span>
               </div>
               <a
                 href="https://github.com/AIKUSAN/regional-fiber-isp"
@@ -157,14 +157,14 @@ export default function Home() {
 
             {/* Government Contractor Network */}
             <div className="rounded-lg bg-slate-800/50 p-6 ring-1 ring-slate-700 hover:ring-blue-500/50 transition-all">
-              <h3 className="text-xl font-semibold text-white mb-2">DoD Contractor Secure Network</h3>
+              <h3 className="text-xl font-semibold text-white mb-2">DoD Contractor Network</h3>
               <p className="text-gray-400 text-sm mb-4">
-                Government compliance network with Ubiquiti infrastructure, VLAN segmentation, and WPA3 Enterprise. 0 audit findings.
+                Government compliance network with 3-VLAN segmentation, strict firewall rules, and 0 audit findings.
               </p>
               <div className="flex flex-wrap gap-2 mb-4">
-                <span className="px-2 py-1 text-xs bg-red-500/10 text-red-400 rounded">DoD Compliance</span>
                 <span className="px-2 py-1 text-xs bg-blue-500/10 text-blue-400 rounded">Ubiquiti</span>
-                <span className="px-2 py-1 text-xs bg-green-500/10 text-green-400 rounded">Security</span>
+                <span className="px-2 py-1 text-xs bg-red-500/10 text-red-400 rounded">Security</span>
+                <span className="px-2 py-1 text-xs bg-green-500/10 text-green-400 rounded">Compliance</span>
               </div>
               <a
                 href="https://github.com/AIKUSAN/government-contractor-network"
@@ -178,9 +178,9 @@ export default function Home() {
 
             {/* Docker Kubernetes Automation */}
             <div className="rounded-lg bg-slate-800/50 p-6 ring-1 ring-slate-700 hover:ring-blue-500/50 transition-all">
-              <h3 className="text-xl font-semibold text-white mb-2">Docker & Kubernetes Automation</h3>
+              <h3 className="text-xl font-semibold text-white mb-2">Docker/Kubernetes Automation</h3>
               <p className="text-gray-400 text-sm mb-4">
-                Production deployment toolkit with MariaDB clustering, Prometheus monitoring, and Pterodactyl panel automation.
+                Production deployment toolkit with MariaDB clustering, monitoring stacks, and Pterodactyl panel automation.
               </p>
               <div className="flex flex-wrap gap-2 mb-4">
                 <span className="px-2 py-1 text-xs bg-blue-500/10 text-blue-400 rounded">Docker</span>
@@ -201,12 +201,12 @@ export default function Home() {
             <div className="rounded-lg bg-slate-800/50 p-6 ring-1 ring-slate-700 hover:ring-blue-500/50 transition-all">
               <h3 className="text-xl font-semibold text-white mb-2">MariaDB Optimization Guide</h3>
               <p className="text-gray-400 text-sm mb-4">
-                Performance tuning guide with Galera clustering, query optimization techniques, and production-ready configurations.
+                Performance tuning and clustering documentation for production MariaDB deployments with Galera replication.
               </p>
               <div className="flex flex-wrap gap-2 mb-4">
                 <span className="px-2 py-1 text-xs bg-green-500/10 text-green-400 rounded">MariaDB</span>
-                <span className="px-2 py-1 text-xs bg-blue-500/10 text-blue-400 rounded">Performance</span>
-                <span className="px-2 py-1 text-xs bg-purple-500/10 text-purple-400 rounded">Clustering</span>
+                <span className="px-2 py-1 text-xs bg-blue-500/10 text-blue-400 rounded">Galera</span>
+                <span className="px-2 py-1 text-xs bg-orange-500/10 text-orange-400 rounded">Performance</span>
               </div>
               <a
                 href="https://github.com/AIKUSAN/mariadb-optimization-guide"
@@ -222,11 +222,11 @@ export default function Home() {
             <div className="rounded-lg bg-slate-800/50 p-6 ring-1 ring-slate-700 hover:ring-blue-500/50 transition-all">
               <h3 className="text-xl font-semibold text-white mb-2">Java Spring Microservices</h3>
               <p className="text-gray-400 text-sm mb-4">
-                Event-driven microservices architecture demo with Spring Boot, REST APIs, and distributed transaction patterns.
+                Event-driven microservices architecture demo using Spring Boot, with service discovery and API gateway patterns.
               </p>
               <div className="flex flex-wrap gap-2 mb-4">
-                <span className="px-2 py-1 text-xs bg-orange-500/10 text-orange-400 rounded">Java</span>
                 <span className="px-2 py-1 text-xs bg-green-500/10 text-green-400 rounded">Spring Boot</span>
+                <span className="px-2 py-1 text-xs bg-orange-500/10 text-orange-400 rounded">Java</span>
                 <span className="px-2 py-1 text-xs bg-purple-500/10 text-purple-400 rounded">Microservices</span>
               </div>
               <a
@@ -291,7 +291,6 @@ export default function Home() {
       <footer className="px-6 py-12 lg:px-8">
         <div className="mx-auto max-w-4xl text-center text-sm text-gray-500">
           <p>© 2026 Lorenz Tazan. Built with Next.js and deployed on GitHub Pages.</p>
-          <p className="mt-2">Systems Engineer | Network Infrastructure | DevOps Automation</p>
         </div>
       </footer>
     </div>

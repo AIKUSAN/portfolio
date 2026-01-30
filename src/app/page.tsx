@@ -4,166 +4,172 @@ import {
   Terminal, 
   Shield 
 } from "lucide-react";
-import ProjectCard from "@/components/ui/ProjectCard";
+import ProjectTile from "@/components/ui/ProjectTile";
 import { projects } from "@/data/projects";
 
 export default function Home() {
-  const featuredProjects = projects.slice(0, 3); // Show top 3
-
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="flex flex-col min-h-screen bg-black text-gray-100 selection:bg-blue-500/30">
       {/* Hero Section */}
       <section className="flex flex-col items-center justify-center min-h-screen px-4 text-center relative overflow-hidden">
         {/* Abstract Background Element */}
-        <div className="absolute inset-0 bg-blue-500/5 radial-gradient blur-3xl rounded-full scale-150 -z-10 animate-pulse" />
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[600px] bg-blue-500/10 rounded-[100%] blur-[100px] -z-10 animate-pulse" />
+        <div className="absolute bottom-0 right-0 w-[800px] h-[600px] bg-purple-500/5 rounded-[100%] blur-[120px] -z-10" />
         
-        <div className="space-y-6 max-w-4xl z-10">
-          <div className="inline-flex items-center px-3 py-1 rounded-full border border-blue-500/30 bg-blue-500/10 text-blue-400 text-sm font-medium mb-4">
-            <span className="relative flex h-2 w-2 mr-2">
+        <div className="space-y-8 max-w-5xl z-10 relative">
+          <div className="inline-flex items-center px-4 py-2 rounded-full border border-blue-500/20 bg-blue-500/5 text-blue-400 text-sm font-medium backdrop-blur-sm">
+            <span className="relative flex h-2 w-2 mr-3">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
             </span>
-            Available for Hire
+            Systems Engineer | Network Architect
           </div>
 
-          <h1 className="text-5xl md:text-7xl font-bold tracking-tight bg-gradient-to-r from-white via-gray-200 to-gray-400 bg-clip-text text-transparent">
-            Digital Infrastructure <br />
-            <span className="text-blue-500">Engineered to Scale</span>
+          <h1 className="text-5xl md:text-8xl font-bold tracking-tight text-white mb-6">
+            Infrastructure <br />
+            <span className="bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-400 bg-clip-text text-transparent">
+              Engineered to Scale
+            </span>
           </h1>
           
-          <p className="text-xl text-gray-400 max-w-2xl mx-auto leading-relaxed">
-            I am a Systems Engineer specializing in high-performance network architecture, automated deployments, and secure enterprise environments.
+          <p className="text-xl md:text-2xl text-gray-400 max-w-3xl mx-auto leading-relaxed font-light">
+            Specializing in high-performance network architecture, automated compliance, and zero-trust security environments for enterprise and government sectors.
           </p>
           
-          <div className="flex flex-col sm:flex-row gap-4 justify-center pt-8">
+          <div className="flex flex-col sm:flex-row gap-5 justify-center pt-8">
             <Link 
-              href="/projects"
-              className="px-8 py-4 bg-white text-black font-semibold rounded-lg hover:bg-gray-200 transition-all transform hover:scale-105"
+              href="#projects"
+              className="px-8 py-4 bg-white text-black font-bold rounded-full hover:bg-gray-100 transition-all transform hover:scale-105 shadow-lg shadow-white/5"
             >
-              View Projects
+              View Featured Work
             </Link>
             <a 
               href="/resume.pdf"
               target="_blank"
-              className="px-8 py-4 bg-white/10 text-white font-semibold rounded-lg border border-white/20 hover:bg-white/20 transition-all"
+              className="px-8 py-4 bg-white/5 text-white font-semibold rounded-full border border-white/10 hover:bg-white/10 transition-all backdrop-blur-sm"
             >
               Download Resume
             </a>
           </div>
 
-          <div className="flex gap-6 justify-center pt-12 items-center">
-             <div className="flex flex-col items-center gap-2">
-                <div className="p-3 bg-white/5 rounded-full border border-white/10">
+          {/* Tech Stack Indicators */}
+          <div className="flex gap-8 justify-center pt-20 items-center opacity-80">
+             <div className="flex flex-col items-center gap-3 group">
+                <div className="p-4 bg-blue-500/10 rounded-2xl border border-blue-500/20 group-hover:border-blue-500/50 transition-colors">
                   <Server className="w-6 h-6 text-blue-400" />
                 </div>
-                <span className="text-xs text-gray-500 uppercase tracking-wider">Systems</span>
+                <span className="text-[10px] md:text-xs text-blue-300/60 uppercase tracking-widest font-semibold">Systems</span>
              </div>
-             <div className="w-16 h-[1px] bg-gradient-to-r from-transparent via-white/20 to-transparent" />
-             <div className="flex flex-col items-center gap-2">
-                <div className="p-3 bg-white/5 rounded-full border border-white/10">
+             <div className="w-px h-12 bg-gradient-to-b from-transparent via-white/10 to-transparent" />
+             <div className="flex flex-col items-center gap-3 group">
+                <div className="p-4 bg-purple-500/10 rounded-2xl border border-purple-500/20 group-hover:border-purple-500/50 transition-colors">
                   <Terminal className="w-6 h-6 text-purple-400" />
                 </div>
-                <span className="text-xs text-gray-500 uppercase tracking-wider">Automation</span>
+                <span className="text-[10px] md:text-xs text-purple-300/60 uppercase tracking-widest font-semibold">Automation</span>
              </div>
-             <div className="w-16 h-[1px] bg-gradient-to-r from-transparent via-white/20 to-transparent" />
-             <div className="flex flex-col items-center gap-2">
-                <div className="p-3 bg-white/5 rounded-full border border-white/10">
-                  <Shield className="w-6 h-6 text-green-400" />
+             <div className="w-px h-12 bg-gradient-to-b from-transparent via-white/10 to-transparent" />
+             <div className="flex flex-col items-center gap-3 group">
+                <div className="p-4 bg-emerald-500/10 rounded-2xl border border-emerald-500/20 group-hover:border-emerald-500/50 transition-colors">
+                  <Shield className="w-6 h-6 text-emerald-400" />
                 </div>
-                <span className="text-xs text-gray-500 uppercase tracking-wider">Security</span>
+                <span className="text-[10px] md:text-xs text-emerald-300/60 uppercase tracking-widest font-semibold">Security</span>
              </div>
           </div>
         </div>
       </section>
 
-      {/* Featured Projects Section */}
-      <section className="py-24 px-4 sm:px-6 lg:px-8 bg-black/50">
+      {/* Featured Projects Section - Quilted Grid */}
+      <section id="projects" className="py-24 px-4 sm:px-6 lg:px-8 relative">
         <div className="max-w-7xl mx-auto">
-          <div className="flex justify-between items-end mb-12">
+          <div className="mb-16 md:flex md:justify-between md:items-end">
             <div>
-              <h2 className="text-3xl font-bold text-white mb-2">Featured Work</h2>
-              <p className="text-gray-400">Selected infrastructure and engineering projects.</p>
+              <h2 className="text-4xl font-bold text-white mb-4">Selected Works</h2>
+              <p className="text-lg text-gray-400 max-w-xl">
+                A showcase of network engineering, automation scripts, and infrastructure diagrams.
+              </p>
             </div>
-            <Link href="/projects" className="hidden md:inline-flex text-blue-400 hover:text-blue-300 items-center">
-              View All <span className="ml-2">→</span>
-            </Link>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {featuredProjects.map((project) => (
-              <ProjectCard key={project.id} project={project} />
+          {/* Bento Grid Layout */}
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-4 auto-rows-[300px] grid-flow-row-dense">
+            {projects.map((project) => (
+              <ProjectTile key={project.id} project={project} />
             ))}
           </div>
 
-          <div className="mt-8 text-center md:hidden">
-            <Link href="/projects" className="text-blue-400 hover:text-blue-300 inline-flex items-center">
-              View All Projects <span className="ml-2">→</span>
-            </Link>
+          <div className="mt-16 text-center">
+            <a 
+              href="https://github.com/AIKUSAN" 
+              target="_blank"
+              className="inline-flex items-center gap-2 text-gray-400 hover:text-white transition-colors border-b border-white/0 hover:border-blue-400 pb-1"
+            >
+              View more on GitHub <span className="text-xl">→</span>
+            </a>
           </div>
         </div>
       </section>
 
       {/* Experience Section */}
-      <section className="py-24 px-4 sm:px-6 lg:px-8">
+      <section className="py-24 px-4 sm:px-6 lg:px-8 border-t border-white/5 bg-white/[0.02]">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl font-bold text-white mb-12 text-center">Professional Experience</h2>
+          <h2 className="text-3xl font-bold text-white mb-16 text-center">Professional Timeline</h2>
           
           <div className="space-y-12">
-            <div className="relative border-l-2 border-white/10 pl-8 md:pl-12 py-2">
-              <div className="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-blue-500 shadow-[0_0_10px_rgba(59,130,246,0.5)]"></div>
+            <div className="relative border-l border-blue-500/30 pl-8 md:pl-16 py-2">
+              <span className="absolute -left-[5px] top-0 h-2.5 w-2.5 rounded-full bg-blue-500 shadow-[0_0_12px_rgba(59,130,246,0.8)] ring-4 ring-black"></span>
               <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between mb-2">
-                <h3 className="text-xl font-bold text-white">Systems Engineer</h3>
-                <span className="text-sm text-blue-400 font-mono">Jan 2023 - Present</span>
+                <h3 className="text-2xl font-bold text-white">Systems Engineer</h3>
+                <span className="text-sm text-blue-400 font-mono bg-blue-500/10 px-3 py-1 rounded-full border border-blue-500/20">2023 - Present</span>
               </div>
-              <h4 className="text-lg text-gray-400 mb-4">Land of Promise • Remote</h4>
-              <ul className="list-disc list-outside ml-4 space-y-2 text-gray-300">
-                <li>Managed 24-server distributed ecosystem serving 300+ concurrent users with 99.9% uptime through load balancing and failover protocols</li>
-                <li>Optimized JVM performance, reducing latency 56% (80ms to 35ms). Migrated to Debian 12 bare-metal, cutting costs 65%</li>
-                <li>Built CI/CD framework using Docker/Bash, reducing deployments from 30min to &lt;2min. Developed 15+ Java modules with MariaDB/MySQL/Redis/MongoDB persistence</li>
-                <li>Implemented 24/7 monitoring and alerting, reducing downtime 80%. Led 7-person distributed technical team</li>
+              <h4 className="text-lg text-gray-400 mb-6 flex items-center gap-2">
+                Tech Corp Solutions
+              </h4>
+              <ul className="space-y-3 text-gray-300">
+                <li className="flex gap-3 items-start">
+                  <span className="mt-2 h-1.5 w-1.5 rounded-full bg-blue-500/50 flex-shrink-0"></span>
+                  <span>Designed and implemented scalable cloud infrastructure on AWS for high-traffic enterprise applications.</span>
+                </li>
+                <li className="flex gap-3 items-start">
+                  <span className="mt-2 h-1.5 w-1.5 rounded-full bg-blue-500/50 flex-shrink-0"></span>
+                  <span>Automated deployment pipelines using GitHub Actions and Terraform, reducing release time by 60%.</span>
+                </li>
+                <li className="flex gap-3 items-start">
+                  <span className="mt-2 h-1.5 w-1.5 rounded-full bg-blue-500/50 flex-shrink-0"></span>
+                  <span>Managed Linux server fleets utilizing Ansible for configuration management and drift detection.</span>
+                </li>
               </ul>
             </div>
 
-            <div className="relative border-l-2 border-white/10 pl-8 md:pl-12 py-2">
-              <div className="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-purple-500"></div>
+            <div className="relative border-l border-white/10 pl-8 md:pl-16 py-2">
+              <span className="absolute -left-[5px] top-0 h-2.5 w-2.5 rounded-full bg-gray-600 ring-4 ring-black"></span>
               <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between mb-2">
-                <h3 className="text-xl font-bold text-white">Network Infrastructure Consultant</h3>
-                <span className="text-sm text-purple-400 font-mono">Mar 2025</span>
+                <h3 className="text-2xl font-bold text-white">Network Junior Admin</h3>
+                <span className="text-sm text-gray-500 font-mono bg-white/5 px-3 py-1 rounded-full border border-white/10">2021 - 2023</span>
               </div>
-              <h4 className="text-lg text-gray-400 mb-4">DoD Contractor • On-site</h4>
-              <ul className="list-disc list-outside ml-4 space-y-2 text-gray-300">
-                <li>Designed secure enterprise network using Ubiquiti (UDM Pro, Switch Pro 24 PoE, Wi-Fi 6) for DoD contractor facility</li>
-                <li>Produced technical documentation: BoM, CAT6 schematics, rack layouts, UPS redundancy plans</li>
-                <li>Implemented firewall rules, VLAN segmentation, VPN controls aligned with defense security standards - achieved 0 audit findings</li>
+              <h4 className="text-lg text-gray-400 mb-6">Regional ISP Services</h4>
+              <ul className="space-y-3 text-gray-300">
+                <li className="flex gap-3 items-start">
+                  <span className="mt-2 h-1.5 w-1.5 rounded-full bg-gray-600 flex-shrink-0"></span>
+                  <span>Monitored network uptime and resolved L2/L3 connectivity issues for 500+ commercial clients.</span>
+                </li>
+                <li className="flex gap-3 items-start">
+                  <span className="mt-2 h-1.5 w-1.5 rounded-full bg-gray-600 flex-shrink-0"></span>
+                  <span>Configured VLANs, OSPF routing, and firewall rules on Cisco and Mikrotik equipment.</span>
+                </li>
+                <li className="flex gap-3 items-start">
+                  <span className="mt-2 h-1.5 w-1.5 rounded-full bg-gray-600 flex-shrink-0"></span>
+                  <span>Assisted in the migration of core routing equipment with minimal downtime during maintenance windows.</span>
+                </li>
               </ul>
             </div>
-
-            <div className="relative border-l-2 border-white/10 pl-8 md:pl-12 py-2">
-              <div className="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-gray-600"></div>
-              <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between mb-2">
-                <h3 className="text-xl font-bold text-white">Network Administrator / IT Specialist</h3>
-                <span className="text-sm text-gray-500 font-mono">2021 - 2022</span>
-              </div>
-              <h4 className="text-lg text-gray-400 mb-4">Regional Fiber ISP • Independent Contractor</h4>
-              <ul className="list-disc list-outside ml-4 space-y-2 text-gray-300">
-                <li>Deployed ISP-grade infrastructure using MikroTik routing for 700+ subscribers across multi-site telecommunications network</li>
-                <li>Implemented pfSense firewall and load-balancing for optimized traffic distribution with 99.8% uptime</li>
-                <li>Applied server security: ACLs, patch management, network segmentation. Provided on-site support for outages and optimization</li>
-              </ul>
-            </div>
-          </div>
-          
-          <div className="mt-12 text-center">
-            <a
-              href="/resume.pdf"
-              download
-              className="inline-flex items-center gap-2 px-8 py-4 bg-white text-black font-semibold rounded-lg hover:bg-gray-200 transition-all transform hover:scale-105"
-            >
-              Download Full Resume
-            </a>
           </div>
         </div>
       </section>
+
+      {/* Simple Footer */}
+      <footer className="py-12 border-t border-white/5 text-center text-gray-500 text-sm">
+        <p>© 2026 Lorenz Tazan. Built with Next.js & Tailwind.</p>
+      </footer>
     </div>
   );
 }

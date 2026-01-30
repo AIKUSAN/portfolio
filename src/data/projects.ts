@@ -8,6 +8,7 @@ export interface Project {
   category: "Infrastructure" | "Automation" | "Security";
   imageClass: string; // CSS class for background color/gradient placeholder
   span: string; // CSS class for grid span
+  image: string;
 }
 
 export const projects: Project[] = [
@@ -19,6 +20,7 @@ export const projects: Project[] = [
     category: "Infrastructure",
     imageClass: "bg-gradient-to-br from-blue-600/20 to-indigo-900/40 border-blue-500/30",
     span: "md:col-span-2 md:row-span-2",
+    image: "https://placehold.co/800x600/1e1b4b/3b82f6?text=MPLS+Core+Architecture",
     github: "https://github.com/AIKUSAN/regional-fiber-isp"
   },
   {
@@ -29,6 +31,7 @@ export const projects: Project[] = [
     category: "Security",
     imageClass: "bg-gradient-to-bl from-emerald-600/20 to-teal-900/40 border-emerald-500/30",
     span: "md:col-span-1 md:row-span-2",
+    image: "https://placehold.co/400x800/022c22/10b981?text=Zero+Trust+Security",
     github: "https://github.com/AIKUSAN/government-contractor-network"
   },
   {
@@ -39,6 +42,7 @@ export const projects: Project[] = [
     category: "Infrastructure",
     imageClass: "bg-gradient-to-tr from-purple-600/20 to-violet-900/40 border-purple-500/30",
     span: "md:col-span-1 md:row-span-1",
+    image: "https://placehold.co/400x400/3b0764/a855f7?text=Hybrid+Cloud",
     github: "https://github.com/AIKUSAN/network-infrastructure-diagrams"
   },
   {
@@ -49,6 +53,7 @@ export const projects: Project[] = [
     category: "Automation",
     imageClass: "bg-gradient-to-br from-orange-600/20 to-red-900/40 border-orange-500/30",
     span: "md:col-span-1 md:row-span-1",
+    image: "https://placehold.co/400x400/431407/f97316?text=Automation+Ops",
   },
   {
     id: "global-dns",
@@ -58,5 +63,6 @@ export const projects: Project[] = [
     category: "Infrastructure",
     imageClass: "bg-gradient-to-r from-cyan-600/20 to-blue-900/40 border-cyan-500/30",
     span: "md:col-span-1 md:row-span-1",
+    image: "https://placehold.co/400x400/083344/06b6d4?text=Global+Traffic",
   }
 ];

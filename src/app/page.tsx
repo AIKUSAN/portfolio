@@ -92,8 +92,8 @@ export default function Home() {
           
           {/* Bento Grid Layout */}
           <div className="grid grid-cols-1 md:grid-cols-4 gap-4 auto-rows-[300px] grid-flow-row-dense">
-            {projects.map((project) => (
-              <ProjectTile key={project.id} project={project} />
+            {projects.map((project, index) => (
+              <ProjectTile key={project.id} project={project} index={index} />
             ))}
           </div>
 

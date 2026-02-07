@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from 'framer-motion';
-import { Mail, Send, MapPin, Phone, Github, Linkedin } from 'lucide-react';
+import { Mail, Send, MapPin, Phone, Github } from 'lucide-react';
 import { useState } from 'react';
 
 export default function Contact() {
@@ -9,7 +9,7 @@ export default function Contact() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    window.location.href = `mailto:lorenz.tazan@email.com?subject=Portfolio Contact from ${formData.name}&body=${formData.message}`;
+    window.location.href = `mailto:lorenztazan@gmail.com?subject=Portfolio Contact from ${formData.name}&body=${formData.message}`;
   };
 
   return (
@@ -24,7 +24,7 @@ export default function Contact() {
         >
           <h2 className="text-4xl font-bold text-white mb-4">Get In Touch</h2>
           <p className="text-gray-400 text-lg max-w-2xl mx-auto">
-            I'm always open to discussing new projects, creative ideas, or opportunities to be part of your visions.
+            I&apos;m always open to discussing new projects, creative ideas, or opportunities to be part of your visions.
           </p>
         </motion.div>
 
@@ -45,8 +45,8 @@ export default function Contact() {
                   </div>
                   <div>
                     <p className="text-sm text-gray-400">Email</p>
-                    <a href="mailto:lorenz.tazan@email.com" className="text-white hover:text-blue-400 transition-colors">
-                      lorenz.tazan@email.com
+                    <a href="mailto:lorenztazan@gmail.com" className="text-white hover:text-blue-400 transition-colors">
+                      lorenztazan@gmail.com
                     </a>
                   </div>
                 </div>
@@ -57,8 +57,8 @@ export default function Contact() {
                   </div>
                   <div>
                     <p className="text-sm text-gray-400">Phone</p>
-                    <a href="tel:+15551234567" className="text-white hover:text-emerald-400 transition-colors">
-                      +1 (555) 123-4567
+                    <a href="tel:240-256-2410" className="text-white hover:text-emerald-400 transition-colors">
+                      240-256-2410
                     </a>
                   </div>
                 </div>
@@ -69,7 +69,7 @@ export default function Contact() {
                   </div>
                   <div>
                     <p className="text-sm text-gray-400">Location</p>
-                    <p className="text-white">San Francisco, CA</p>
+                    <p className="text-white">Remote (Open to On-site)</p>
                   </div>
                 </div>
 

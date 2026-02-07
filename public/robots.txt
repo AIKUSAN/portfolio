@@ -1,0 +1,14 @@
+# https://www.robotstxt.org/robotstxt.html
+User-agent: *
+Allow: /
+
+# Sitemap (Custom domain via GitHub Pages)
+Sitemap: https://lorenztazan.com/sitemap.xml
+
+# Disallow admin/build directories if added in future
+# User-agent: *
+# Disallow: /admin/
+
+# Disallow private/admin paths (if any in the future)
+# User-agent: *
+# Disallow: /admin/

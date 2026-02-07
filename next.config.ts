@@ -5,7 +5,9 @@ const nextConfig: NextConfig = {
   images: {
     unoptimized: true,
   },
-  basePath: process.env.NODE_ENV === 'production' ? '/portfolio' : '',
+  // Deployed to custom domain via GitHub Pages: lorenztazan.com
+  // CNAME file in public/ folder points to custom domain
+  // No basePath needed - domain points directly to repository root
   reactCompiler: true,
 };
 

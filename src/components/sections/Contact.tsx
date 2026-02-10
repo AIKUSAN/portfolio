@@ -9,7 +9,9 @@ export default function Contact() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    window.location.href = `mailto:lorenztazan@gmail.com?subject=Portfolio Contact from ${formData.name}&body=${formData.message}`;
+    const subject = encodeURIComponent(`Portfolio Contact from ${formData.name}`);
+    const body = encodeURIComponent(formData.message);
+    window.location.href = `mailto:lorenztazan@gmail.com?subject=${subject}&body=${body}`;
   };
 
   return (

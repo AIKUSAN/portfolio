@@ -16,14 +16,10 @@ interface Particle {
 export default function InteractiveBackground() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const { theme } = useTheme();
-  const [isClient, setIsClient] = useState(false);
+  const [isClient] = useState(typeof window !== 'undefined');
   const mouseRef = useRef({ x: 0, y: 0, isMoving: false });
   const particlesRef = useRef<Particle[]>([]);
   const animationFrameRef = useRef<number | null>(null);
-
-  useEffect(() => {
-    setIsClient(true);
-  }, []);
 
   useEffect(() => {
     if (!isClient) return;

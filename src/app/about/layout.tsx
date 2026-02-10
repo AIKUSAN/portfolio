@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "About Me | Lorenz Tazan - AI-Powered Platform Engineer",
-  description: "AI-Powered Platform Engineer with 7+ years experience pioneering LLM-based infrastructure automation, managing 24-server platforms with 99.9% uptime. Expert in multi-agent AI systems, Kubernetes orchestration, and cloud-native architecture.",
-  keywords: "AI-Powered Platform Engineer, LLM Integration, Infrastructure Automation, Multi-Agent AI Systems, DevOps Engineer, Site Reliability Engineer, Kubernetes Administrator, Docker Orchestration, GitOps, Cloud Native, Network Engineering",
+  title: "About Me | Lorenz Tazan - Systems Engineer & DevOps Specialist",
+  description: "Systems Engineer with 7 years of hands-on experience implementing infrastructure automation and managing distributed systems. Currently maintaining 24-server platform with 99.9% uptime. Expertise in Kubernetes orchestration, Docker containerization, and AI-enhanced DevOps workflows.",
+  keywords: "Systems Engineer, DevOps Engineer, Infrastructure Automation, Kubernetes Specialist, Docker Orchestration, Cloud Infrastructure, Platform Engineering, GitOps, CI/CD, Site Reliability",
   openGraph: {
-    title: "About Lorenz Tazan - AI-Powered Platform Engineer",
-    description: "7+ years pioneering LLM-based infrastructure automation with 99.9% uptime",
+    title: "About Lorenz Tazan - Systems Engineer & DevOps Specialist",
+    description: "7 years of hands-on infrastructure automation experience with focus on high-availability systems",
     url: "https://lorenztazan.com/about",
   },
 };

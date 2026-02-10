@@ -179,12 +179,12 @@ export default function EducationPage() {
 
             <div className="dark:bg-slate-900/40 bg-gray-50 backdrop-blur-sm border dark:border-slate-700/50 border-gray-200 rounded-2xl p-8">
               <p className="dark:text-gray-300 text-gray-700 leading-relaxed mb-8">
-                My education extends far beyond the classroom through <strong>7+ years of hands-on IT experience</strong>. This includes managing production infrastructure, implementing security compliance, and building high-availability systems that serve hundreds of users daily.
+                My education extends far beyond the classroom through <strong>7 years of hands-on IT experience</strong>. This includes managing production infrastructure, implementing security compliance, and building high-availability systems that serve hundreds of users daily.
               </p>
               
               <div className="grid md:grid-cols-3 gap-6">
                 <div className="text-center p-6 dark:bg-slate-800/50 bg-white border dark:border-slate-600/30 border-gray-300 rounded-xl">
-                  <div className="text-4xl font-bold text-purple-400 mb-2">7+</div>
+                  <div className="text-4xl font-bold text-purple-400 mb-2">7</div>
                   <div className="dark:text-gray-400 text-gray-600 font-medium">Years IT Experience</div>
                 </div>
                 <div className="text-center p-6 dark:bg-slate-800/50 bg-white border dark:border-slate-600/30 border-gray-300 rounded-xl">
@@ -199,7 +199,7 @@ export default function EducationPage() {
 
               <p className="dark:text-gray-300 text-gray-700 leading-relaxed mt-8">
                 This practical experience has been invaluable in developing deep expertise across infrastructure design, 
-                performance optimization, security compliance, and team leadership. Each project has reinforced the importance 
+                performance optimization, security compliance, and cross-functional collaboration. Each project has reinforced the importance 
                 of continuous learning and adapting to emerging technologies.
               </p>
             </div>

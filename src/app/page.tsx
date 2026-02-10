@@ -55,7 +55,7 @@ export default function Home() {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="text-xl md:text-2xl dark:text-gray-400 text-gray-600 max-w-3xl mx-auto leading-relaxed font-light"
             >
-              Systems Engineer specializing in AI-powered infrastructure automation with 7+ years managing high-availability distributed systems. Built and scaled 24-server gaming platform serving 300+ concurrent users with 99.9% uptime. Pioneering multi-LLM orchestration (Gemini, Claude, GPT-4) for intelligent infrastructure operations.
+              Systems Engineer with 7 years of hands-on experience building and maintaining high-availability distributed systems. Currently managing 24-server gaming platform serving 300+ concurrent users with 99.9% uptime. Implementing multi-LLM orchestration (Gemini, Claude, GPT-4) for intelligent infrastructure automation.
             </motion.p>
             
             <motion.div
@@ -170,7 +170,7 @@ export default function Home() {
                 <ul className="space-y-3 dark:text-gray-300 text-gray-700">
                   <li className="flex gap-3 items-start">
                     <span className="mt-2 h-1.5 w-1.5 rounded-full bg-blue-500/50 flex-shrink-0"></span>
-                    <span>Managed 24-server distributed ecosystem serving 300+ concurrent users with <strong>99.9% uptime</strong></span>
+                    <span>Built and managed 24-server distributed ecosystem serving 300+ concurrent users with <strong>99.9% uptime</strong></span>
                   </li>
                   <li className="flex gap-3 items-start">
                     <span className="mt-2 h-1.5 w-1.5 rounded-full bg-blue-500/50 flex-shrink-0"></span>
@@ -200,7 +200,7 @@ export default function Home() {
                 <ul className="space-y-3 dark:text-gray-300 text-gray-700">
                   <li className="flex gap-3 items-start">
                     <span className="mt-2 h-1.5 w-1.5 rounded-full bg-emerald-500/50 flex-shrink-0"></span>
-                    <span>Designed NIST 800-171 compliant network with <strong>0 audit findings</strong></span>
+                    <span>Implemented NIST 800-171 compliant network with <strong>0 audit findings</strong></span>
                   </li>
                   <li className="flex gap-3 items-start">
                     <span className="mt-2 h-1.5 w-1.5 rounded-full bg-emerald-500/50 flex-shrink-0"></span>

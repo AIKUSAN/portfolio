@@ -15,21 +15,22 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Lorenz Tazan - AI-Powered Platform Engineer | Infrastructure Automation & LLM Integration",
-  description: "AI-Powered Platform Engineer with 7+ years expertise in infrastructure automation, LLM integration, and cloud-native orchestration. Achieved 99.9% uptime, 93% deployment speed improvement, and pioneered multi-agent AI systems for network automation.",
+  title: "Lorenz Tazan - Systems Engineer | DevOps & Infrastructure Automation",
+  description: "Systems Engineer with 7 years of hands-on experience in infrastructure automation, Kubernetes/Docker orchestration, and AI-enhanced workflows. Achieved 99.9% uptime across distributed systems, 93% deployment speed improvement, and implemented LLM-driven automation for network operations.",
   keywords: [
-    "AI-Powered Platform Engineer",
-    "LLM Integration",
-    "Infrastructure Automation",
+    "Systems Engineer",
     "DevOps Engineer",
+    "Platform Engineer",
+    "Infrastructure Automation",
     "Site Reliability Engineer",
     "Kubernetes Administrator",
     "Docker Orchestration",
-    "Cloud Native Architecture",
+    "Cloud Infrastructure",
+    "CI/CD Pipeline",
     "Network Engineering",
     "GitOps",
-    "AI Infrastructure",
-    "Platform Engineering"
+    "Infrastructure as Code",
+    "LLM Integration"
   ],
   authors: [{ name: "Lorenz Tazan" }],
   creator: "Lorenz Tazan",
@@ -44,8 +45,8 @@ export const metadata: Metadata = {
     canonical: '/',
   },
   openGraph: {
-    title: "Lorenz Tazan - AI-Powered Platform Engineer",
-    description: "AI-Powered Platform Engineer with 7+ years expertise in infrastructure automation and LLM integration. 99.9% uptime, pioneering multi-agent AI systems.",
+    title: "Lorenz Tazan - Systems Engineer | DevOps & Infrastructure",
+    description: "Systems Engineer with 7 years of hands-on experience in infrastructure automation and cloud-native orchestration. 99.9% uptime across distributed systems.",
     url: 'https://lorenztazan.com',
     siteName: 'Lorenz Tazan Portfolio',
     images: [
@@ -61,8 +62,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: "Lorenz Tazan - AI-Powered Platform Engineer",
-    description: "AI-Powered Platform Engineer specializing in Infrastructure Automation and LLM Integration",
+    title: "Lorenz Tazan - Systems Engineer | DevOps & Infrastructure",
+    description: "Systems Engineer specializing in Infrastructure Automation, Kubernetes, and DevOps workflows",
     creator: '@AIKUSAN',
     images: ['/og-image.png'],
   },
@@ -96,8 +97,8 @@ const structuredData = {
   "@context": "https://schema.org",
   "@type": "Person",
   name: "Lorenz Tazan",
-  jobTitle: "AI-Powered Platform Engineer",
-  description: "AI-Powered Platform Engineer with 7+ years expertise in infrastructure automation, LLM integration, cloud-native orchestration, and pioneering multi-agent AI systems for network automation.",
+  jobTitle: "Systems Engineer",
+  description: "Systems Engineer with 7 years of hands-on experience in infrastructure automation, DevOps workflows, Kubernetes/Docker orchestration, and implementing AI-enhanced infrastructure operations.",
   url: "https://lorenztazan.com",
   email: "lorenztazan@gmail.com",
   telephone: "+1-240-256-2410",

@@ -1,0 +1,61 @@
+# Dependabot configuration for automated dependency updates
+# Monitors npm packages and creates pull requests for security updates
+# https://docs.github.com/en/code-security/dependabot
+
+version: 2
+updates:
+  # Monitor npm dependencies
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "09:00"
+      timezone: "America/New_York"
+    
+    # Automatically merge minor/patch updates
+    open-pull-requests-limit: 10
+    
+    # Group updates by type
+    groups:
+      development-dependencies:
+        dependency-type: "development"
+        update-types:
+          - "minor"
+          - "patch"
+      
+      production-dependencies:
+        dependency-type: "production"
+        update-types:
+          - "minor"
+          - "patch"
+    
+    # Reviewers (optional - add your GitHub username)
+    reviewers:
+      - "AIKUSAN"
+    
+    # Labels for organization
+    labels:
+      - "dependencies"
+      - "security"
+    
+    # Commit message prefix
+    commit-message:
+      prefix: "chore"
+      prefix-development: "chore(dev)"
+      include: "scope"
+    
+    # Ignore specific packages (if needed)
+    # ignore:
+    #   - dependency-name: "package-name"
+    #     versions: ["1.x", "2.x"]
+
+  # Monitor GitHub Actions (if you add CI/CD later)
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    labels:
+      - "dependencies"
+      - "github-actions"

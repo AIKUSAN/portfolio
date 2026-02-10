@@ -14,14 +14,14 @@ const experiences = [
     current: true,
     color: "blue",
     achievements: [
-      "Managed 24-server distributed ecosystem serving 300+ concurrent users with 99.9% uptime through load balancing and failover protocols",
-      "Pioneering LLM-based automation for Pterodactyl API workflows, reducing manual server management tasks by 85%",
+      "Built and managed 24-server distributed ecosystem serving 300+ concurrent users with 99.9% uptime through load balancing and failover protocols",
+      "Implemented LLM-enhanced automation for Pterodactyl API workflows, reducing manual server management tasks by 85%",
       "Optimized JVM performance, reducing latency 56% (80ms to 35ms) through connection pooling and caching strategies",
       "Migrated to Debian 12 bare-metal infrastructure, cutting costs 65% while maintaining performance",
       "Built CI/CD framework using Docker/Bash, reducing deployments from 30 minutes to less than 2 minutes",
       "Developed 15+ Java modules with MariaDB/MySQL/Redis/MongoDB persistence on Pterodactyl panel infrastructure",
       "Implemented 24/7 monitoring and alerting with Prometheus/Grafana, reducing downtime 80%",
-      "Led 7-person distributed technical team across development, operations, and community management"
+      "Collaborated with 7-person distributed technical team across development, operations, and community management"
     ],
     technologies: ["Docker", "Kubernetes", "MariaDB", "Redis", "Java", "Python", "Bash", "CI/CD", "nginx"]
   },
@@ -33,7 +33,7 @@ const experiences = [
     current: false,
     color: "emerald",
     achievements: [
-      "Designed secure enterprise network using Ubiquiti equipment for DoD contractor facility",
+      "Implemented secure enterprise network using Ubiquiti equipment for DoD contractor facility",
       "Produced comprehensive technical documentation including Bill of Materials, CAT6 schematics, rack layouts, and UPS redundancy plans",
       "Implemented firewall rules, VLAN segmentation, and VPN controls aligned with defense security standards",
       "Achieved **0 audit findings** during government inspection for NIST 800-171 compliance",
@@ -116,7 +116,7 @@ export default function ExperiencePage() {
               Professional <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">Experience</span>
             </h1>
             <p className="text-xl dark:text-gray-400 text-gray-600">
-              7+ years of IT experience with 3+ years in Systems Engineering, managing enterprise infrastructure and distributed systems.
+              7 years of hands-on IT experience with focus on Systems Engineering, implementing enterprise infrastructure and managing distributed systems.
             </p>
           </motion.div>
 
@@ -182,7 +182,7 @@ export default function ExperiencePage() {
             <h2 className="text-2xl font-bold dark:text-white text-gray-900 mb-6 text-center">Career Highlights</h2>
             <div className="grid md:grid-cols-4 gap-6 text-center">
               <div>
-                <div className="text-3xl font-bold bg-gradient-to-r from-blue-400 to-indigo-400 bg-clip-text text-transparent mb-2">7+</div>
+                <div className="text-3xl font-bold bg-gradient-to-r from-blue-400 to-indigo-400 bg-clip-text text-transparent mb-2">7</div>
                 <div className="dark:text-gray-400 text-gray-600 text-sm">Years Experience</div>
               </div>
               <div>

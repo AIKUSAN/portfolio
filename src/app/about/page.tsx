@@ -33,26 +33,26 @@ export default function AboutPage() {
             <h2 className="text-3xl font-bold dark:text-white text-gray-900 mb-6">My Journey in Systems Engineering</h2>
             <div className="dark:bg-slate-900/40 bg-gray-50 backdrop-blur-sm border dark:border-slate-700/50 border-gray-200 rounded-2xl p-8 mb-12">
               <p className="dark:text-gray-300 text-gray-700 leading-relaxed">
-                I am a Systems Engineer with over <strong>7 years of IT experience</strong>, currently managing a <strong>24-server gaming platform</strong> serving <strong>300+ concurrent users</strong> at Land of Promise with <strong>99.9% uptime</strong>. My work spans the full infrastructure lifecycle—from architecting distributed systems to pioneering <strong>LLM-based automation</strong> for infrastructure orchestration and server management workflows.
+                I am a Systems Engineer with <strong>7 years of hands-on IT experience</strong>, currently managing a <strong>24-server gaming platform</strong> serving <strong>300+ concurrent users</strong> at Land of Promise with <strong>99.9% uptime</strong>. My work spans the full infrastructure lifecycle—from implementing distributed systems to developing <strong>LLM-enhanced automation</strong> for infrastructure orchestration and server management workflows.
               </p>
               <p className="dark:text-gray-300 text-gray-700 leading-relaxed mt-4">
-                My expertise spans the full <strong>Linux and Windows ecosystems</strong>, with deep focus on Docker orchestration, database management (MariaDB/MySQL/PostgreSQL/MongoDB/Redis), and automated deployment pipelines. I&apos;ve reduced operational costs by <strong>65%</strong> through infrastructure optimization and built systems that don&apos;t just run—they thrive under pressure, scale efficiently, and recover gracefully from failures.
+                My expertise covers the <strong>Linux and Windows ecosystems</strong>, with focus on Docker orchestration, database management (MariaDB/MySQL/PostgreSQL/MongoDB/Redis), and automated deployment pipelines. I&apos;ve contributed to operational cost reduction by <strong>65%</strong> through infrastructure optimization and built systems that run reliably under pressure, scale efficiently, and recover gracefully from failures.
               </p>
               <p className="dark:text-gray-300 text-gray-700 leading-relaxed mt-4">
-                What drives me isn&apos;t just keeping servers online—it&apos;s architecting infrastructure that anticipates problems before they occur. From optimizing JVM performance by <strong>56%</strong> (80ms → 35ms latency) to slashing database query times by <strong>96%</strong> (800ms → 35ms), I approach every challenge with a mindset of continuous improvement and measurable impact.
+                What drives me is building infrastructure that anticipates problems before they occur. From optimizing JVM performance by <strong>56%</strong> (80ms → 35ms latency) to reducing database query times by <strong>96%</strong> (800ms → 35ms), I approach every challenge with a mindset of continuous improvement and measurable impact.
               </p>
             </div>
 
             <h2 className="text-3xl font-bold dark:text-white text-gray-900 mb-6">The Future of Automation</h2>
             <div className="dark:bg-slate-800/60 bg-violet-50 border dark:border-slate-600/40 border-violet-200 rounded-2xl p-8 mb-12">
               <p className="dark:text-white text-gray-800 leading-relaxed text-lg">
-                <strong>2025–2026 has been transformative.</strong> I&apos;m evolving my DevOps practice by integrating <strong>Agentic AI and LLM-driven workflows</strong> into production environments. Using tools like <strong>n8n</strong>, I build autonomous agents that handle everything from network configuration scripting to proactive system monitoring with intelligent decision-making.
+                <strong>2025–2026 has been transformative.</strong> I&apos;m advancing my DevOps practice by integrating <strong>Agentic AI and LLM-driven workflows</strong> into production environments. Using tools like <strong>n8n</strong>, I&apos;ve implemented autonomous agents that handle everything from network configuration scripting to proactive system monitoring with intelligent decision-making.
               </p>
               <p className="dark:text-white text-gray-800 leading-relaxed text-lg mt-4">
-                My goal is ambitious but clear: move beyond simple automation into <strong>&quot;intelligent&quot; infrastructure</strong> that can self-heal, predict failures, and scale efficiently using modern LLM capabilities. This isn&apos;t science fiction—it&apos;s the natural evolution of DevOps, and I&apos;m implementing it today. Every Docker deployment, every network script, every monitoring alert is now enhanced by AI that learns from patterns and makes decisions at machine speed.
+                My focus is on evolving beyond traditional automation into <strong>intelligent infrastructure</strong> that can self-heal, predict failures, and scale efficiently using modern LLM capabilities. I&apos;m implementing these concepts in production today—every Docker deployment, network script, and monitoring alert is enhanced by AI that learns from patterns and makes decisions at machine speed.
               </p>
               <p className="dark:text-white text-gray-800 leading-relaxed text-lg mt-4">
-                <em>The question isn&apos;t whether AI will transform infrastructure—it&apos;s who will lead that transformation. I intend to be at the forefront.</em>
+                <em>AI is transforming infrastructure operations, and I&apos;m excited to contribute to teams exploring this evolution while learning from experienced engineers leading the way.</em>
               </p>
             </div>
 

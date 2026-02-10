@@ -1,0 +1,109 @@
+# Automated Build & Deploy to GitHub Pages
+# Includes security checks and dependency auditing
+# Deploys to https://lorenztazan.com (custom domain via CNAME)
+
+name: Build & Deploy
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  # Allow manual trigger
+  workflow_dispatch:
+
+# Security: Restrict GitHub token permissions
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Prevent concurrent deployments
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  # Security audit of dependencies
+  security-audit:
+    name: Security Audit
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run npm audit
+        run: npm audit --audit-level=moderate
+        continue-on-error: true # Don't block deployment, but show warnings
+
+      - name: Check for outdated packages
+        run: npm outdated || true
+
+  # Build and test
+  build:
+    name: Build Portfolio
+    runs-on: ubuntu-latest
+    needs: security-audit
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Lint code
+        run: npm run lint
+        continue-on-error: true
+
+      - name: Build Next.js static site
+        run: npm run build
+
+      - name: Verify build output
+        run: |
+          if [ ! -d "out" ]; then
+            echo "Error: Build output directory 'out/' not found"
+            exit 1
+          fi
+          echo "Build successful - static files generated in out/"
+          ls -la out/
+
+      # Upload build artifact for deployment
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: './out'
+
+  # Deploy to GitHub Pages
+  deploy:
+    name: Deploy to GitHub Pages
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    # Only deploy on push to main (not on PRs)
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+
+      - name: Verify deployment
+        run: |
+          echo "Portfolio deployed to: ${{ steps.deployment.outputs.page_url }}"
+          echo "Custom domain: https://lorenztazan.com"

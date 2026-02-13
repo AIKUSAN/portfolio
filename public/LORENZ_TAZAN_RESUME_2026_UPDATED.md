@@ -32,9 +32,10 @@ Systems Engineer with **7 years of hands-on IT experience** specializing in **in
 **Land of Promise** | Jan 2023 - Present | Remote
 
 - Built and managed **24-server distributed ecosystem** serving **300+ concurrent users** with **99.9% uptime** through load balancing and automated failover protocols.
-- Implemented **AI-enhanced infrastructure automation** integrating multi-LLM systems (Gemini, Claude, GPT-4) for intelligent network configuration validation, reducing manual intervention **70%** and configuration errors **85%**.
+- Implemented **AI-enhanced infrastructure automation** for **Pterodactyl (containerized infrastructure management platform)** APIs, integrating multi-LLM systems (Gemini, Claude, GPT-4) for intelligent network configuration validation and reducing manual tasks **85%**.
 - Optimized **JVM performance** and **MariaDB queries**, reducing application latency **56% (80ms → 35ms)** and database response times **96% (800ms → 35ms)** while handling **2M+ queries/day**.
 - Led infrastructure migration to **Debian 12 bare-metal**, implementing **Docker containerization** and automated deployment pipelines, cutting operational costs **65%** and deployment time **93% (30min → <2min)**.
+- Implemented **24/7 monitoring and alerting** with **Prometheus/Grafana**, reducing critical incident response time by **80%**.
 - Developed **15+ custom Java modules** with **Spring Framework** integrated with MariaDB, MySQL, Redis, and MongoDB for distributed applications. Collaborated with **7-person technical team**.
 
 ---
@@ -42,17 +43,18 @@ Systems Engineer with **7 years of hands-on IT experience** specializing in **in
 ### **Network Infrastructure Consultant**  
 **Proven Training Concepts (DoD Contractor)** | Mar 2025 | Frederick, MD (On-site)
 
-- Designed and documented **secure enterprise network architecture** using Ubiquiti infrastructure (UDM Pro, Switch Pro 24 PoE, Wi-Fi 6) for Department of Defense contractor facility.
+- Designed and documented **secure enterprise network architecture** using **Ubiquiti infrastructure** (UDM Pro, Switch Pro 24 PoE, Wi-Fi 6) for Department of Defense contractor facility.
 - Produced comprehensive technical deliverables: BoM, CAT6 schematics, rack layouts, UPS redundancy plans, and disaster recovery documentation.
-- Implemented **multi-layer security controls**: firewall rules, VLAN segmentation, VPN controls aligned with DoD cybersecurity standards.
+- Implemented **multi-layer security controls**: firewall rules, VLAN segmentation, and VPN controls aligned with **NIST 800-171** DoD cybersecurity standards.
+- Achieved **0 audit findings** during government inspection for security compliance and project delivery.
 
 ---
 
 ### **Network Administrator / IT Specialist**  
 **Panay Telephone Corporation II** | 2021 - 2022 | Philippines | Independent Contractor
 
-- Deployed **ISP-grade routing infrastructure** using **MikroTik RouterOS** for enterprise telecommunications clients, managing **BGP routing**, MPLS configurations, and multi-site connectivity.
-- Implemented **pfSense firewall clusters** with advanced load-balancing algorithms, optimizing traffic distribution across **3+ WAN connections** and achieving **99.5% network availability**.
+- Deployed **ISP-grade routing infrastructure** using **MikroTik RouterOS** for enterprise telecommunications clients, managing **BGP routing**, **MPLS** configurations, and **700+ concurrent subscribers** with **99.8% network availability**.
+- Implemented **pfSense firewall clusters** with advanced load-balancing algorithms, achieving average latency **<5ms to subscribers** and optimizing traffic across a **10Gbps fiber backbone**.
 - Applied server security: ACLs, patch management, network segmentation. Provided **24/7 on-call support** for outages and optimization.
 
 ---
@@ -60,8 +62,8 @@ Systems Engineer with **7 years of hands-on IT experience** specializing in **in
 ### **Team Lead - Customer Relationship Management**  
 **iQor** | 2020 - 2021 | Philippines (On-site)
 
-- Supervised support team, conducted **Salesforce CRM** training on best practices and operational workflows.
-- Analyzed customer data using **Excel** to improve service metrics and satisfaction scores.
+- Supervised support team of **12+ specialists**, conducted **Salesforce CRM** training on best practices and operational workflows.
+- Analyzed customer data using **Excel** to improve service metrics, achieving **100% SLA compliance** during high-volume periods.
 - Maintained Salesforce dashboards to streamline reporting and reduce handle time **15%**.
 
 ---

@@ -14,14 +14,13 @@ const experiences = [
     current: true,
     color: "blue",
     achievements: [
-      "Built and managed 24-server distributed ecosystem serving 300+ concurrent users with 99.9% uptime through load balancing and failover protocols",
-      "Implemented LLM-enhanced automation for Pterodactyl API workflows, reducing manual server management tasks by 85%",
-      "Optimized JVM performance, reducing latency 56% (80ms to 35ms) through connection pooling and caching strategies",
-      "Migrated to Debian 12 bare-metal infrastructure, cutting costs 65% while maintaining performance",
-      "Built CI/CD framework using Docker/Bash, reducing deployments from 30 minutes to less than 2 minutes",
-      "Developed 15+ Java modules with MariaDB/MySQL/Redis/MongoDB persistence on Pterodactyl panel infrastructure",
-      "Implemented 24/7 monitoring and alerting with Prometheus/Grafana, reducing downtime 80%",
-      "Collaborated with 7-person distributed technical team across development, operations, and community management"
+      "Built and managed **24-server distributed ecosystem** serving **300+ concurrent users** with **99.9% uptime** through load balancing and automated failover protocols",
+      "Implemented **AI-enhanced infrastructure automation** for **Pterodactyl (containerized infrastructure management platform)** APIs, integrating multi-LLM systems (Gemini, Claude, GPT-4) for intelligent network configuration validation, reducing manual tasks **85%**",
+      "Optimized **JVM performance** and **MariaDB queries**, reducing application latency **56% (80ms → 35ms)** and database response times **96% (800ms → 35ms)** while handling **2M+ queries/day**",
+      "Led infrastructure migration to **Debian 12 bare-metal**, implementing **Docker containerization** and automated deployment pipelines, cutting operational costs **65%** and deployment time **93% (30min → <2min)**",
+      "Developed **15+ custom Java modules** with **Spring Framework** integrated with MariaDB, MySQL, Redis, and MongoDB for distributed applications",
+      "Implemented **24/7 monitoring and alerting** with **Prometheus/Grafana**, reducing critical incident response time by **80%**",
+      "Collaborated with **7-person technical team** across development, operations, and community management"
     ],
     technologies: ["Docker", "Kubernetes", "MariaDB", "Redis", "Java", "Python", "Bash", "CI/CD", "nginx"]
   },
@@ -37,8 +36,7 @@ const experiences = [
       "Produced comprehensive technical documentation including Bill of Materials, CAT6 schematics, rack layouts, and UPS redundancy plans",
       "Implemented firewall rules, VLAN segmentation, and VPN controls aligned with defense security standards",
       "Achieved **0 audit findings** during government inspection for NIST 800-171 compliance",
-      "Established zero-trust architecture with 802.1X authentication and WPA3-Enterprise wireless security",
-      "**Certificate of Completion** awarded for successful project delivery and compliance validation"
+      "Established zero-trust architecture with 802.1X authentication and WPA3-Enterprise wireless security"
     ],
     technologies: ["Ubiquiti", "RADIUS", "WPA3", "VLAN", "NIST 800-171", "Zero-Trust Architecture"]
   },
@@ -50,12 +48,12 @@ const experiences = [
     current: false,
     color: "purple",
     achievements: [
-      "Deployed ISP-grade infrastructure using MikroTik routing for enterprise telecommunications clients",
-      "Managed infrastructure serving 700+ concurrent subscribers with 99.8% uptime over operational period",
-      "Configured 10Gbps fiber backbone capacity with BGP routing and traffic optimization",
-      "Implemented pfSense firewall and load-balancing for optimized traffic distribution",
+      "Deployed **ISP-grade infrastructure** using **MikroTik routing** for enterprise telecommunications clients",
+      "Managed infrastructure serving **700+ concurrent subscribers** with **99.8% network availability** and 10Gbps backbone capacity",
+      "Configured **BGP routing**, **MPLS**, and traffic optimization with **<30 second convergence times**",
+      "Implemented **pfSense firewall clusters** and load-balancing for optimized traffic distribution across multi-WAN connections",
       "Applied comprehensive server security: ACLs, patch management, and network segmentation",
-      "Achieved average latency <5ms to subscribers, <15ms to upstream peers with peak load 9.2Gbps"
+      "Achieved average latency **<5ms to subscribers**, **<15ms to upstream peers** with peak load 9.2Gbps"
     ],
     technologies: ["MikroTik", "pfSense", "BGP", "OSPF", "MPLS", "VLANs", "QoS", "Traffic Shaping"]
   },
@@ -67,9 +65,10 @@ const experiences = [
     current: false,
     color: "cyan",
     achievements: [
-      "Supervised customer support team conducting Salesforce CRM training on best practices and operational workflows",
-      "Analyzed customer data using Excel to improve service metrics and satisfaction scores",
-      "Maintained Salesforce dashboards to streamline reporting and data entry processes"
+      "Supervised customer support team conducting **Salesforce CRM** training on best practices and operational workflows",
+      "Analyzed customer data using **Excel** to improve service metrics and satisfaction scores",
+      "Maintained Salesforce dashboards to streamline reporting and **reduce handle time 15%**",
+      "Successfully led a 12-person team during high-volume periods with 100% SLA compliance"
     ],
     technologies: ["Salesforce CRM", "Microsoft Excel", "Data Analysis"]
   },
@@ -103,7 +102,7 @@ export default function ExperiencePage() {
     <>
       <Header />
       <AnimatedBackground />
-      
+
       <div className="min-h-screen pt-16">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
           <motion.div
@@ -132,7 +131,7 @@ export default function ExperiencePage() {
                 className={`relative border-l ${colorMap[exp.color].border} pl-8 md:pl-16 py-2`}
               >
                 <span className={`absolute -left-[5px] top-0 h-2.5 w-2.5 rounded-full ${colorMap[exp.color].glow} ring-4 dark:ring-black ring-white`}></span>
-                
+
                 <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between mb-4">
                   <div>
                     <h3 className="text-2xl font-bold dark:text-white text-gray-900 mb-2">{exp.title}</h3>

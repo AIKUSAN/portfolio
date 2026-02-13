@@ -30,6 +30,7 @@ export default function ProjectsClient() {
                     // My DB columns: id, title, category, tech, description, grid_span, image, image_alt, details, metrics, colors, links, last_updated
                     // My Type: gridSpan, imageAlt, lastUpdated
                     // I need to map it.
+                    // eslint-disable-next-line @typescript-eslint/no-explicit-any
                     const mappedProjects: Project[] = data.map((p: any) => ({
                         ...p,
                         gridSpan: p.grid_span,

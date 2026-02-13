@@ -30,6 +30,7 @@ export default function ContactPage() {
     setSubmitStatus('idle');
 
     try {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const { data, error } = await supabase
         .from('messages')
         .insert([
@@ -312,7 +313,7 @@ export default function ContactPage() {
                   animate={{ opacity: 1, y: 0 }}
                   className="mt-4 p-4 bg-green-500/10 border border-green-500/20 rounded-xl text-green-500 text-center font-medium"
                 >
-                  Message sent successfully! I'll get back to you soon.
+                  Message sent successfully! I&apos;ll get back to you soon.
                 </motion.div>
               )}
 

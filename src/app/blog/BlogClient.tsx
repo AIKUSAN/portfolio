@@ -22,6 +22,7 @@ export default function BlogClient() {
     useEffect(() => {
         async function fetchPosts() {
             try {
+                // eslint-disable-next-line @typescript-eslint/no-explicit-any
                 const { data, error } = await supabase
                     .from('blog_posts')
                     .select('id, slug, title, excerpt, image_url, tags, published_at')

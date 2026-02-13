@@ -5,23 +5,63 @@ import Header from "@/components/Header";
 import AnimatedBackground from "@/components/AnimatedBackground";
 import { Mail, Phone, Github, Linkedin, MapPin, Send, Download, Briefcase, Clock, Target } from "lucide-react";
 import { useState } from "react";
+import { supabase } from "@/lib/supabaseClient";
+import { Loader2 } from "lucide-react";
 
+/**
+ * ContactPage Component
+ * 
+ * Handles user inquiries via a secure form that integrates with Supabase for data persistence
+ * and triggers a Make.com webhook for email automation.
+ * 
+ * Features:
+ * - Real-time validation
+ * - Supabase Row-Level Security (RLS) compliance
+ * - Framer Motion animations
+ */
 export default function ContactPage() {
   const [formState, setFormState] = useState({ name: "", email: "", message: "" });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Encode form data for mailto
-    const subject = encodeURIComponent(`Portfolio Contact from ${formState.name}`);
-    const body = encodeURIComponent(`Name: ${formState.name}\nEmail: ${formState.email}\n\nMessage:\n${formState.message}`);
-    window.location.href = `mailto:lorenztazan@gmail.com?subject=${subject}&body=${body}`;
+    setIsSubmitting(true);
+    setSubmitStatus('idle');
+
+    try {
+      const { data, error } = await supabase
+        .from('messages')
+        .insert([
+          {
+            name: formState.name,
+            email: formState.email,
+            message: formState.message,
+          },
+        ]);
+
+      if (error) {
+        console.error('Supabase error:', error);
+        throw error;
+      }
+
+      setSubmitStatus('success');
+      setFormState({ name: "", email: "", message: "" });
+    } catch (error) {
+      console.error('Error submitting message:', error);
+      console.error('Error type:', typeof error);
+      console.error('Error stringified:', JSON.stringify(error, null, 2));
+      setSubmitStatus('error');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
     <>
       <Header />
       <AnimatedBackground />
-      
+
       <div className="min-h-screen pt-16">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
           <motion.div
@@ -123,9 +163,9 @@ export default function ContactPage() {
               transition={{ duration: 0.6, delay: 0.3 }}
             >
               <h2 className="text-2xl font-bold dark:text-white text-gray-900 mb-6">Contact Information</h2>
-              
+
               <div className="space-y-3">
-                <a 
+                <a
                   href="mailto:lorenztazan@gmail.com"
                   className="flex items-center gap-4 p-4 bg-gradient-to-r from-blue-500/5 to-blue-500/10 backdrop-blur-sm border border-blue-500/20 rounded-xl hover:from-blue-500/10 hover:to-blue-500/20 hover:border-blue-500/30 transition-all group"
                 >
@@ -138,7 +178,7 @@ export default function ContactPage() {
                   </div>
                 </a>
 
-                <a 
+                <a
                   href="tel:240-256-2410"
                   className="flex items-center gap-4 p-4 bg-gradient-to-r from-emerald-500/5 to-emerald-500/10 backdrop-blur-sm border border-emerald-500/20 rounded-xl hover:from-emerald-500/10 hover:to-emerald-500/20 hover:border-emerald-500/30 transition-all group"
                 >
@@ -151,7 +191,7 @@ export default function ContactPage() {
                   </div>
                 </a>
 
-                <a 
+                <a
                   href="https://github.com/AIKUSAN"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -166,7 +206,7 @@ export default function ContactPage() {
                   </div>
                 </a>
 
-                <a 
+                <a
                   href="https://linkedin.com/in/lorenztazan"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -200,7 +240,7 @@ export default function ContactPage() {
               transition={{ duration: 0.6, delay: 0.4 }}
             >
               <h2 className="text-2xl font-bold dark:text-white text-gray-900 mb-6">Send a Message</h2>
-              
+
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div>
                   <label htmlFor="name" className="block text-sm font-medium dark:text-gray-300 text-gray-700 mb-2">
@@ -249,16 +289,42 @@ export default function ContactPage() {
 
                 <button
                   type="submit"
-                  className="w-full px-6 py-4 bg-gradient-to-r from-blue-500 to-purple-500 text-white font-bold rounded-xl hover:from-blue-600 hover:to-purple-600 transition-all transform hover:scale-[1.02] active:scale-[0.98] flex items-center justify-center gap-2 shadow-lg shadow-blue-500/25"
+                  disabled={isSubmitting}
+                  className="w-full px-6 py-4 bg-gradient-to-r from-blue-500 to-purple-500 text-white font-bold rounded-xl hover:from-blue-600 hover:to-purple-600 transition-all transform hover:scale-[1.02] active:scale-[0.98] flex items-center justify-center gap-2 shadow-lg shadow-blue-500/25 disabled:opacity-70 disabled:cursor-not-allowed"
                 >
-                  <Send className="w-5 h-5" />
-                  Send Message
+                  {isSubmitting ? (
+                    <>
+                      <Loader2 className="w-5 h-5 animate-spin" />
+                      Sending...
+                    </>
+                  ) : (
+                    <>
+                      <Send className="w-5 h-5" />
+                      Send Message
+                    </>
+                  )}
                 </button>
               </form>
 
-              <p className="mt-4 text-sm dark:text-gray-500 text-gray-600 text-center">
-                Opens your default email client with pre-filled details
-              </p>
+              {submitStatus === 'success' && (
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="mt-4 p-4 bg-green-500/10 border border-green-500/20 rounded-xl text-green-500 text-center font-medium"
+                >
+                  Message sent successfully! I'll get back to you soon.
+                </motion.div>
+              )}
+
+              {submitStatus === 'error' && (
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="mt-4 p-4 bg-red-500/10 border border-red-500/20 rounded-xl text-red-500 text-center font-medium"
+                >
+                  Failed to send message. Please try again or email directly.
+                </motion.div>
+              )}
             </motion.div>
           </div>
 
@@ -272,7 +338,7 @@ export default function ContactPage() {
             <h2 className="text-2xl font-bold dark:text-white text-gray-900 mb-6 flex items-center gap-2">
               <span className="text-2xl">🎯</span> Ideal Opportunity Profile
             </h2>
-            
+
             <div className="grid md:grid-cols-2 gap-6">
               <div>
                 <h3 className="font-semibold dark:text-gray-300 text-gray-700 mb-3 flex items-center gap-2">

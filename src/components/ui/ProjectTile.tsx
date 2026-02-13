@@ -4,7 +4,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import { Github, ExternalLink, Server, Shield, Cpu, Activity, ArrowRight } from "lucide-react";
-import { Project } from "@/data/projects";
+import { Project } from "@/types";
 import MetricCounter from "./MetricCounter";
 
 interface ProjectTileProps {
@@ -82,16 +82,16 @@ export default function ProjectTile({ project, index, onClick }: ProjectTileProp
           <div className="w-full h-full relative overflow-hidden group-hover:scale-110 transition-transform duration-700 ease-out dark:bg-slate-900 bg-gray-100">
             {/* Dynamic Abstract Pattern */}
             <div className={`absolute inset-0 bg-gradient-to-br ${project.colors.gradient} opacity-20`} />
-            
+
             {/* Grid Pattern */}
-            <div 
-              className="absolute inset-0 opacity-10" 
-              style={{ 
-                backgroundImage: `radial-gradient(${project.colors.glow} 1px, transparent 1px)`, 
-                backgroundSize: '24px 24px' 
-              }} 
+            <div
+              className="absolute inset-0 opacity-10"
+              style={{
+                backgroundImage: `radial-gradient(${project.colors.glow} 1px, transparent 1px)`,
+                backgroundSize: '24px 24px'
+              }}
             />
-            
+
             {/* Geometric Accents */}
             <div className={`absolute -top-10 -right-10 w-40 h-40 rounded-full border-2 border-dashed opacity-20 ${project.colors.primary.replace('text-', 'border-')}`} />
             <div className={`absolute bottom-20 -left-10 w-60 h-60 rounded-full dark:border-slate-700/50 border-gray-300/50 border opacity-30`} />
@@ -101,7 +101,7 @@ export default function ProjectTile({ project, index, onClick }: ProjectTileProp
 
         {/* Dark Overlay */}
         <div className={`absolute inset-0 bg-gradient-to-t dark:from-slate-950 dark:via-slate-900/80 dark:to-slate-900/20 from-gray-900/90 via-gray-900/60 to-gray-900/10 opacity-90 transition-opacity duration-300 ${isHovered ? 'dark:opacity-95 opacity-95' : 'dark:opacity-80 opacity-85'}`} />
-        
+
         {/* Hover Gradient Effect */}
         <div className={`absolute inset-0 bg-gradient-to-tr ${project.colors.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
       </div>
@@ -114,23 +114,23 @@ export default function ProjectTile({ project, index, onClick }: ProjectTileProp
             <CategoryIcon category={project.category} className="w-3 h-3" />
             {project.category}
           </span>
-          
+
           <div className="flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 translate-y-2 group-hover:translate-y-0">
             {project.links.github && (
-              <a 
-                href={project.links.github} 
+              <a
+                href={project.links.github}
                 onClick={(e) => e.stopPropagation()}
-                className="p-2 dark:bg-slate-800 bg-white/90 rounded-full dark:hover:bg-slate-700 hover:bg-gray-100 dark:text-white text-gray-800 dark:border-transparent border border-gray-300 transition-colors" 
+                className="p-2 dark:bg-slate-800 bg-white/90 rounded-full dark:hover:bg-slate-700 hover:bg-gray-100 dark:text-white text-gray-800 dark:border-transparent border border-gray-300 transition-colors"
                 title="View on GitHub"
               >
                 <Github size={16} />
               </a>
             )}
             {project.links.demo && (
-              <a 
-                href={project.links.demo} 
+              <a
+                href={project.links.demo}
                 onClick={(e) => e.stopPropagation()}
-                className="p-2 dark:bg-slate-800 bg-white/90 rounded-full dark:hover:bg-slate-700 hover:bg-gray-100 dark:text-white text-gray-800 dark:border-transparent border border-gray-300 transition-colors" 
+                className="p-2 dark:bg-slate-800 bg-white/90 rounded-full dark:hover:bg-slate-700 hover:bg-gray-100 dark:text-white text-gray-800 dark:border-transparent border border-gray-300 transition-colors"
                 title="Live Demo"
               >
                 <ExternalLink size={16} />
@@ -145,7 +145,7 @@ export default function ProjectTile({ project, index, onClick }: ProjectTileProp
           <p className={`dark:text-slate-300 text-gray-100 text-sm line-clamp-2 transition-opacity duration-300 drop-shadow ${isHovered ? 'opacity-0' : 'opacity-100'}`}>
             {project.description}
           </p>
-          
+
           {/* Tech Stack Tags (Static View) */}
           <div className={`flex flex-wrap gap-2 mt-4 transition-opacity duration-300 ${isHovered ? 'opacity-0' : 'opacity-100'}`}>
             {project.tech.slice(0, 3).map((t, i) => (
@@ -180,7 +180,7 @@ export default function ProjectTile({ project, index, onClick }: ProjectTileProp
                   {project.metrics.map((metric, i) => (
                     <div key={i} className="flex flex-col">
                       <span className={`text-xl font-bold dark:text-white text-gray-900 flex items-baseline`}>
-                         <MetricCounter value={metric.target} suffix={metric.suffix} inView={isHovered} />
+                        <MetricCounter value={metric.target} suffix={metric.suffix} inView={isHovered} />
                       </span>
                       <span className="text-[10px] uppercase dark:text-slate-500 text-gray-500 font-medium">{metric.label}</span>
                     </div>
@@ -190,8 +190,8 @@ export default function ProjectTile({ project, index, onClick }: ProjectTileProp
                 {/* View Project Button */}
                 {onClick && (
                   <div className="flex items-center justify-between mt-2 pt-3 dark:border-slate-800 border-gray-300 border-t">
-                      <span className="text-xs dark:text-slate-500 text-gray-500">Click to view details</span>
-                      <ArrowRight className={`w-4 h-4 ${project.colors.primary}`} />
+                    <span className="text-xs dark:text-slate-500 text-gray-500">Click to view details</span>
+                    <ArrowRight className={`w-4 h-4 ${project.colors.primary}`} />
                   </div>
                 )}
               </div>

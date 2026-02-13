@@ -1,0 +1,46 @@
+{
+    "name": "Supabase Contact Form -> Gmail",
+    "flow": [
+        {
+            "id": 1,
+            "module": "supabase:watchEvents",
+            "version": 1,
+            "parameters": {
+                "table": "messages",
+                "event": "INSERT"
+            },
+            "mapper": {
+                "limit": 1
+            },
+            "metadata": {
+                "designer": {
+                    "x": 0,
+                    "y": 0
+                }
+            }
+        },
+        {
+            "id": 2,
+            "module": "google-email:sendEmail",
+            "version": 1,
+            "parameters": {},
+            "mapper": {
+                "to": [
+                    "lorenztazan@gmail.com"
+                ],
+                "subject": "New Portfolio Contact: {{1.record.name}}",
+                "content": "<p><strong>From:</strong> {{1.record.name}} ({{1.record.email}})</p><p><strong>Message:</strong></p><p>{{1.record.message}}</p>",
+                "replyTo": "{{1.record.email}}"
+            },
+            "metadata": {
+                "designer": {
+                    "x": 300,
+                    "y": 0
+                }
+            }
+        }
+    ],
+    "metadata": {
+        "version": 1
+    }
+}

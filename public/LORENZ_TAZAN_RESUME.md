@@ -1,5 +1,8 @@
 <style>
 a { color: #000000 !important; text-decoration: none; }
+h1 { margin-bottom: 16px !important; }
+h2 { margin-top: 22px !important; margin-bottom: 12px !important; }
+h3 { margin-top: 16px !important; margin-bottom: 6px !important; }
 </style>
 
 # LORENZ TAZAN
@@ -50,6 +53,8 @@ Systems Engineer with **7 years of hands-on IT experience** specializing in **in
 
 ---
 
+<div style="page-break-before: always;"></div>
+
 ### **Network Administrator / IT Specialist**  
 **Panay Telephone Corporation II** | 2021 - 2022 | Philippines | Independent Contractor
 
@@ -80,13 +85,16 @@ Systems Engineer with **7 years of hands-on IT experience** specializing in **in
 ## KEY PROJECTS
 
 **AI-Powered Network Automation Framework** | *Multi-LLM Orchestration System*  
-Architected **agentic AI system** orchestrating **3 specialized LLM agents** with **LangChain + ChromaDB RAG** to automate network infrastructure workflows, reducing configuration errors from **12% to <1%**.
+- Architected **agentic AI system** orchestrating **3 specialized LLM agents** with **LangChain + ChromaDB RAG**.
+- Automated network infrastructure workflows, reducing configuration errors from **12% to <1%**.
 
 **NetOps Automation & Dual-AI Validation Platform** | *Enterprise Network Automation*  
-Developed production-grade **network automation framework** managing **100+ devices** with **99.9% success rate** and **dual-AI validation**. Built **event-driven architecture** with **n8n workflow orchestration** for zero-touch compliance.
+- Developed production-grade **network automation framework** managing **100+ devices** with **99.9% success rate**.
+- Built **event-driven architecture** with **n8n workflow orchestration** for zero-touch compliance and **dual-AI validation**.
 
 **Global Traffic Manager with AI-Powered Monitoring** | *Intelligent Load Balancing*  
-Engineered **advanced GSLB solution** using **F5 BIG-IP GTM** with custom **Lua iRules** for geographic traffic steering, reducing latency **40%** with **AI-powered health monitoring**.
+- Engineered **advanced GSLB solution** using **F5 BIG-IP GTM** with custom **Lua iRules** for geographic traffic steering.
+- Reduced latency **40%** through implementation of **AI-powered health monitoring** and steering logic.
 
 ---
 

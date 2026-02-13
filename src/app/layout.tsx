@@ -78,10 +78,7 @@ export const metadata: Metadata = {
       'max-snippet': -1,
     },
   },
-  icons: {
-    icon: '/favicon.svg',
-    apple: '/apple-touch-icon.png',
-  },
+
   verification: {
     // TODO: Get verification code from https://search.google.com/search-console
     // 1. Add property: lorenztazan.com

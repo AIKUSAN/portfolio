@@ -36,24 +36,24 @@ export default function Header() {
             <svg width="32" height="32" viewBox="0 0 32 32" className="flex-shrink-0">
               <defs>
                 <linearGradient id="header-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" className="group-hover:opacity-80 transition-opacity" style={{stopColor: 'rgb(96,165,250)', stopOpacity: 1}} />
-                  <stop offset="100%" className="group-hover:opacity-80 transition-opacity" style={{stopColor: 'rgb(168,85,247)', stopOpacity: 1}} />
+                  <stop offset="0%" className="group-hover:opacity-80 transition-opacity" style={{ stopColor: 'rgb(96,165,250)', stopOpacity: 1 }} />
+                  <stop offset="100%" className="group-hover:opacity-80 transition-opacity" style={{ stopColor: 'rgb(168,85,247)', stopOpacity: 1 }} />
                 </linearGradient>
               </defs>
-              <rect width="32" height="32" className="fill-white dark:fill-slate-800" rx="6"/>
+              <rect width="32" height="32" className="fill-white dark:fill-slate-800" rx="6" />
               <text x="50%" y="50%" fontFamily="Arial,sans-serif" fontSize="16" fontWeight="bold" fill="url(#header-grad)" textAnchor="middle" dominantBaseline="central">LT</text>
             </svg>
             <span className="hidden sm:inline">
-              <TypingText 
-                text="Lorenz Tazan" 
+              <TypingText
+                text="Lorenz Tazan"
                 className="text-xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent group-hover:from-blue-300 group-hover:to-purple-300 transition-all"
                 speed={80}
                 delay={300}
               />
             </span>
             <span className="sm:hidden">
-              <TypingText 
-                text="L. Tazan" 
+              <TypingText
+                text="L. Tazan"
                 className="text-lg font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent group-hover:from-blue-300 group-hover:to-purple-300 transition-all"
                 speed={80}
                 delay={300}
@@ -69,26 +69,25 @@ export default function Header() {
                 <Link
                   key={link.name}
                   href={link.href}
-                  className={`px-4 py-2 text-sm font-medium rounded-lg transition-all ${
-                    isActive
-                      ? "text-blue-600 dark:text-white bg-blue-100 dark:bg-white/10"
-                      : "text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-white/5"
-                  }`}
+                  className={`px-4 py-2 text-sm font-medium rounded-lg transition-all ${isActive
+                    ? "text-blue-600 dark:text-white bg-blue-100 dark:bg-white/10"
+                    : "text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-white/5"
+                    }`}
                 >
                   {link.name}
                 </Link>
               );
             })}
-            
+
             {/* CV Download Button */}
             <a
               href="/resume.pdf"
-              download="Lorenz_Tazan_CV.pdf"
+              download="Lorenz_Tazan_resume.pdf"
               className="ml-2 px-3 py-2 text-xs lg:text-sm font-bold bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-lg hover:from-blue-600 hover:to-purple-600 transition-all transform hover:scale-105 whitespace-nowrap"
             >
-              Download CV
+              Download Resume
             </a>
-            
+
             {/* Theme Toggle */}
             <button
               onClick={toggleTheme}
@@ -127,11 +126,10 @@ export default function Header() {
                   key={link.name}
                   href={link.href}
                   onClick={() => setMobileMenuOpen(false)}
-                  className={`block px-4 py-3 text-sm font-medium rounded-lg mb-1 transition-all ${
-                    isActive
-                      ? "text-blue-600 dark:text-white bg-blue-100 dark:bg-white/10"
-                      : "text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-white/5"
-                  }`}
+                  className={`block px-4 py-3 text-sm font-medium rounded-lg mb-1 transition-all ${isActive
+                    ? "text-blue-600 dark:text-white bg-blue-100 dark:bg-white/10"
+                    : "text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-white/5"
+                    }`}
                 >
                   {link.name}
                 </Link>
@@ -139,11 +137,11 @@ export default function Header() {
             })}
             <a
               href="/resume.pdf"
-              download="Lorenz_Tazan_CV.pdf"
+              download="Lorenz_Tazan_resume.pdf"
               onClick={() => setMobileMenuOpen(false)}
               className="block px-4 py-3 text-sm font-bold bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-lg mt-4 text-center hover:from-blue-600 hover:to-purple-600 transition-all"
             >
-              Download CV
+              Download Resume
             </a>
           </div>
         )}

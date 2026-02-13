@@ -97,6 +97,18 @@ const colorMap: { [key: string]: { border: string; glow: string; badge: string }
   orange: { border: "border-orange-500/30", glow: "bg-orange-500 shadow-[0_0_12px_rgba(249,115,22,0.6)]", badge: "bg-orange-500/10 border-orange-500/20 text-orange-400" },
 };
 
+/**
+ * ExperiencePage Component
+ * 
+ * Displays professional career history using an interactive timeline.
+ * Visualizes career progression with color-coded companies, achievement highlights,
+ * and technical skill tags.
+ * 
+ * Features:
+ * - Responsive vertical timeline
+ * - Scroll-triggered animations (Framer Motion)
+ * - Dynamic data mapping
+ */
 export default function ExperiencePage() {
   return (
     <>

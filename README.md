@@ -37,7 +37,14 @@ Professional portfolio website showcasing **7 years of Systems Engineering** exp
 
 ### Development Tools
 - **ESLint** - Code linting
-- **Babel React Compiler** - Optimized React compilation
+### Backend & Database
+- **Supabase** - PostgreSQL Database, Authentication, Row-Level Security (RLS)
+- **Next.js API Routes** - Server-side logic and webhooks
+
+### Automation & AI
+- **Make.com** - Serverless Workflow Automation (Contact Form Integration)
+- **Model Context Protocol (MCP)** - Standardized AI context exchange
+- **n8n** - Workflow automation (Alternative/Legacy)
 
 ---
 

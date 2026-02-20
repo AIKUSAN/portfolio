@@ -1,13 +1,13 @@
 <style>
-body { font-size: 11px !important; line-height: 1.3 !important; }
+body { font-size: 11.5px !important; line-height: 1.4 !important; }
 a { color: #000000 !important; text-decoration: none; }
-h1 { margin-bottom: 4px !important; font-size: 20px !important; }
-h2 { margin-top: 8px !important; margin-bottom: 4px !important; font-size: 13px !important; }
-h3 { margin-top: 6px !important; margin-bottom: 2px !important; font-size: 12px !important; }
+h1 { margin-bottom: 5px !important; font-size: 21px !important; }
+h2 { margin-top: 10px !important; margin-bottom: 5px !important; font-size: 13.5px !important; }
+h3 { margin-top: 8px !important; margin-bottom: 2px !important; font-size: 12.5px !important; }
 p { margin-bottom: 2px !important; }
-ul { margin-top: 2px !important; margin-bottom: 2px !important; padding-left: 18px !important; }
-li { margin-bottom: 0px !important; }
-hr { margin: 4px 0 !important; }
+ul { margin-top: 2px !important; margin-bottom: 2px !important; padding-left: 20px !important; }
+li { margin-bottom: 1px !important; }
+hr { margin: 5px 0 !important; }
 </style>
 
 # LORENZ TAZAN

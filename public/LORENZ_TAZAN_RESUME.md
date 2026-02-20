@@ -22,7 +22,7 @@ hr { margin: 5px 0 !important; }
 
 ## PROFESSIONAL SUMMARY
 
-Systems Engineer with **7 years of hands-on IT experience** specializing in **infrastructure automation and AI-enhanced DevOps workflows**. Expert in managing enterprise distributed systems with **99.9% uptime** while implementing **multi-LLM orchestration** (Gemini, Claude, GPT-4) for intelligent automation. Proven track record: **96% database performance improvements**, **65% cost reduction** through infrastructure optimization, and **93% deployment time reduction** via automated CI/CD pipelines. Expertise in **Docker**, **Kubernetes**, **Linux administration**, **network automation**, and **DevOps practices** with production-scale databases.
+Systems Engineer with **7 years of hands-on IT experience** specializing in **infrastructure automation and AI-enhanced DevOps workflows**. Expert in managing enterprise distributed systems with **99.9% uptime** while implementing **multi-LLM orchestration** (Gemini, Claude, ChatGPT) for intelligent automation. Proven track record: **96% database performance improvements**, **65% cost reduction** through infrastructure optimization, and **93% deployment time reduction** via automated CI/CD pipelines. Expertise in **Docker**, **Kubernetes**, **Linux administration**, **network automation**, and **DevOps practices** with production-scale databases.
 
 ---
 
@@ -30,7 +30,7 @@ Systems Engineer with **7 years of hands-on IT experience** specializing in **in
 
 **Languages & Frameworks:** Python, JavaScript/TypeScript, Node.js, Java, Bash, C/C++, PHP | Spring Framework, React, Express.js, Maven, FastAPI  
 **Infrastructure & DevOps:** Docker, Kubernetes, Linux (Debian/Ubuntu), nginx, Apache, CI/CD, Git, GitHub Actions, Terraform, Ansible, Nornir | MariaDB, MySQL, PostgreSQL, MongoDB, Redis  
-**AI & Cloud:** Multi-LLM Orchestration (Gemini, Claude, GPT-4), LangChain, RAG, ChromaDB, n8n, Agentic Systems | F5 BIG-IP, MikroTik, pfSense, Ubiquiti | Azure, AWS | Prometheus, Grafana, SRE
+**AI & Cloud:** Multi-LLM Orchestration (Gemini, Claude, ChatGPT), LangChain, RAG, ChromaDB, n8n, Agentic Systems | F5 BIG-IP, MikroTik, pfSense, Ubiquiti | Azure, AWS | Prometheus, Grafana, SRE
 
 ---
 
@@ -40,7 +40,7 @@ Systems Engineer with **7 years of hands-on IT experience** specializing in **in
 **Land of Promise** | Jan 2023 - Present | Remote
 
 - Built and managed **24-server distributed ecosystem** serving **300+ concurrent users** with **99.9% uptime** through load balancing and automated failover protocols.
-- Implemented **AI-enhanced infrastructure automation** for **Pterodactyl (containerized infrastructure management platform)** APIs, integrating multi-LLM systems (Gemini, Claude, GPT-4) for intelligent network configuration validation and reducing manual tasks **85%**.
+- Implemented **AI-enhanced infrastructure automation** for **Pterodactyl (containerized infrastructure management platform)** APIs, integrating multi-LLM systems (Gemini, Claude, ChatGPT) for intelligent network configuration validation and reducing manual tasks **85%**.
 - Optimized **JVM performance** and **MariaDB queries**, reducing application latency **56% (80ms → 35ms)** and database response times **96% (800ms → 35ms)** while handling **2M+ queries/day**.
 - Led infrastructure migration to **Debian 12 bare-metal**, implementing **Docker containerization** and automated deployment pipelines, cutting operational costs **65%** and deployment time **93% (30min → <2min)**.
 - Implemented **24/7 monitoring and alerting** with **Prometheus/Grafana**, reducing critical incident response time by **80%**.

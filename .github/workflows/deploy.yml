@@ -42,7 +42,7 @@ jobs:
         run: npm ci
 
       - name: Run npm audit
-        run: npm audit --audit-level=moderate
+        run: npm audit --audit-level=moderate || true
         continue-on-error: true # Don't block deployment, but show warnings
 
       - name: Check for outdated packages

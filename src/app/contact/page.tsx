@@ -30,8 +30,7 @@ export default function ContactPage() {
     setSubmitStatus('idle');
 
     try {
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      const { data, error } = await supabase
+      const { error } = await supabase
         .from('messages')
         .insert([
           {

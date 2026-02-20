@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Loader2, ArrowRight, Calendar, Tag } from "lucide-react";
+import Image from "next/image";
 import { supabase } from "@/lib/supabaseClient";
 
 interface BlogPost {
@@ -102,10 +103,11 @@ export default function BlogClient() {
                             >
                                 <div className="aspect-video relative overflow-hidden">
                                     {post.image_url ? (
-                                        <img
+                                        <Image
                                             src={post.image_url}
                                             alt={post.title}
-                                            className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-500"
+                                            fill
+                                            className="object-cover group-hover:scale-105 transition-transform duration-500"
                                         />
                                     ) : (
                                         <div className="w-full h-full bg-slate-800 flex items-center justify-center">

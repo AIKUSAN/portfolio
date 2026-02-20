@@ -58,19 +58,19 @@ const experiences = [
     technologies: ["MikroTik", "pfSense", "BGP", "OSPF", "MPLS", "VLANs", "QoS", "Traffic Shaping"]
   },
   {
-    title: "Team Lead (Customer Relationship Management)",
+    title: "CRM Analyst / Specialist",
     company: "iQor",
     location: "On-site",
     period: "2020 - 2021",
     current: false,
     color: "cyan",
     achievements: [
-      "Supervised customer support team conducting **Salesforce CRM** training on best practices and operational workflows",
-      "Analyzed customer data using **Excel** to improve service metrics and satisfaction scores",
-      "Maintained Salesforce dashboards to streamline reporting and **reduce handle time 15%**",
-      "Successfully led a 12-person team during high-volume periods with 100% SLA compliance"
+      "Managed and analyzed customer data to improve client relationships and drive sales growth",
+      "Maintained and customized the **CRM system**, ensuring data integrity and optimizing workflows for cross-functional teams",
+      "Created detailed reports and dashboards to track key performance metrics and support data-driven decision-making",
+      "Trained employees on CRM system use, best practices, and operational workflows to improve adoption and efficiency"
     ],
-    technologies: ["Salesforce CRM", "Microsoft Excel", "Data Analysis"]
+    technologies: ["CRM Systems", "Microsoft Excel", "Data Analysis", "Reporting"]
   },
   {
     title: "Owner / Technical Consultant",
@@ -80,9 +80,10 @@ const experiences = [
     current: false,
     color: "orange",
     achievements: [
-      "Founded IT consulting business specializing in machine repair, performance restoration, and custom PC builds for SMB clients",
-      "Delivered hardware/software troubleshooting achieving 95%+ customer satisfaction across 20+ projects",
-      "Managed end-to-end delivery: procurement, installation, and testing for custom server/workstation builds",
+      "Founded IT consulting business providing on-site and remote technical support for clients in various industries",
+      "Built, upgraded, and repaired computers and servers. Server builds for **Panay Telephone Corporation II** led to the Network Administrator contract (2021-2022)",
+      "Delivered hardware/software troubleshooting achieving **95%+ satisfaction** across **20+ project engagements** with **80%** repeat business rate",
+      "Developed and maintained client relationships, managing project timelines and budgets with end-to-end delivery",
       "Provided comprehensive services including custom builds, hardware troubleshooting, and performance tuning"
     ],
     technologies: ["Hardware Diagnostics", "Custom PC Builds", "Server Configuration", "Performance Optimization"]

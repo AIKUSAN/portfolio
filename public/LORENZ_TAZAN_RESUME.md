@@ -1,8 +1,13 @@
 <style>
+body { font-size: 11.5px !important; line-height: 1.4 !important; }
 a { color: #000000 !important; text-decoration: none; }
-h1 { margin-bottom: 16px !important; }
-h2 { margin-top: 22px !important; margin-bottom: 12px !important; }
-h3 { margin-top: 16px !important; margin-bottom: 6px !important; }
+h1 { margin-bottom: 5px !important; font-size: 21px !important; }
+h2 { margin-top: 10px !important; margin-bottom: 5px !important; font-size: 13.5px !important; }
+h3 { margin-top: 8px !important; margin-bottom: 2px !important; font-size: 12.5px !important; }
+p { margin-bottom: 2px !important; }
+ul { margin-top: 2px !important; margin-bottom: 2px !important; padding-left: 20px !important; }
+li { margin-bottom: 1px !important; }
+hr { margin: 5px 0 !important; }
 </style>
 
 # LORENZ TAZAN
@@ -17,7 +22,7 @@ h3 { margin-top: 16px !important; margin-bottom: 6px !important; }
 
 ## PROFESSIONAL SUMMARY
 
-Systems Engineer with **7 years of hands-on IT experience** specializing in **infrastructure automation and AI-enhanced DevOps workflows**. Expert in managing enterprise distributed systemswith **99.9% uptime** while implementing **multi-LLM orchestration** (Gemini, Claude, GPT-4) for intelligent automation. Proven track record: **96% database performance improvements**, **65% cost reduction** through infrastructure optimization, and **93% deployment time reduction** via automated CI/CD pipelines. Expertise in **Docker**, **Kubernetes**, **Linux administration**, **network automation**, and **DevOps practices** with production-scale databases.
+Systems Engineer with **7 years of hands-on IT experience** specializing in **infrastructure automation and AI-enhanced DevOps workflows**. Expert in managing enterprise distributed systems with **99.9% uptime** while implementing **multi-LLM orchestration** (Gemini, Claude, GPT-4) for intelligent automation. Proven track record: **96% database performance improvements**, **65% cost reduction** through infrastructure optimization, and **93% deployment time reduction** via automated CI/CD pipelines. Expertise in **Docker**, **Kubernetes**, **Linux administration**, **network automation**, and **DevOps practices** with production-scale databases.
 
 ---
 
@@ -41,46 +46,37 @@ Systems Engineer with **7 years of hands-on IT experience** specializing in **in
 - Implemented **24/7 monitoring and alerting** with **Prometheus/Grafana**, reducing critical incident response time by **80%**.
 - Developed **15+ custom Java modules** with **Spring Framework** integrated with MariaDB, MySQL, Redis, and MongoDB for distributed applications. Collaborated with **7-person technical team**.
 
----
-
 ### **Network Infrastructure Consultant**  
-**Proven Training Concepts (DoD Contractor)** | Mar 2025 | Frederick, MD (On-site)
+**Proven Training Concepts (DoD Contractor)** | Mar 2025 | Lexington Park, MD (On-site)
 
 - Designed and documented **secure enterprise network architecture** using **Ubiquiti infrastructure** (UDM Pro, Switch Pro 24 PoE, Wi-Fi 6) for Department of Defense contractor facility.
 - Produced comprehensive technical deliverables: BoM, CAT6 schematics, rack layouts, UPS redundancy plans, and disaster recovery documentation.
 - Implemented **multi-layer security controls**: firewall rules, VLAN segmentation, and VPN controls aligned with **NIST 800-171** DoD cybersecurity standards.
 - Achieved **0 audit findings** during government inspection for security compliance and project delivery.
 
----
-
-<div style="page-break-before: always;"></div>
-
 ### **Network Administrator / IT Specialist**  
-**Panay Telephone Corporation II** | 2021 - 2022 | Philippines | Independent Contractor
+**Panay Telephone Corporation II** | 2021 - 2022 | Independent Contractor
 
 - Deployed **ISP-grade routing infrastructure** using **MikroTik RouterOS** for enterprise telecommunications clients, managing **BGP routing**, **MPLS** configurations, and **700+ concurrent subscribers** with **99.8% network availability**.
 - Implemented **pfSense firewall clusters** with advanced load-balancing algorithms, achieving average latency **<5ms to subscribers** and optimizing traffic across a **10Gbps fiber backbone**.
 - Applied server security: ACLs, patch management, network segmentation. Provided **24/7 on-call support** for outages and optimization.
 
----
+### **CRM Analyst / Specialist**  
+**iQor** | 2020 - 2021 | On-site
 
-### **Team Lead - Customer Relationship Management**  
-**iQor** | 2020 - 2021 | Philippines (On-site)
-
-- Supervised support team of **12+ specialists**, conducted **Salesforce CRM** training on best practices and operational workflows.
-- Analyzed customer data using **Excel** to improve service metrics, achieving **100% SLA compliance** during high-volume periods.
-- Maintained Salesforce dashboards to streamline reporting and reduce handle time **15%**.
-
----
+- Managed and analyzed customer data to improve client relationships and drive sales growth, generating actionable insights from CRM reports.
+- Maintained and customized the **CRM system**, ensuring data integrity and optimizing workflows for cross-functional teams.
+- Created detailed reports and dashboards to track key performance metrics, supporting data-driven decision-making.
+- Collaborated with sales and support teams to align CRM processes with business objectives.
+- Trained employees on CRM system use, best practices, and operational workflows to improve adoption and efficiency.
 
 ### **Owner / Technical Consultant**  
-**Teknomahika** | 2015 - 2023 | Philippines
+**Teknomahika** | 2015 - 2023
 
-- Founded IT consulting business: hardware repair, performance optimization, custom infrastructure builds for SMB clients.
+- Founded IT consulting business providing on-site and remote technical support for clients in various industries, specializing in hardware and software troubleshooting.
+- Built, upgraded, and repaired computers and servers, including custom infrastructure builds for SMB clients. Server builds for **Panay Telephone Corporation II** led to the Network Administrator contract (2021-2022).
 - Delivered **hardware/software troubleshooting** achieving **95%+ satisfaction** across **20+ project engagements** with **80%** repeat business rate.
-- Managed end-to-end delivery: procurement, installation, testing for custom server/workstation builds.
-
----
+- Developed and maintained client relationships, managing project timelines and budgets with end-to-end delivery: procurement, installation, and testing.
 
 ## KEY PROJECTS
 
@@ -96,22 +92,16 @@ Systems Engineer with **7 years of hands-on IT experience** specializing in **in
 - Engineered **advanced GSLB solution** using **F5 BIG-IP GTM** with custom **Lua iRules** for geographic traffic steering.
 - Reduced latency **40%** through implementation of **AI-powered health monitoring** and steering logic.
 
----
-
 ## EDUCATION
 
 **Bachelor of Science - Computer Engineering** (Undergraduate Coursework)  
 Interface Computer College | 2017 - 2020  
 *Completed 3 years of curriculum focused on Computer Systems Architecture, Data Structures & Algorithms, Network Engineering, and Database Management.*
 
----
-
 ## TECHNICAL LEADERSHIP & R&D
 
 - **Current Research:** Engineering autonomous "Self-Healing" infrastructure models and multi-agent AI supervisors for zero-touch network operations.
 - **Ecosystem Focus:** Deepening integration between Cloud-Native architectures (Kubernetes/AWS) and Agentic Workflow Orchestration (n8n/LangChain).
 - **Open Source:** Active contributor to automation frameworks, focusing on LLM-driven configuration validation and security policy enforcement.
-
----
 
 *References available upon request*

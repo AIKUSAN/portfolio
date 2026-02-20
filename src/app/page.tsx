@@ -18,7 +18,7 @@ export default function Home() {
     <>
       <Header />
       <AnimatedBackground />
-      
+
       <div className="flex flex-col min-h-screen pt-16">
         {/* Hero Section */}
         <section className="flex flex-col items-center justify-center min-h-screen px-4 text-center relative">
@@ -48,29 +48,29 @@ export default function Home() {
                 Systems Engineer
               </span>
             </motion.h1>
-            
+
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
               className="text-xl md:text-2xl dark:text-gray-400 text-gray-600 max-w-3xl mx-auto leading-relaxed font-light"
             >
-              Systems Engineer with 7 years of hands-on experience building and maintaining high-availability distributed systems. Currently managing 24-server gaming platform serving 300+ concurrent users with 99.9% uptime. Implementing multi-LLM orchestration (Gemini, Claude, GPT-4) for intelligent infrastructure automation.
+              Systems Engineer with 7 years of hands-on experience building and maintaining high-availability distributed systems. Currently managing 24-server gaming platform serving 300+ concurrent users with 99.9% uptime. Implementing multi-LLM orchestration (Gemini, Claude, ChatGPT) for intelligent infrastructure automation.
             </motion.p>
-            
+
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.3 }}
               className="flex flex-col sm:flex-row gap-5 justify-center pt-8"
             >
-              <Link 
+              <Link
                 href="/projects"
                 className="px-8 py-4 dark:bg-white dark:text-black bg-gray-900 text-white font-bold rounded-full hover:opacity-90 transition-all transform hover:scale-105 shadow-lg dark:shadow-white/5 shadow-gray-400/20"
               >
                 View Projects
               </Link>
-              <Link 
+              <Link
                 href="/contact"
                 className="px-8 py-4 dark:bg-white/5 dark:text-white bg-gray-100 text-gray-900 font-semibold rounded-full border dark:border-white/10 border-gray-200 hover:bg-gray-200 dark:hover:bg-white/10 transition-all backdrop-blur-sm"
               >
@@ -116,7 +116,7 @@ export default function Home() {
                 Recently updated projects showcasing AI-powered automation, infrastructure optimization, and production deployments.
               </p>
             </motion.div>
-            
+
             {/* Uniform Grid Layout */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-fr">
               {featuredProjects.map((project, index) => (
@@ -151,7 +151,7 @@ export default function Home() {
             >
               Professional Experience
             </motion.h2>
-            
+
             <div className="space-y-12">
               {/* Current Role */}
               <motion.div

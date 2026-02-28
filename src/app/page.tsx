@@ -163,22 +163,22 @@ export default function Home() {
               >
                 <span className="absolute -left-[5px] top-0 h-2.5 w-2.5 rounded-full bg-blue-500 shadow-[0_0_12px_rgba(59,130,246,0.8)] ring-4 dark:ring-black ring-white"></span>
                 <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between mb-2">
-                  <h3 className="text-2xl font-bold dark:text-white text-gray-900">Systems Engineer</h3>
-                  <span className="text-sm text-blue-400 font-mono bg-blue-500/10 px-3 py-1 rounded-full border border-blue-500/20">2023 - Present</span>
+                  <h3 className="text-2xl font-bold dark:text-white text-gray-900">Lead Systems Engineer (Remote Consultant)</h3>
+                  <span className="text-sm text-blue-400 font-mono bg-blue-500/10 px-3 py-1 rounded-full border border-blue-500/20">Jan 2023 – Present</span>
                 </div>
-                <h4 className="text-lg dark:text-gray-400 text-gray-600 mb-6">Land of Promise</h4>
+                <h4 className="text-lg dark:text-gray-400 text-gray-600 mb-6">Patrick Bezalel Pte Ltd — Land of Promise</h4>
                 <ul className="space-y-3 dark:text-gray-300 text-gray-700">
                   <li className="flex gap-3 items-start">
                     <span className="mt-2 h-1.5 w-1.5 rounded-full bg-blue-500/50 flex-shrink-0"></span>
-                    <span>Built and managed 24-server distributed ecosystem serving 300+ concurrent users with <strong>99.9% uptime</strong></span>
+                    <span>Architected <strong>25+ containerized server nodes</strong> with <strong>99.9% uptime</strong>; integrated Gemini &amp; Claude APIs to cut admin overhead <strong>85%</strong></span>
                   </li>
                   <li className="flex gap-3 items-start">
                     <span className="mt-2 h-1.5 w-1.5 rounded-full bg-blue-500/50 flex-shrink-0"></span>
-                    <span>Optimized JVM performance, reducing latency <strong>56% (80ms to 35ms)</strong></span>
+                    <span>Reduced application latency <strong>56% (80ms → 35ms)</strong> and DB response times <strong>96%</strong> at <strong>2M+ daily queries</strong></span>
                   </li>
                   <li className="flex gap-3 items-start">
                     <span className="mt-2 h-1.5 w-1.5 rounded-full bg-blue-500/50 flex-shrink-0"></span>
-                    <span>Built CI/CD framework using Docker/Bash, reducing deployments from <strong>30 minutes to &lt;2 minutes</strong></span>
+                    <span>Led Debian bare-metal migration with Docker CI/CD pipelines — cut costs <strong>65%</strong> and deploy cycles <strong>93%</strong>; consulting remotely from the US for Singapore HQ</span>
                   </li>
                 </ul>
               </motion.div>

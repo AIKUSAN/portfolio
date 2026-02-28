@@ -7,22 +7,22 @@ import { Briefcase, MapPin } from "lucide-react";
 
 const experiences = [
   {
-    title: "Systems Engineer",
-    company: "Land of Promise",
-    location: "Remote",
-    period: "January 2023 - Present",
+    title: "Lead Systems Engineer (Remote Consultant)",
+    company: "Patrick Bezalel Pte Ltd — Project: Land of Promise",
+    location: "Remote (United States → Singapore HQ)",
+    period: "January 2023 – Present",
     current: true,
     color: "blue",
     achievements: [
-      "Built and managed **24-server distributed ecosystem** serving **300+ concurrent users** with **99.9% uptime** through load balancing and automated failover protocols",
-      "Implemented **AI-enhanced infrastructure automation** for **Pterodactyl (containerized infrastructure management platform)** APIs, integrating multi-LLM systems (Gemini, Claude, ChatGPT) for intelligent network configuration validation, reducing manual tasks **85%**",
-      "Optimized **JVM performance** and **MariaDB queries**, reducing application latency **56% (80ms → 35ms)** and database response times **96% (800ms → 35ms)** while handling **2M+ queries/day**",
-      "Led infrastructure migration to **Debian 12 bare-metal**, implementing **Docker containerization** and automated deployment pipelines, cutting operational costs **65%** and deployment time **93% (30min → <2min)**",
-      "Developed **15+ custom Java modules** with **Spring Framework** integrated with MariaDB, MySQL, Redis, and MongoDB for distributed applications",
-      "Implemented **24/7 monitoring and alerting** with **Prometheus/Grafana**, reducing critical incident response time by **80%**",
-      "Collaborated with **7-person technical team** across development, operations, and community management"
+      "**Distributed Container Infrastructure:** Architected and managed a high-availability network of **25+ containerized server nodes** using a centralized resource orchestration platform; maintained **99.9% uptime** for a global community through advanced load balancing and automated failover protocols",
+      "**AI-Ops & Automation:** Engineered a custom infrastructure layer integrating **Gemini and Claude APIs** for intelligent network configuration validation and automated incident response, resulting in an **85% reduction in manual administrative overhead**",
+      "**Performance Engineering:** Optimized **JVM heap profiles** and **MariaDB/MySQL** query execution, achieving a **56% reduction in application latency** (80ms → 35ms) and a **96% improvement in database response times** while processing **2M+ daily queries**",
+      "**Modernization & DevOps:** Led the transition to a **dedicated Debian-based bare-metal environment**, implementing **Docker containerization** and automated deployment pipelines that cut operational costs by **65%** and deployment cycles by **93%**",
+      "**Distributed Systems Development:** Developed **15+ custom Java modules** (Spring Framework) integrated with **Redis, MongoDB, and MariaDB** to synchronize real-time data and maintain state across a multi-server distributed ecosystem",
+      "**AI-Driven Observability:** Replaced legacy monitoring with an **LLM-powered reporting system** that utilizes AI to interpret system logs and report critical security incidents (DDoS, service failures) in natural language, improving response time by **80%**",
+      "**International Technical Consultation:** Consulted remotely from the **United States (since 2024)** for the Singapore-based headquarters, collaborating with a 7-person cross-functional team to align global technical infrastructure with project mission goals"
     ],
-    technologies: ["Docker", "Kubernetes", "MariaDB", "Redis", "Java", "Python", "Bash", "CI/CD", "nginx"]
+    technologies: ["Docker", "Java (Spring)", "MariaDB", "MySQL", "Redis", "MongoDB", "Gemini API", "Claude API", "Debian Linux", "Bash", "CI/CD"]
   },
   {
     title: "Network Infrastructure Consultant",

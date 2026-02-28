@@ -81,8 +81,8 @@ export default function Header() {
 
             {/* CV Download Button */}
             <a
-              href="/resume.pdf"
-              download="resume.pdf"
+              href="/Lorenz_Tazan_Resume.pdf"
+              download="Lorenz_Tazan_resume.pdf"
               className="ml-2 px-3 py-2 text-xs lg:text-sm font-bold bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-lg hover:from-blue-600 hover:to-purple-600 transition-all transform hover:scale-105 whitespace-nowrap"
             >
               Download Resume
@@ -136,8 +136,8 @@ export default function Header() {
               );
             })}
             <a
-              href="/resume.pdf"
-              download="resume.pdf"
+              href="/Lorenz_Tazan_Resume.pdf"
+              download="Lorenz_Tazan_resume.pdf"
               onClick={() => setMobileMenuOpen(false)}
               className="block px-4 py-3 text-sm font-bold bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-lg mt-4 text-center hover:from-blue-600 hover:to-purple-600 transition-all"
             >

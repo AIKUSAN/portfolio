@@ -1,0 +1,555 @@
+# Instincts generated from https://github.com/AIKUSAN/portfolio
+# Generated: 2026-02-28T19:50:38.325Z
+# Version: 2.0
+
+---
+id: portfolio-commit-length
+trigger: "when writing a commit message"
+confidence: 0.6
+domain: git
+source: repo-analysis
+source_repo: https://github.com/AIKUSAN/portfolio
+---
+
+# Portfolio Commit Length
+
+## Action
+
+Write moderate-length commit messages (~50 characters)
+
+## Evidence
+
+- Average commit message length: 59 chars
+- Based on 39 commits
+
+---
+id: portfolio-naming-files
+trigger: "when creating a new file"
+confidence: 0.8
+domain: code-style
+source: repo-analysis
+source_repo: https://github.com/AIKUSAN/portfolio
+---
+
+# Portfolio Naming Files
+
+## Action
+
+Use camelCase naming convention
+
+## Evidence
+
+- Analyzed file naming patterns in repository
+- Dominant pattern: camelCase
+
+---
+id: portfolio-import-alias
+trigger: "when importing modules"
+confidence: 0.85
+domain: code-style
+source: repo-analysis
+source_repo: https://github.com/AIKUSAN/portfolio
+---
+
+# Portfolio Import Alias
+
+## Action
+
+Use path aliases (@/, ~/) instead of relative imports
+
+## Evidence
+
+- Import analysis shows alias pattern
+- Example: import { x } from '@/lib/x'
+
+---
+id: portfolio-export-style
+trigger: "when exporting from a module"
+confidence: 0.7
+domain: code-style
+source: repo-analysis
+source_repo: https://github.com/AIKUSAN/portfolio
+---
+
+# Portfolio Export Style
+
+## Action
+
+Prefer default exports
+
+## Evidence
+
+- Export pattern analysis
+- Dominant style: default
+
+---
+id: portfolio-arch-type-based
+trigger: "when adding new code"
+confidence: 0.8
+domain: architecture
+source: repo-analysis
+source_repo: https://github.com/AIKUSAN/portfolio
+---
+
+# Portfolio Arch Type Based
+
+## Action
+
+Place code in the appropriate type folder (components/, services/, utils/, etc.)
+
+## Evidence
+
+- Type-based module organization detected
+- Folders: app, components, contexts, data, lib
+
+---
+id: portfolio-test-separate
+trigger: "when writing tests"
+confidence: 0.8
+domain: testing
+source: repo-analysis
+source_repo: https://github.com/AIKUSAN/portfolio
+---
+
+# Portfolio Test Separate
+
+## Action
+
+Place tests in the tests/ or __tests__/ directory, mirroring src structure
+
+## Evidence
+
+- Separate test directory pattern detected
+- Tests live in dedicated test folders
+
+---
+id: portfolio-workflow-feature-development
+trigger: "when implementing a new feature"
+confidence: 0.75
+domain: workflow
+source: repo-analysis
+source_repo: https://github.com/AIKUSAN/portfolio
+---
+
+# Portfolio Workflow Feature Development
+
+## Action
+
+Follow the feature-development workflow:
+1. Add feature implementation
+2. Add tests for feature
+3. Update documentation
+
+## Evidence
+
+- Workflow detected from commit patterns
+- Frequency: ~5x per month
+- Files: /*, src/app/*, src/components/ui/*
+
+---
+id: portfolio-workflow-dependency-updates
+trigger: "when doing dependency updates"
+confidence: 0.9
+domain: workflow
+source: repo-analysis
+source_repo: https://github.com/AIKUSAN/portfolio
+---
+
+# Portfolio Workflow Dependency Updates
+
+## Action
+
+Follow the dependency-updates workflow:
+1. Dependabot creates PR with dependency updates
+2. Update package.json with new versions
+3. Update package-lock.json with resolved dependencies
+4. Merge PR after review
+
+## Evidence
+
+- Workflow detected from commit patterns
+- Frequency: ~8x per month
+- Files: package.json, package-lock.json
+
+---
+id: portfolio-workflow-resume-sync
+trigger: "when doing resume sync"
+confidence: 0.65
+domain: workflow
+source: repo-analysis
+source_repo: https://github.com/AIKUSAN/portfolio
+---
+
+# Portfolio Workflow Resume Sync
+
+## Action
+
+Follow the resume-sync workflow:
+1. Update markdown resume source
+2. Regenerate PDF from markdown
+3. Sync changes to experience page
+4. Update home page if needed
+
+## Evidence
+
+- Workflow detected from commit patterns
+- Frequency: ~3x per month
+- Files: public/LORENZ_TAZAN_RESUME.md, public/resume.pdf, src/app/experience/page.tsx
+
+---
+id: portfolio-workflow-security-fixes
+trigger: "when doing security fixes"
+confidence: 0.65
+domain: workflow
+source: repo-analysis
+source_repo: https://github.com/AIKUSAN/portfolio
+---
+
+# Portfolio Workflow Security Fixes
+
+## Action
+
+Follow the security-fixes workflow:
+1. Identify security vulnerability
+2. Update vulnerable package in package.json
+3. Update package-lock.json
+4. Test for breaking changes
+
+## Evidence
+
+- Workflow detected from commit patterns
+- Frequency: ~3x per month
+- Files: package.json, package-lock.json
+
+---
+id: portfolio-workflow-github-actions-updates
+trigger: "when doing github actions updates"
+confidence: 0.6
+domain: workflow
+source: repo-analysis
+source_repo: https://github.com/AIKUSAN/portfolio
+---
+
+# Portfolio Workflow Github Actions Updates
+
+## Action
+
+Follow the github-actions-updates workflow:
+1. Dependabot detects outdated actions
+2. Update action versions in workflow files
+3. Test workflow functionality
+
+## Evidence
+
+- Workflow detected from commit patterns
+- Frequency: ~2x per month
+- Files: .github/workflows/deploy.yml, .github/workflows/codeql.yml
+
+---
+id: portfolio-workflow-content-polish
+trigger: "when doing content polish"
+confidence: 0.6
+domain: workflow
+source: repo-analysis
+source_repo: https://github.com/AIKUSAN/portfolio
+---
+
+# Portfolio Workflow Content Polish
+
+## Action
+
+Follow the content-polish workflow:
+1. Identify components needing updates
+2. Update page components
+3. Update shared components like Header/Footer
+4. Test visual changes
+
+## Evidence
+
+- Workflow detected from commit patterns
+- Frequency: ~2x per month
+- Files: src/app/*/page.tsx, src/components/Header.tsx, src/components/Footer.tsx
+
+---
+id: portfolio-camel-case-files
+trigger: "When creating new TypeScript files"
+confidence: 0.85
+domain: code-style
+source: repo-analysis
+source_repo: AIKUSAN/portfolio
+---
+
+# Portfolio Camel Case Files
+
+## Action
+
+Use camelCase naming convention
+
+## Evidence
+
+- Consistent camelCase pattern in src/ folder structure
+- TypeScript files follow camelCase naming
+
+---
+id: portfolio-pascal-case-components
+trigger: "When creating React component classes"
+confidence: 0.82
+domain: code-style
+source: repo-analysis
+source_repo: AIKUSAN/portfolio
+---
+
+# Portfolio Pascal Case Components
+
+## Action
+
+Use PascalCase naming convention
+
+## Evidence
+
+- Components like Header.tsx, Footer.tsx use PascalCase
+- React component pattern throughout codebase
+
+---
+id: portfolio-alias-imports
+trigger: "When importing modules"
+confidence: 0.78
+domain: code-style
+source: repo-analysis
+source_repo: AIKUSAN/portfolio
+---
+
+# Portfolio Alias Imports
+
+## Action
+
+Use alias-style imports with path mapping
+
+## Evidence
+
+- Import style pattern across TypeScript files
+- tsconfig.json suggests path mapping setup
+
+---
+id: portfolio-default-exports
+trigger: "When exporting from modules"
+confidence: 0.75
+domain: code-style
+source: repo-analysis
+source_repo: AIKUSAN/portfolio
+---
+
+# Portfolio Default Exports
+
+## Action
+
+Use default export style
+
+## Evidence
+
+- Export style pattern consistent across components
+- Next.js page components use default exports
+
+---
+id: portfolio-try-catch-errors
+trigger: "When handling potential errors"
+confidence: 0.72
+domain: code-style
+source: repo-analysis
+source_repo: AIKUSAN/portfolio
+---
+
+# Portfolio Try Catch Errors
+
+## Action
+
+Use try-catch blocks for error handling
+
+## Evidence
+
+- Error handling style observed in codebase
+- No custom error classes or boundaries detected
+
+---
+id: portfolio-conventional-commits
+trigger: "When making a commit"
+confidence: 0.9
+domain: git
+source: repo-analysis
+source_repo: AIKUSAN/portfolio
+---
+
+# Portfolio Conventional Commits
+
+## Action
+
+Use conventional commit format with type prefix (chore, fix, feat, security, seo)
+
+## Evidence
+
+- chore: include final resume sync
+- fix: restore emerald/blue theme swap lost during rebase (#27)
+- feat: update Land of Promise experience to Lead Systems Engineer
+- security: Fix XSS vulnerability and lint error (#9)
+
+---
+id: portfolio-commit-length-limit
+trigger: "When writing commit messages"
+confidence: 0.7
+domain: git
+source: repo-analysis
+source_repo: AIKUSAN/portfolio
+---
+
+# Portfolio Commit Length Limit
+
+## Action
+
+Keep commit messages around 59 characters average length
+
+## Evidence
+
+- Average commit message length is 59 characters
+- Consistent concise commit message pattern
+
+---
+id: portfolio-dependabot-workflow
+trigger: "When dependencies need updating"
+confidence: 0.95
+domain: workflow
+source: repo-analysis
+source_repo: AIKUSAN/portfolio
+---
+
+# Portfolio Dependabot Workflow
+
+## Action
+
+Let dependabot create PR, then update package.json and package-lock.json files
+
+## Evidence
+
+- chore(deps): bump the production-dependencies group with 6 updates (#21)
+- High frequency dependency update pattern (8x/month)
+
+---
+id: portfolio-resume-sync-workflow
+trigger: "When resume information changes"
+confidence: 0.88
+domain: workflow
+source: repo-analysis
+source_repo: AIKUSAN/portfolio
+---
+
+# Portfolio Resume Sync Workflow
+
+## Action
+
+Update markdown resume, regenerate PDF, sync to experience page, update home page
+
+## Evidence
+
+- chore: include final resume sync
+- chore: standardize resume asset name, update routing links, and finalize portfolio updates
+- Files: public/LORENZ_TAZAN_RESUME.md, public/resume.pdf, src/app/experience/page.tsx
+
+---
+id: portfolio-security-fix-workflow
+trigger: "When security alerts are detected"
+confidence: 0.82
+domain: workflow
+source: repo-analysis
+source_repo: AIKUSAN/portfolio
+---
+
+# Portfolio Security Fix Workflow
+
+## Action
+
+Update vulnerable packages in package.json and package-lock.json, test for breaking changes
+
+## Evidence
+
+- security: Fix XSS vulnerability and lint error (#9)
+- Pattern of security-focused commits with package updates
+
+---
+id: portfolio-github-actions-workflow
+trigger: "When GitHub Actions need version updates"
+confidence: 0.79
+domain: workflow
+source: repo-analysis
+source_repo: AIKUSAN/portfolio
+---
+
+# Portfolio Github Actions Workflow
+
+## Action
+
+Update action versions in .github/workflows/ files and test functionality
+
+## Evidence
+
+- Config files: .github/workflows/codeql.yml, .github/workflows/deploy.yml
+- 2-3x/month update frequency for actions
+
+---
+id: portfolio-content-polish-workflow
+trigger: "When UI or content improvements are needed"
+confidence: 0.75
+domain: workflow
+source: repo-analysis
+source_repo: AIKUSAN/portfolio
+---
+
+# Portfolio Content Polish Workflow
+
+## Action
+
+Update page components, shared components like Header/Footer, and test visual changes
+
+## Evidence
+
+- chore: final visual QA, Next.js build validation, and resume synchronization
+- Files: src/app/*/page.tsx, src/components/Header.tsx, src/components/Footer.tsx
+
+---
+id: portfolio-type-based-organization
+trigger: "When organizing code files"
+confidence: 0.83
+domain: architecture
+source: repo-analysis
+source_repo: AIKUSAN/portfolio
+---
+
+# Portfolio Type Based Organization
+
+## Action
+
+Group files by type (components, contexts, data, lib, types)
+
+## Evidence
+
+- Folder structure: app, components, contexts, data, lib, types
+- Type-based module organization pattern
+
+---
+id: portfolio-separate-tests
+trigger: "When writing tests"
+confidence: 0.65
+domain: testing
+source: repo-analysis
+source_repo: AIKUSAN/portfolio
+---
+
+# Portfolio Separate Tests
+
+## Action
+
+Place tests in separate test directories rather than co-located
+
+## Evidence
+
+- Test location marked as 'separate' in architecture analysis
+- No co-located test files observed
+

@@ -12,7 +12,7 @@ const experiences = [
     location: "Remote (United States → Singapore HQ)",
     period: "January 2023 – Present",
     current: true,
-    color: "emerald",
+    color: "blue",
     achievements: [
       "**Distributed Container Infrastructure:** Architected and managed a high-availability network of **25+ containerized server nodes** using a centralized resource orchestration platform; maintained **99.9% uptime** for a global community through advanced load balancing and automated failover protocols",
       "**AI-Ops & Automation:** Engineered a custom infrastructure layer integrating **Gemini and Claude APIs** for intelligent network configuration validation and automated incident response, resulting in an **85% reduction in manual administrative overhead**",
@@ -30,7 +30,7 @@ const experiences = [
     location: "On-site",
     period: "March 2025",
     current: false,
-    color: "blue",
+    color: "emerald",
     achievements: [
       "Implemented secure enterprise network using Ubiquiti equipment for DoD contractor facility",
       "Produced comprehensive technical documentation including Bill of Materials, CAT6 schematics, rack layouts, and UPS redundancy plans",

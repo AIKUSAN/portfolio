@@ -96,7 +96,7 @@ export default function ContactPage() {
                 </p>
               </div>
               <a
-                href="/resume.pdf"
+                href="/Lorenz_Tazan_Resume.pdf"
                 download="Lorenz_Tazan_Resume_2026.pdf"
                 className="px-8 py-4 bg-gradient-to-r from-blue-500 to-purple-500 text-white font-bold rounded-xl hover:from-blue-600 hover:to-purple-600 transition-all transform hover:scale-105 flex items-center gap-2 whitespace-nowrap shadow-lg shadow-blue-500/25"
               >

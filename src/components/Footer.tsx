@@ -57,7 +57,7 @@ export default function Footer() {
               Systems Engineer specializing in AI-powered Infrastructure Automation, LLM Integration, and Cloud-Native Orchestration.
             </p>
             <a
-              href="/resume.pdf"
+              href="/Lorenz_Tazan_Resume.pdf"
               download="Lorenz_Tazan_resume.pdf"
               className="inline-flex items-center gap-2 px-4 py-2 dark:bg-slate-900/40 bg-gray-100 dark:hover:bg-slate-800/60 hover:bg-gray-200 border dark:border-slate-700/50 border-gray-300 rounded-lg transition-all text-sm font-medium dark:text-white text-gray-900"
             >

@@ -159,25 +159,25 @@ export default function Home() {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true, margin: "-100px" }}
                 transition={{ duration: 0.6 }}
-                className="relative border-l border-blue-500/30 pl-8 md:pl-16 py-2"
+                className="relative border-l border-emerald-500/30 pl-8 md:pl-16 py-2"
               >
-                <span className="absolute -left-[5px] top-0 h-2.5 w-2.5 rounded-full bg-blue-500 shadow-[0_0_12px_rgba(59,130,246,0.8)] ring-4 dark:ring-black ring-white"></span>
+                <span className="absolute -left-[5px] top-0 h-2.5 w-2.5 rounded-full bg-emerald-500 shadow-[0_0_12px_rgba(16,185,129,0.8)] ring-4 dark:ring-black ring-white"></span>
                 <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between mb-2">
                   <h3 className="text-2xl font-bold dark:text-white text-gray-900">Lead Systems Engineer (Remote Consultant)</h3>
-                  <span className="text-sm text-blue-400 font-mono bg-blue-500/10 px-3 py-1 rounded-full border border-blue-500/20">Jan 2023 – Present</span>
+                  <span className="text-sm text-emerald-400 font-mono bg-emerald-500/10 px-3 py-1 rounded-full border border-emerald-500/20">Jan 2023 – Present</span>
                 </div>
                 <h4 className="text-lg dark:text-gray-400 text-gray-600 mb-6">Patrick Bezalel Pte Ltd — Land of Promise</h4>
                 <ul className="space-y-3 dark:text-gray-300 text-gray-700">
                   <li className="flex gap-3 items-start">
-                    <span className="mt-2 h-1.5 w-1.5 rounded-full bg-blue-500/50 flex-shrink-0"></span>
+                    <span className="mt-2 h-1.5 w-1.5 rounded-full bg-emerald-500/50 flex-shrink-0"></span>
                     <span>Architected <strong>25+ containerized server nodes</strong> with <strong>99.9% uptime</strong>; integrated Gemini &amp; Claude APIs to cut admin overhead <strong>85%</strong></span>
                   </li>
                   <li className="flex gap-3 items-start">
-                    <span className="mt-2 h-1.5 w-1.5 rounded-full bg-blue-500/50 flex-shrink-0"></span>
+                    <span className="mt-2 h-1.5 w-1.5 rounded-full bg-emerald-500/50 flex-shrink-0"></span>
                     <span>Reduced application latency <strong>56% (80ms → 35ms)</strong> and DB response times <strong>96%</strong> at <strong>2M+ daily queries</strong></span>
                   </li>
                   <li className="flex gap-3 items-start">
-                    <span className="mt-2 h-1.5 w-1.5 rounded-full bg-blue-500/50 flex-shrink-0"></span>
+                    <span className="mt-2 h-1.5 w-1.5 rounded-full bg-emerald-500/50 flex-shrink-0"></span>
                     <span>Led Debian bare-metal migration with Docker CI/CD pipelines — cut costs <strong>65%</strong> and deploy cycles <strong>93%</strong>; consulting remotely from the US for Singapore HQ</span>
                   </li>
                 </ul>
@@ -189,21 +189,21 @@ export default function Home() {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true, margin: "-100px" }}
                 transition={{ duration: 0.6, delay: 0.1 }}
-                className="relative border-l border-emerald-500/30 pl-8 md:pl-16 py-2"
+                className="relative border-l border-blue-500/30 pl-8 md:pl-16 py-2"
               >
-                <span className="absolute -left-[5px] top-0 h-2.5 w-2.5 rounded-full bg-emerald-500 shadow-[0_0_12px_rgba(16,185,129,0.6)] ring-4 dark:ring-black ring-white"></span>
+                <span className="absolute -left-[5px] top-0 h-2.5 w-2.5 rounded-full bg-blue-500 shadow-[0_0_12px_rgba(59,130,246,0.6)] ring-4 dark:ring-black ring-white"></span>
                 <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between mb-2">
                   <h3 className="text-2xl font-bold dark:text-white text-gray-900">Network Infrastructure Consultant</h3>
-                  <span className="text-sm text-emerald-400 font-mono bg-emerald-500/10 px-3 py-1 rounded-full border border-emerald-500/20">March 2025</span>
+                  <span className="text-sm text-blue-400 font-mono bg-blue-500/10 px-3 py-1 rounded-full border border-blue-500/20">March 2025</span>
                 </div>
                 <h4 className="text-lg dark:text-gray-400 text-gray-600 mb-6">Proven Training Concepts (DoD Contractor)</h4>
                 <ul className="space-y-3 dark:text-gray-300 text-gray-700">
                   <li className="flex gap-3 items-start">
-                    <span className="mt-2 h-1.5 w-1.5 rounded-full bg-emerald-500/50 flex-shrink-0"></span>
+                    <span className="mt-2 h-1.5 w-1.5 rounded-full bg-blue-500/50 flex-shrink-0"></span>
                     <span>Implemented NIST 800-171 compliant network with <strong>0 audit findings</strong></span>
                   </li>
                   <li className="flex gap-3 items-start">
-                    <span className="mt-2 h-1.5 w-1.5 rounded-full bg-emerald-500/50 flex-shrink-0"></span>
+                    <span className="mt-2 h-1.5 w-1.5 rounded-full bg-blue-500/50 flex-shrink-0"></span>
                     <span>Implemented zero-trust architecture with WPA3-Enterprise and network segmentation</span>
                   </li>
                 </ul>

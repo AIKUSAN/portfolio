@@ -36,17 +36,20 @@ Systems Engineer with **7 years of hands-on IT experience** specializing in **in
 
 ## PROFESSIONAL EXPERIENCE
 
-### **Systems Engineer**  
-**Land of Promise** | Jan 2023 - Present | Remote
+### **Lead Systems Engineer (Remote Consultant)**  
 
-- Built and managed **24-server distributed ecosystem** serving **300+ concurrent users** with **99.9% uptime** through load balancing and automated failover protocols.
-- Implemented **AI-enhanced infrastructure automation** for **Pterodactyl (containerized infrastructure management platform)** APIs, integrating multi-LLM systems (Gemini, Claude, ChatGPT) for intelligent network configuration validation and reducing manual tasks **85%**.
-- Optimized **JVM performance** and **MariaDB queries**, reducing application latency **56% (80ms → 35ms)** and database response times **96% (800ms → 35ms)** while handling **2M+ queries/day**.
-- Led infrastructure migration to **Debian 12 bare-metal**, implementing **Docker containerization** and automated deployment pipelines, cutting operational costs **65%** and deployment time **93% (30min → <2min)**.
-- Implemented **24/7 monitoring and alerting** with **Prometheus/Grafana**, reducing critical incident response time by **80%**.
-- Developed **15+ custom Java modules** with **Spring Framework** integrated with MariaDB, MySQL, Redis, and MongoDB for distributed applications. Collaborated with **7-person technical team**.
+**Patrick Bezalel Pte Ltd | Project: Land of Promise** | January 2023 - Present
+
+- **Distributed Container Infrastructure:** Architected and managed a high-availability network of **25+ containerized server nodes** using a centralized resource orchestration platform; maintained **99.9% uptime** for a global community through advanced load balancing and automated failover protocols.
+- **AI-Ops & Automation:** Engineered a custom infrastructure layer integrating **Gemini and Claude APIs** for intelligent network configuration validation and automated incident response, resulting in an **85% reduction in manual administrative overhead**.
+- **Performance Engineering:** Optimized **JVM heap profiles** and **MariaDB/MySQL** query execution, achieving a **56% reduction in application latency** (80ms → 35ms) and a **96% improvement in database response times** while processing **2M+ daily queries**.
+- **Modernization & DevOps:** Led the transition to a **dedicated Debian-based bare-metal environment**, implementing **Docker containerization** and automated deployment pipelines that cut operational costs by **65%** and deployment cycles by **93%**.
+- **Distributed Systems Development:** Developed **15+ custom Java modules** (Spring Framework) integrated with **Redis, MongoDB, and MariaDB** to synchronize real-time data and maintain state across a multi-server distributed ecosystem.
+- **AI-Driven Observability:** Replaced legacy monitoring with an **LLM-powered reporting system** that utilizes AI to interpret system logs and report critical security incidents (DDoS, service failures) in natural language, improving response time by **80%**.
+- **International Technical Consultation:** Consulted remotely from the **United States (since 2024)** for the Singapore-based headquarters, collaborating with a 7-person cross-functional team to align global technical infrastructure with project mission goals.
 
 ### **Network Infrastructure Consultant**  
+
 **Proven Training Concepts (DoD Contractor)** | Mar 2025 | Lexington Park, MD (On-site)
 
 - Designed and documented **secure enterprise network architecture** using **Ubiquiti infrastructure** (UDM Pro, Switch Pro 24 PoE, Wi-Fi 6) for Department of Defense contractor facility.
@@ -55,13 +58,18 @@ Systems Engineer with **7 years of hands-on IT experience** specializing in **in
 - Achieved **0 audit findings** during government inspection for security compliance and project delivery.
 
 ### **Network Administrator / IT Specialist**  
+
 **Panay Telephone Corporation II** | 2021 - 2022 | Independent Contractor
 
 - Deployed **ISP-grade routing infrastructure** using **MikroTik RouterOS** for enterprise telecommunications clients, managing **BGP routing**, **MPLS** configurations, and **700+ concurrent subscribers** with **99.8% network availability**.
+
+<div style="page-break-before: always;"></div>
+
 - Implemented **pfSense firewall clusters** with advanced load-balancing algorithms, achieving average latency **<5ms to subscribers** and optimizing traffic across a **10Gbps fiber backbone**.
 - Applied server security: ACLs, patch management, network segmentation. Provided **24/7 on-call support** for outages and optimization.
 
 ### **CRM Analyst / Specialist**  
+
 **iQor** | 2020 - 2021 | On-site
 
 - Managed and analyzed customer data to improve client relationships and drive sales growth, generating actionable insights from CRM reports.
@@ -71,6 +79,7 @@ Systems Engineer with **7 years of hands-on IT experience** specializing in **in
 - Trained employees on CRM system use, best practices, and operational workflows to improve adoption and efficiency.
 
 ### **Owner / Technical Consultant**  
+
 **Teknomahika** | 2015 - 2023
 
 - Founded IT consulting business providing on-site and remote technical support for clients in various industries, specializing in hardware and software troubleshooting.
@@ -81,14 +90,17 @@ Systems Engineer with **7 years of hands-on IT experience** specializing in **in
 ## KEY PROJECTS
 
 **AI-Powered Network Automation Framework** | *Multi-LLM Orchestration System*  
+
 - Architected **agentic AI system** orchestrating **3 specialized LLM agents** with **LangChain + ChromaDB RAG**.
 - Automated network infrastructure workflows, reducing configuration errors from **12% to <1%**.
 
 **NetOps Automation & Dual-AI Validation Platform** | *Enterprise Network Automation*  
+
 - Developed production-grade **network automation framework** managing **100+ devices** with **99.9% success rate**.
 - Built **event-driven architecture** with **n8n workflow orchestration** for zero-touch compliance and **dual-AI validation**.
 
 **Global Traffic Manager with AI-Powered Monitoring** | *Intelligent Load Balancing*  
+
 - Engineered **advanced GSLB solution** using **F5 BIG-IP GTM** with custom **Lua iRules** for geographic traffic steering.
 - Reduced latency **40%** through implementation of **AI-powered health monitoring** and steering logic.
 

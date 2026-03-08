@@ -196,7 +196,6 @@ Systems Engineer | DevOps & Infrastructure Automation
 
 - 🌐 Website: [lorenztazan.com](https://lorenztazan.com)
 - 📧 Email: [lorenztazan@gmail.com](mailto:lorenztazan@gmail.com)
-- 📱 Phone: [240-256-2410](tel:240-256-2410)
 - 💼 LinkedIn: [linkedin.com/in/lorenztazan](https://linkedin.com/in/lorenztazan)
 - 🐙 GitHub: [@AIKUSAN](https://github.com/AIKUSAN)
 

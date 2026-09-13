@@ -1,6 +1,6 @@
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { contactEmailContent, escapeHtml, isSameOrigin, validateContactForm } from './contact';
-import { POST } from '@/pages/api/contact';
+import { handleContact } from './contact-handler';
 
 const validForm = (overrides: Record<string, string> = {}) => {
   const form = new FormData();
@@ -23,22 +23,15 @@ const requestFor = (form = validForm(), origin = 'https://lorenztazan.com') => n
   { method: 'POST', headers: { origin }, body: form }
 );
 
-const runtimeLocals = (send = vi.fn().mockResolvedValue(undefined)) => ({
-  runtime: {
-    env: {
-      EMAIL: { send },
-      TURNSTILE_SECRET_KEY: 'test-secret',
-      TURNSTILE_EXPECTED_HOSTNAME: 'lorenztazan.com',
-      CONTACT_FROM: 'portfolio@lorenztazan.com',
-      CONTACT_RECIPIENT: 'lorenztazan@gmail.com'
-    },
-    ctx: {},
-    cf: {},
-    caches: {}
-  }
+const testEnvironment = (send = vi.fn().mockResolvedValue(undefined)) => ({
+  EMAIL: { send },
+  TURNSTILE_SECRET_KEY: 'fixture-secret-for-local-tests-only',
+  TURNSTILE_EXPECTED_HOSTNAME: 'lorenztazan.com',
+  CONTACT_FROM: 'portfolio@lorenztazan.com',
+  CONTACT_RECIPIENT: 'lorenztazan@gmail.com'
 });
 
-const invokePost = async (request: Request, locals = runtimeLocals()) => POST({ request, locals } as never);
+const invokePost = (request: Request, env = testEnvironment()) => handleContact(request, env);
 
 afterEach(() => {
   vi.unstubAllGlobals();
@@ -82,6 +75,74 @@ describe('contact validation and formatting', () => {
 });
 
 describe('contact Worker route', () => {
+  it('fails closed when the runtime secret binding is absent', async () => {
+    const fetchMock = vi.fn();
+    vi.stubGlobal('fetch', fetchMock);
+    const env = testEnvironment();
+    Reflect.deleteProperty(env, 'TURNSTILE_SECRET_KEY');
+    const response = await invokePost(requestFor(), env);
+    expect(response.status).toBe(500);
+    expect(fetchMock).not.toHaveBeenCalled();
+    expect(env.EMAIL.send).not.toHaveBeenCalled();
+  });
+
+  it.each(['', ' ', '1x0000000000000000000000000000000AA', '2x0000000000000000000000000000000AA', '3x0000000000000000000000000000000AA'])(
+    'fails closed without calling verification or email for an unconfigured secret (%s)', async secret => {
+      const fetchMock = vi.fn();
+      vi.stubGlobal('fetch', fetchMock);
+      const send = vi.fn();
+      const env = testEnvironment(send);
+      env.TURNSTILE_SECRET_KEY = secret;
+      const response = await invokePost(requestFor(), env);
+      expect(response.status).toBe(500);
+      expect(await response.json()).toEqual({ ok: false });
+      expect(fetchMock).not.toHaveBeenCalled();
+      expect(send).not.toHaveBeenCalled();
+    }
+  );
+
+  it.each(['dummy-key-pass', 'localhost', 'example.com'])(
+    'rejects a successful response from an unexpected hostname (%s)', async hostname => {
+      vi.stubGlobal('fetch', vi.fn().mockResolvedValue(new Response(JSON.stringify({
+        success: true, action: 'portfolio_contact', hostname
+      }))));
+      const send = vi.fn();
+      const response = await invokePost(requestFor(), testEnvironment(send));
+      expect(response.status).toBe(403);
+      expect(send).not.toHaveBeenCalled();
+    }
+  );
+
+  it('rejects the dummy hostname even if runtime hostname configuration is incorrect', async () => {
+    vi.stubGlobal('fetch', vi.fn().mockResolvedValue(new Response(JSON.stringify({
+      success: true, action: 'portfolio_contact', hostname: 'dummy-key-pass'
+    }))));
+    const env = testEnvironment();
+    env.TURNSTILE_EXPECTED_HOSTNAME = 'dummy-key-pass';
+    expect((await invokePost(requestFor(), env)).status).toBe(403);
+    expect(env.EMAIL.send).not.toHaveBeenCalled();
+  });
+
+  it('accepts the current preview hostname without weakening the action check', async () => {
+    const hostname = 'lorenztazan-portfolio.lorenztazan.workers.dev';
+    vi.stubGlobal('fetch', vi.fn().mockResolvedValue(new Response(JSON.stringify({
+      success: true, action: 'portfolio_contact', hostname
+    }))));
+    const request = new Request(`https://${hostname}/api/contact`, {
+      method: 'POST', headers: { origin: `https://${hostname}` }, body: validForm()
+    });
+    expect((await invokePost(request)).status).toBe(200);
+  });
+
+  it('rejects a mismatched Turnstile action', async () => {
+    vi.stubGlobal('fetch', vi.fn().mockResolvedValue(new Response(JSON.stringify({
+      success: true, action: 'another_form', hostname: 'lorenztazan.com'
+    }))));
+    const send = vi.fn();
+    expect((await invokePost(requestFor(), testEnvironment(send))).status).toBe(403);
+    expect(send).not.toHaveBeenCalled();
+  });
+
   it('returns 403 before external calls for a cross-origin request', async () => {
     const fetchMock = vi.fn();
     vi.stubGlobal('fetch', fetchMock);
@@ -106,9 +167,9 @@ describe('contact Worker route', () => {
       action: 'portfolio_contact',
       hostname: 'lorenztazan.com'
     }), { headers: { 'content-type': 'application/json' } })));
-    const locals = runtimeLocals(vi.fn().mockRejectedValue(new Error('delivery unavailable')));
+    const env = testEnvironment(vi.fn().mockRejectedValue(new Error('delivery unavailable')));
 
-    const response = await invokePost(requestFor(), locals);
+    const response = await invokePost(requestFor(), env);
     expect(response.status).toBe(500);
     expect(await response.json()).toEqual({ ok: false });
   });
@@ -120,7 +181,7 @@ describe('contact Worker route', () => {
       hostname: 'lorenztazan.com'
     }), { headers: { 'content-type': 'application/json' } })));
     const send = vi.fn().mockResolvedValue(undefined);
-    const response = await invokePost(requestFor(), runtimeLocals(send));
+    const response = await invokePost(requestFor(), testEnvironment(send));
 
     expect(response.status).toBe(200);
     expect(await response.json()).toEqual({ ok: true });

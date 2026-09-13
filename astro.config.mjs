@@ -1,4 +1,4 @@
-import { defineConfig } from 'astro/config';
+import { defineConfig, envField } from 'astro/config';
 import cloudflare from '@astrojs/cloudflare';
 import sitemap from '@astrojs/sitemap';
 
@@ -7,6 +7,11 @@ export default defineConfig({
   devToolbar: { enabled: false },
   adapter: cloudflare({ imageService: 'passthrough' }),
   session: false,
+  env: {
+    schema: {
+      PUBLIC_TURNSTILE_SITE_KEY: envField.string({ context: 'client', access: 'public', optional: true })
+    }
+  },
   integrations: [sitemap({
     filter: (page) => !new URL(page).pathname.startsWith('/blog')
   })],

@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "astro dev",
+    "prebuild": "node scripts/check-deployment-env.mjs",
     "build": "astro check && astro build",
     "preview": "wrangler dev",
     "deploy": "wrangler deploy",
@@ -12,6 +13,7 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "test:browser": "node scripts/acceptance-browser.mjs",
+    "test:worker": "node scripts/acceptance-contact-worker.mjs",
     "cf-typegen": "wrangler types"
   },
   "dependencies": {

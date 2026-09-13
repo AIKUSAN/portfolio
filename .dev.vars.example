@@ -1,3 +1,6 @@
-# Copy to .dev.vars for local Worker testing. Never commit real secrets.
-TURNSTILE_SECRET_KEY=1x0000000000000000000000000000000AA
-PUBLIC_TURNSTILE_SITE_KEY=1x00000000000000000000AA
+# Optional local Worker settings. Never commit real secrets.
+# Unit/browser tests mock verification and delivery; no test-key bypass is shipped.
+# Leaving this empty intentionally disables live contact delivery.
+TURNSTILE_SECRET_KEY=
+# PUBLIC_TURNSTILE_SITE_KEY is a build variable, not a runtime secret.
+# Set it through the build environment only when configuring a real widget.

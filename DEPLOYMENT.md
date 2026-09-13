@@ -12,7 +12,7 @@ Cloudflare DNS was inspected in the personal account: the four proxied apex A re
 
 Scheduled Dependabot version-update PRs and automatic security-update PRs are disabled. Keep vulnerability alerts, dependency visibility, secret scanning, CodeQL, and CI dependency audits enabled. PRs #39, #42, #45, #50, #52, #53, #54, #55, #57, #58, #59, and #60 were closed without merging, retaining their branches and discussions. Closure does not certify that any vulnerability is fixed.
 
-The personal Cloudflare account is `Lorenztazan@gmail.com's Account` (`ab8306e92557d6b7fcfd56774bb9c2e5`), verified in the dashboard. The Cloudflare connector and existing Wrangler login currently expose only the PTC account; never use that account for this portfolio. Use the confirmed personal dashboard or obtain appropriately scoped personal-account authorization.
+The personal Cloudflare account is `Lorenztazan@gmail.com's Account` (`ab8306e92557d6b7fcfd56774bb9c2e5`), verified in the dashboard. On 2026-09-13, the separate `cloudflare-personal` MCP connection successfully read that account and listed Workers (none deployed). Its approved OAuth scopes are account read, user read, Workers Scripts read, and background access; it is not deployment authorization. The older `cloudflare-api` connector and Wrangler authorization are separate and must not be assumed to target the personal account. Never use PTC for this portfolio; verify account identity before every deployment.
 
 The first hosting milestone is a protected Cloudflare preview. Production domain cutover remains a separate, explicit approval gate. A private GitHub repository and a version-preview URL do not themselves restrict website visitors; configure and verify preview access before sharing unpublished work.
 
@@ -28,23 +28,31 @@ The first hosting milestone is a protected Cloudflare preview. Production domain
 - Wrangler now pins the personal account ID and explicitly disables `workers_dev` and `preview_urls` for bootstrap. Configure and verify Cloudflare Access before enabling either URL surface in source control. No custom-domain route is declared.
 - The account-pinned production build and `wrangler deploy --dry-run` passed. An initial local Vite cache conflict with the running preview resolved on retry; no preview server or user cache was deleted.
 
-### Pending Cloudflare authorization
+### Protected-preview launch authorization
 
-An earlier unsubmitted Cloudflare setup referenced the deleted duplicate repository. Discard that draft when starting the separately authorized Cloudflare work and select `AIKUSAN/portfolio` instead. Use Worker `lorenztazan-portfolio`, build `npm run build`, deploy `npx wrangler deploy`, and non-production `npx wrangler versions upload`. Protect all preview traffic with the Cloudflare-account-members Access policy before enabling public URL surfaces. A draft setting is not an active Access application or a deployed Worker.
+The user approved preparing the release and setting up a protected Worker using `AIKUSAN/portfolio`; persistent credential creation, new security-sensitive grants, mail DNS edits, real email delivery, and domain cutover retain explicit approval gates. The dashboard's existing GitHub integration lists the correct repository ID `1154119236`. An earlier unsubmitted setup referenced the deleted duplicate; do not reuse it. Use Worker `lorenztazan-portfolio`, build `npm run build`, deploy `npx wrangler deploy`, and non-production `npx wrangler versions upload`. Protect both active and version-preview traffic using a per-Worker Cloudflare-account-members Access policy. Do not change unrelated account-wide Access settings. A draft setting is not an active Access application or a deployed Worker.
 
 The form's only available deployment credential is currently **Create new token**. Its expanded permissions include account-wide Worker, KV, R2, D1, Vectorize, Queues, Pipelines, Containers, Cloudchamber, and AI Search edits, connectivity-directory read/bind, all-zone Workers Routes edits, and account/user membership reads. Do not create this broad token without explicit approval.
 
-Prefer a custom user deployment token scoped only to the personal account with Workers Scripts edit and the required account/user read permissions. Do not include PTC, database/storage services, or zone routes. Worker edit is account-scoped, not limited to this Worker's name. Obtain user approval before creating the persistent credential, then verify it is selectable in Workers Builds. If deployment reveals an additional permission requirement, inspect the exact error and request only the justified scope change.
+After explicit confirmation, create a custom **user** deployment token under My Profile → API Tokens, named `portfolio-workers-builds`, with a proposed 90-day expiry. Workers Builds currently supports user tokens, not account-owned tokens. Limit Account Settings read and Workers Scripts edit to the personal account; include User Details read and Memberships read. Do not include PTC resource permissions, database/storage services, or zone routes. Worker edit is account-scoped, not limited to this Worker's name. Do not restrict this CI token to the local computer's IP. Keep its value out of Git, chat, screenshots, and logs; record its expiry and rotation procedure without recording the token itself. Verify it is selectable in Workers Builds. If it is unavailable or deployment needs another permission, stop and report the exact issue rather than selecting the broad automatic token.
+
+### Turnstile release safeguards
+
+Cloudflare injects `WORKERS_CI=1` during native Builds. The npm `prebuild` guard requires a non-placeholder, non-dummy `PUBLIC_TURNSTILE_SITE_KEY` in that environment, before Astro or Cloudflare's isolated prerendering runtime starts. Keep the native build command as `npm run build`, not a direct `astro build` invocation. Run `PORTFOLIO_DEPLOYMENT_CHECK=1 npm run build` to exercise the same check locally, supplying the real public key through the build environment. The check never prints a rejected key. A syntactically acceptable key is not proof that its widget is active: protected-preview verification remains required.
+
+Ordinary local and PR builds remain available without credentials, but render no implicit Turnstile test key and are not deployment-ready. Form tests use local network mocks only. The runtime endpoint fails closed with the existing generic `500` response if `TURNSTILE_SECRET_KEY` is missing, malformed, or a documented dummy key, before contacting Turnstile or the email binding. It rejects the `dummy-key-pass` hostname even if the configured expected hostname is incorrect. There is no deployed test bypass.
+
+The contact endpoint uses the installed Astro adapter's `cloudflare:workers` environment import, not the removed `Astro.locals.runtime.env` API. `npm run test:worker` starts an isolated loopback-only Worker with a forced invalid fixture secret and verifies the real route's JSON responses, origin/input rejection, honeypot behavior, and method handling. GitHub's existing Build Portfolio check runs this after building. Successful delivery remains a separate, approved hosted test.
 
 ## 1. Account prerequisites
 
 Before the first preview deployment:
 
 1. Confirm the Cloudflare account owns or manages `lorenztazan.com` DNS.
-2. Configure `lorenztazan.com` as the email routing domain, preserving and reviewing existing mail DNS records. Full paid arbitrary-recipient Email Sending onboarding is not required for this verified-destination-only form.
-3. Add and verify `lorenztazan@gmail.com` as a destination address.
+2. Inspect the existing email routing setup. If enabling `lorenztazan.com` requires mail DNS changes, record the exact proposed changes and obtain approval first. Full paid arbitrary-recipient Email Sending onboarding is not required for this verified-destination-only form.
+3. Verify the destination status of `lorenztazan@gmail.com`; obtain approval before triggering a verification email if needed.
 4. Confirm `portfolio@lorenztazan.com` is permitted as the fixed sender.
-5. Create a Turnstile widget for the production and preview hostnames.
+5. Configure a real Turnstile widget for the exact protected preview hostname and eventual production hostname. Do not allow all hostnames or local domains on the deployed widget. Add additional branch/version hostnames deliberately before testing them.
 
 The committed `send_email` binding is restricted to the verified Gmail destination. The visitor’s address is used only as `Reply-To`. Sends to verified destination addresses are free on all plans, including routing-only configurations; see the official pricing reference. Do not upgrade to a paid plan without separate approval.
 
@@ -97,7 +105,9 @@ Build variables are not runtime Worker variables. Keep the site key in the build
 
 ## 4. Preview deployment
 
-After the source correction, connect the reviewed `main` of `AIKUSAN/portfolio` to Workers Builds. Create the initial Worker without attaching the custom domain and arrange Access protection before exposure. Keep `workers_dev` and `preview_urls` disabled until that protection is configured and verified; explicitly verify anonymous requests are denied. Subsequent non-production builds should run `npm run build` and `npx wrangler versions upload`, producing a protected version preview without promoting it to the active deployment. Verify initial-Worker/bootstrap behavior before triggering a build; an unprotected public preview does not meet acceptance.
+Connect the reviewed `main` of `AIKUSAN/portfolio` to Workers Builds. Create the initial Worker without attaching the custom domain and arrange per-Worker Access protection before exposure. Use the Cloudflare account policy, not an email-domain allow rule: only members of the personal account should be admitted. Protect both the active deployment and version previews. Keep `workers_dev` and `preview_urls` disabled until the policy is confirmed; then enable the intended URL surfaces through a reviewed configuration change and immediately verify anonymous requests are denied. Do not enable account-wide Access or add an Everyone bypass. If Zero Trust onboarding, agreement acceptance, or a new security-sensitive grant requires user participation, pause there.
+
+Subsequent non-production builds should run `npm run build` and `npx wrangler versions upload`, producing a protected version preview without promoting it to the active deployment. Verify initial-Worker/bootstrap behavior before triggering a build; an unprotected public preview does not meet acceptance. Record the build UUID, source commit, active Worker version, and verified protection state without including credentials.
 
 Do not attach `lorenztazan.com` at this stage.
 
@@ -108,12 +118,14 @@ Verify on the preview URL:
 - 375px, 768px, and 1440px layouts with no horizontal overflow;
 - redirects and the `/blog` 410 response;
 - both two-page résumé PDFs and their extracted text;
-- Turnstile validation and successful delivery to the verified inbox;
+- Turnstile validation and, only after separate approval, one clearly labelled inbox smoke test; confirm actual receipt before recording delivery success;
 - generic 400, 403, and 500 contact failures;
 - Worker logs contain no message body, email address, or other contact-form content;
 - a previous Worker version can be selected for rollback.
 
 ## 5. Production approval gate
+
+Local contact contract tests isolate requests in fresh Wrangler processes because unread rejected bodies can break the local proxy's next connection ([upstream issue #15203](https://github.com/cloudflare/workers-sdk/issues/15203)). This does not change production rejection rules. On the protected hosted preview, also verify that a valid fixture request still reaches the handler after an oversized or cross-origin rejection; local isolation does not prove that sequence.
 
 Obtain explicit approval only after all of these are complete:
 

@@ -49,7 +49,7 @@ cp .dev.vars.example .dev.vars
 npm run dev
 ```
 
-Cloudflare’s public Turnstile test keys are supplied in `.dev.vars.example`. Real secret values must remain uncommitted.
+Local development and PR builds do not need Turnstile credentials; the page retains the direct email option when verification is unconfigured. Contact acceptance tests use network fixtures and never send messages. The Worker rejects Cloudflare's dummy secret keys even locally, so tests do not add a production bypass. Real secret values must remain uncommitted.
 
 ## Verification
 
@@ -57,6 +57,7 @@ Cloudflare’s public Turnstile test keys are supplied in `.dev.vars.example`. R
 npm run lint
 npm test
 npm run build
+npm run test:worker
 npx wrangler types --check
 ```
 
@@ -84,5 +85,7 @@ The homepage rack is procedural WebGL geometry, not clipped image layers. `src/l
 ## Contact boundary
 
 `POST /api/contact` accepts `name`, `email`, `message`, optional `focus`, the Turnstile token, and an invisible honeypot. It enforces input limits, exact same-origin requests, Turnstile action/hostname verification, HTML escaping, and generic public responses. Messages are sent only through the `EMAIL` binding to the configured verified destination and are never stored.
+
+Native Workers Builds requires a real `PUBLIC_TURNSTILE_SITE_KEY` at build time. `PORTFOLIO_DEPLOYMENT_CHECK=1 npm run build` runs that same deployment check locally. The runtime `TURNSTILE_SECRET_KEY` is separate and must be configured in Worker secrets, never public build variables. Missing or dummy secrets fail closed with the existing generic failure response; an ordinary successful local/PR build does not certify contact readiness.
 
 See `DEPLOYMENT.md` for the staged Cloudflare Builds setup and production cutover gate.

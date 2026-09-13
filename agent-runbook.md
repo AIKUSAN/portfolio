@@ -22,6 +22,10 @@ Use Cloudflare Workers Builds with `AIKUSAN/portfolio` as the sole source reposi
 
 Follow `DEPLOYMENT.md`. The source stays temporarily public until explicit Cloudflare cutover approval and successful cutover; then make this same repository private. The accepted offline interval does not authorize Cloudflare credentials, deployment, DNS edits, or domain activation. Protected preview setup, real email delivery, and domain cutover remain separate release gates. Never use the PTC account, create another repository, or enable paid services without separate approval. Preserve backups through at least the seven-day rollback window; after privatization, roll back with Cloudflare versions, not an unapproved return to public GitHub Pages.
 
+The user has now authorized the protected-preview launch plan. The `cloudflare-personal` MCP connection is verified read-only against personal account `ab8306e92557d6b7fcfd56774bb9c2e5`; do not confuse it with the older connector or Wrangler login. Obtain explicit confirmation at credential creation and other security-sensitive grant steps. Use the narrowly scoped user token and per-Worker account-members Access protection described in `DEPLOYMENT.md`. Keep all public URL surfaces disabled until that policy is confirmed. Pause at required user verification; do not infer permission from an unattended request.
+
+Native Workers Builds sets `WORKERS_CI=1`, which enables the real-site-key deployment guard. Never override it to bypass validation, embed dummy keys, or reintroduce the `dummy-key-pass` hostname. Contact tests must mock external services and send no messages. The runtime secret is never a public build variable.
+
 ## Dependency maintenance
 
 Scheduled Dependabot version-update PRs and automatic security-update PRs are disabled by user choice. Keep vulnerability alerts, dependency visibility, secret scanning, CodeQL, and CI dependency audits enabled. Do not reintroduce Dependabot configuration or weaken required checks without approval. The twelve legacy update PRs were closed without merging; their branches and discussions remain preserved, and closure is not evidence that a vulnerability was fixed.

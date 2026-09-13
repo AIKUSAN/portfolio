@@ -4,7 +4,13 @@
 
 The sole portfolio repository is `AIKUSAN/portfolio` (repository ID `1154119236`). On 2026-09-13 the user superseded the separate-repository strategy and authorized an in-place replacement with the approved Astro source at `130a375a8726561e3916e0b912139229859ca03d`, preserving history through a normal integration branch and PR. The extra `AIKUSAN/portfolio-astro` (ID `1368189361`) was deleted through the authenticated Chrome interface after verified backups. Do not recreate it or formally archive the original repository. Cloudflare deployment and hosted acceptance remain pending.
 
-The public site remains the existing GitHub Pages deployment from `AIKUSAN/portfolio`, not Vercel. Its pre-migration source revision is `782533540c7a0d01e10cbb03356cc20d790bc17b`, preserved by `legacy/github-pages-2026-09-13` and a local mirror. Integrate through `codex/migrate-portfolio-in-place`. Disable the legacy `Build & Deploy` workflow before merging Astro, but do not unpublish Pages, remove its custom domain, or change DNS during source correction. The repository stays temporarily public until approved Cloudflare cutover.
+The approved Astro application is integrated on `main` at `f569fdce8d2f65cd3848a9dfc4d0295fc883d6b9`; its tree matches tested integration head `4647034972eb92d4d2394bac3229b6a9f56c1d93`. PR #61 was administratively closed after a timed-out GitHub merge updated `main` without reconciling the PR's merged status. Do not submit a duplicate merge. The pre-migration source revision `782533540c7a0d01e10cbb03356cc20d790bc17b` is preserved by `legacy/github-pages-2026-09-13` and local mirrors.
+
+On 2026-09-13, the user explicitly superseded the keep-Pages-live requirement and approved disabling the old site before the Cloudflare replacement is verified. GitHub Pages publishing and its repository-level `lorenztazan.com` association are disabled; the legacy `Build & Deploy` workflow remains disabled. Public-site downtime is intentional. Do not create a maintenance site or automatically restore Pages. The repository stays temporarily public until separately approved Cloudflare cutover.
+
+Cloudflare DNS was inspected in the personal account: the four proxied apex A records still target GitHub Pages (`185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153`), and proxied `www` points to `aikusan.github.io`. These DNS records were not changed by the cleanup and do not establish a Cloudflare Worker deployment. Preserve the account-level verified GitHub domain and its `_github-pages-challenge-aikusan` TXT record while legacy DNS remains. Reinspect exact records before a separately approved cutover.
+
+Scheduled Dependabot version-update PRs and automatic security-update PRs are disabled. Keep vulnerability alerts, dependency visibility, secret scanning, CodeQL, and CI dependency audits enabled. PRs #39, #42, #45, #50, #52, #53, #54, #55, #57, #58, #59, and #60 were closed without merging, retaining their branches and discussions. Closure does not certify that any vulnerability is fixed.
 
 The personal Cloudflare account is `Lorenztazan@gmail.com's Account` (`ab8306e92557d6b7fcfd56774bb9c2e5`), verified in the dashboard. The Cloudflare connector and existing Wrangler login currently expose only the PTC account; never use that account for this portfolio. Use the confirmed personal dashboard or obtain appropriately scoped personal-account authorization.
 
@@ -13,12 +19,12 @@ The first hosting milestone is a protected Cloudflare preview. Production domain
 ### Local preparation verified on 2026-09-13
 
 - Existing snapshots remain under `../Portfolio Migration Backups/2026-09-13/` and `../Portfolio Migration Backups/correction-2026-09-13-A8Yu27/`. Fresh mirrors of both repositories, the approved Astro source archive, and a complete-history bundle are under `../Portfolio Migration Backups/correction-2026-09-13-final-qtHDZ7/`. Both fresh mirrors passed `git fsck --full` and exact comparison with every advertised remote ref before deletion (18 original branches; 7 duplicate branches).
-- The Astro tree replaces the legacy deployment workflow with PR/manual validation. Disabling the live legacy workflow is a required pre-merge gate; its already-published Pages deployment must remain available.
+- The Astro tree replaces the legacy deployment workflow with PR/manual validation. The legacy publishing workflow was disabled before integration; the previously published Pages site was subsequently retired under the user's explicit offline-first approval.
 - A compatible `npm audit fix` updated Wrangler to 4.131.1, the Cloudflare Vite plugin to 1.54.8, and Miniflare to 5.20260911.0-alpha; the vulnerable nested Sharp copy was removed in favor of 0.35.4. No forced major-version upgrade was used.
 - All 41 unit tests passed; Astro checked 42 files with zero errors, warnings, or hints; the production build passed. The existing large Three.js chunk warning remains.
 - The full dependency audit reported zero vulnerabilities after the update. This is a point-in-time dependency result, not a complete security certification.
 - The GitHub MCP connector identifies AIKUSAN and has repository admin access, but exposes no repository-deletion operation. GitHub CLI has separate authorization; Chrome was explicitly approved for the deletion fallback. Future Cloudflare Git setup must select the existing repository, not the deleted duplicate.
-- No Cloudflare deployment, DNS change, real contact-email test, or repository-wide archive operation is part of the source correction.
+- No Cloudflare deployment, DNS change, real contact-email test, or repository-wide archive operation is part of the source correction or Pages cleanup. Cleanup snapshots of main, repository/Pages settings, PR inventory, workflow state, and branch protections are retained in `../Portfolio Migration Backups/cleanup-2026-09-13-LXpnlJ/` alongside the existing migration backups.
 - Wrangler now pins the personal account ID and explicitly disables `workers_dev` and `preview_urls` for bootstrap. Configure and verify Cloudflare Access before enabling either URL surface in source control. No custom-domain route is declared.
 - The account-pinned production build and `wrangler deploy --dry-run` passed. An initial local Vite cache conflict with the running preview resolved on retry; no preview server or user cache was deleted.
 
@@ -44,7 +50,7 @@ The committed `send_email` binding is restricted to the verified Gmail destinati
 
 ## 2. Git and Worker connection
 
-Use `AIKUSAN/portfolio`, preserving its existing identity, issues, branches, and history. Replace the application in a normal commit based on the latest original `main`; do not merge legacy implementation files back into Astro or force-push. Keep the dirty legacy checkout and shared `origin` remote unchanged. Disable the legacy Pages workflow before merging the validated PR. Confirm the published Pages site still serves the old application after the source merge. Keep source temporarily public during migration. Grant the Cloudflare GitHub App access only to this existing repository when needed, preserving unrelated grants; obtain approval before any new security-sensitive access grant.
+Use `AIKUSAN/portfolio`, preserving its existing identity, issues, branches, and history. The Astro replacement is already integrated; base new reviewed changes on the latest `main`, without merging legacy implementation files back into Astro or force-pushing. Keep the dirty legacy checkout and shared `origin` remote unchanged. Keep Pages publishing and its legacy workflow disabled. Source stays temporarily public during migration. Grant the Cloudflare GitHub App access only to this existing repository when needed, preserving unrelated grants; obtain approval before any new security-sensitive access grant.
 
 In Workers & Pages, create or select a Worker named exactly:
 
@@ -124,20 +130,20 @@ No production action below is authorized merely by completing the preview.
 
 After explicit approval:
 
-1. Record the current GitHub Pages custom-domain configuration, deployed revision, and exact apex/www DNS records (including proxy state), so rollback is reproducible.
-2. Confirm the legacy GitHub Pages deployment workflow remains disabled and its old published site is still available. Astro source should already be merged in the original repository.
+1. Reinspect and record the exact apex/www DNS records (including proxy state). Preserve the pre-retirement Pages configuration and legacy source backups; Pages is no longer a live fallback.
+2. Confirm GitHub Pages and its legacy publishing workflow remain disabled. Astro source should already be merged in the original repository; do not restore the old site as a cutover prerequisite.
 3. Confirm the original repository's Cloudflare production build and active Worker version, then approve its public audience.
 4. Attach `lorenztazan.com` to the Worker using the reviewed DNS change set. Resolve any conflicting legacy DNS records deliberately; do not overwrite mail records.
 5. Configure `www.lorenztazan.com` to redirect to the apex domain.
 6. Verify DNS, TLS, canonical URLs, contact delivery, security headers, and both résumé downloads.
-7. After confirming the custom domain serves the approved Astro release, remove the legacy Pages custom-domain association, disable Pages, and make the same `AIKUSAN/portfolio` repository private. Confirm it remains editable, not archived.
+7. After confirming the custom domain serves the approved Astro release, reconfirm that Pages and its repository custom-domain association remain disabled, then make the same `AIKUSAN/portfolio` repository private. Confirm it remains editable, not archived. Preserve the account-level verified domain and TXT record.
 8. Trigger a harmless follow-up Cloudflare build and verify the Git integration can still read the private repository. Retain source mirrors, the legacy tag, and DNS/Pages records through at least seven days after cutover. Do not change visibility or settings of any public evidence repository.
 
 Vercel is not part of the verified current hosting path, so no Vercel changes are required for this migration.
 
 ## 7. Rollback
 
-If the Cloudflare version fails before domain cutover, leave GitHub Pages and DNS unchanged and return to a previously tested Worker version when one exists.
+If the Cloudflare version fails before domain cutover, leave Pages disabled and DNS unchanged, and return to a previously tested Worker version when one exists. The public portfolio remains intentionally offline until a release is approved. Restoring legacy Pages hosting, even before privatization, requires separate explicit approval; the source tag and backups are recovery material, not authorization to republish.
 
 After cutover and privatization, use a previously tested Cloudflare Worker version for rollback. Restoring public GitHub Pages would require making the source public again and changing hosting/DNS, so it requires separate explicit approval. Retain the legacy backups for at least seven days and do not invent old DNS targets from memory.
 

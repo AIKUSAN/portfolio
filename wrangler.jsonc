@@ -1,0 +1,24 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "lorenztazan-portfolio",
+  "account_id": "ab8306e92557d6b7fcfd56774bb9c2e5",
+  // Bootstrap without public routes; enable only after preview access is protected.
+  "workers_dev": false,
+  "preview_urls": false,
+  "compatibility_date": "2026-08-30",
+  "compatibility_flags": ["nodejs_compat"],
+  "observability": {
+    "enabled": true
+  },
+  "send_email": [
+    {
+      "name": "EMAIL",
+      "destination_address": "lorenztazan@gmail.com"
+    }
+  ],
+  "vars": {
+    "CONTACT_FROM": "portfolio@lorenztazan.com",
+    "CONTACT_RECIPIENT": "lorenztazan@gmail.com",
+    "TURNSTILE_EXPECTED_HOSTNAME": "lorenztazan.com"
+  }
+}

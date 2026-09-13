@@ -1,0 +1,51 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { education } from '@/data/site';
+---
+
+<BaseLayout
+  title="About — Lorenz Tazan"
+  description="About Lorenz Tazan’s hands-on path through technical support, systems, networking, documentation, and automation."
+  currentPath="/about"
+>
+  <div class="page-shell">
+    <header class="page-heading">
+      <div>
+        <h1>Built from support outward</h1>
+      </div>
+      <p>I approach infrastructure from the point where people, devices, documentation, and reliable operations meet.</p>
+    </header>
+
+    <div class="about-grid">
+      <article class="prose">
+        <h2>How I work</h2>
+        <p>My foundation is hands-on technical support: diagnosing what failed, explaining it clearly, documenting the recovery, and leaving the environment easier to maintain. That work expanded into network operations, account-access support, Linux systems, deployment support, and infrastructure automation.</p>
+        <p>I am open to IT Support, Service Desk, Desktop Support, Systems, Network, and Cloud or Platform opportunities. The role can change; the operating habits stay consistent: verify the condition, make a recoverable change, document the result, and escalate with useful evidence when the issue crosses a boundary.</p>
+        <h2>Current direction</h2>
+        <p>I am continuing to deepen Linux, networking, automation, containers, observability, and cloud-platform fundamentals while remaining grounded in end-user support and service reliability.</p>
+      </article>
+
+      <aside>
+        <section id="education" class="education-plate">
+          <h2>Education &amp; Professional Development</h2>
+          <strong>{education.degree}</strong>
+          <span>{education.institution}</span>
+          <span>{education.completion}</span>
+          <p>Relevant coursework: {education.coursework.join(', ')}.</p>
+          <h3>{education.development}</h3>
+          <p>{education.status}</p>
+          <p>{education.study}</p>
+        </section>
+        <section class="evidence-key">
+          <h2>Evidence key</h2>
+          <dl>
+            <dt>Contract engagement</dt><dd>Work performed in a named professional engagement.</dd>
+            <dt>Independent business</dt><dd>Hands-on client support delivered through Teknomahika and independent work.</dd>
+            <dt>Sanitized architecture</dt><dd>Portfolio-safe documentation derived from real operational experience.</dd>
+            <dt>Independent project</dt><dd>Inspectable learning or implementation work; no production outcome is implied.</dd>
+          </dl>
+        </section>
+      </aside>
+    </div>
+  </div>
+</BaseLayout>

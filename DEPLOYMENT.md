@@ -1,420 +1,152 @@
-# 🚀 DEPLOYMENT GUIDE - GitHub Pages
+# Cloudflare Builds deployment runbook
 
-## PHASE 1: Pre-Deployment Checklist
+## Current state
 
-### ✅ Content Verification (ALL COMPLETE)
-- [x] Education page updated (7+ → 7 years)
-- [x] All pages consistent with mid-level positioning
-- [x] Resume PDF updated and placed in `public/resume.pdf`
-- [x] Contact information correct on all pages
-- [x] Work authorization removed from website (on resume only)
-- [x] Sitemap dates: **UPDATE NEEDED** (2026-02-07 → 2026-02-09)
+The sole portfolio repository is `AIKUSAN/portfolio` (repository ID `1154119236`). On 2026-09-13 the user superseded the separate-repository strategy and authorized an in-place replacement with the approved Astro source at `130a375a8726561e3916e0b912139229859ca03d`, preserving history through a normal integration branch and PR. The extra `AIKUSAN/portfolio-astro` (ID `1368189361`) was deleted through the authenticated Chrome interface after verified backups. Do not recreate it or formally archive the original repository. Cloudflare deployment and hosted acceptance remain pending.
 
-### ✅ Build Verification
-```bash
-cd C:\Users\IKE\Downloads\IKE-CV\portfolio
-npm run build
-# Expected: "✔ Compiled successfully in ~6s"
+The public site remains the existing GitHub Pages deployment from `AIKUSAN/portfolio`, not Vercel. Its pre-migration source revision is `782533540c7a0d01e10cbb03356cc20d790bc17b`, preserved by `legacy/github-pages-2026-09-13` and a local mirror. Integrate through `codex/migrate-portfolio-in-place`. Disable the legacy `Build & Deploy` workflow before merging Astro, but do not unpublish Pages, remove its custom domain, or change DNS during source correction. The repository stays temporarily public until approved Cloudflare cutover.
+
+The personal Cloudflare account is `Lorenztazan@gmail.com's Account` (`ab8306e92557d6b7fcfd56774bb9c2e5`), verified in the dashboard. The Cloudflare connector and existing Wrangler login currently expose only the PTC account; never use that account for this portfolio. Use the confirmed personal dashboard or obtain appropriately scoped personal-account authorization.
+
+The first hosting milestone is a protected Cloudflare preview. Production domain cutover remains a separate, explicit approval gate. A private GitHub repository and a version-preview URL do not themselves restrict website visitors; configure and verify preview access before sharing unpublished work.
+
+### Local preparation verified on 2026-09-13
+
+- Existing snapshots remain under `../Portfolio Migration Backups/2026-09-13/` and `../Portfolio Migration Backups/correction-2026-09-13-A8Yu27/`. Fresh mirrors of both repositories, the approved Astro source archive, and a complete-history bundle are under `../Portfolio Migration Backups/correction-2026-09-13-final-qtHDZ7/`. Both fresh mirrors passed `git fsck --full` and exact comparison with every advertised remote ref before deletion (18 original branches; 7 duplicate branches).
+- The Astro tree replaces the legacy deployment workflow with PR/manual validation. Disabling the live legacy workflow is a required pre-merge gate; its already-published Pages deployment must remain available.
+- A compatible `npm audit fix` updated Wrangler to 4.131.1, the Cloudflare Vite plugin to 1.54.8, and Miniflare to 5.20260911.0-alpha; the vulnerable nested Sharp copy was removed in favor of 0.35.4. No forced major-version upgrade was used.
+- All 41 unit tests passed; Astro checked 42 files with zero errors, warnings, or hints; the production build passed. The existing large Three.js chunk warning remains.
+- The full dependency audit reported zero vulnerabilities after the update. This is a point-in-time dependency result, not a complete security certification.
+- The GitHub MCP connector identifies AIKUSAN and has repository admin access, but exposes no repository-deletion operation. GitHub CLI has separate authorization; Chrome was explicitly approved for the deletion fallback. Future Cloudflare Git setup must select the existing repository, not the deleted duplicate.
+- No Cloudflare deployment, DNS change, real contact-email test, or repository-wide archive operation is part of the source correction.
+- Wrangler now pins the personal account ID and explicitly disables `workers_dev` and `preview_urls` for bootstrap. Configure and verify Cloudflare Access before enabling either URL surface in source control. No custom-domain route is declared.
+- The account-pinned production build and `wrangler deploy --dry-run` passed. An initial local Vite cache conflict with the running preview resolved on retry; no preview server or user cache was deleted.
+
+### Pending Cloudflare authorization
+
+An earlier unsubmitted Cloudflare setup referenced the deleted duplicate repository. Discard that draft when starting the separately authorized Cloudflare work and select `AIKUSAN/portfolio` instead. Use Worker `lorenztazan-portfolio`, build `npm run build`, deploy `npx wrangler deploy`, and non-production `npx wrangler versions upload`. Protect all preview traffic with the Cloudflare-account-members Access policy before enabling public URL surfaces. A draft setting is not an active Access application or a deployed Worker.
+
+The form's only available deployment credential is currently **Create new token**. Its expanded permissions include account-wide Worker, KV, R2, D1, Vectorize, Queues, Pipelines, Containers, Cloudchamber, and AI Search edits, connectivity-directory read/bind, all-zone Workers Routes edits, and account/user membership reads. Do not create this broad token without explicit approval.
+
+Prefer a custom user deployment token scoped only to the personal account with Workers Scripts edit and the required account/user read permissions. Do not include PTC, database/storage services, or zone routes. Worker edit is account-scoped, not limited to this Worker's name. Obtain user approval before creating the persistent credential, then verify it is selectable in Workers Builds. If deployment reveals an additional permission requirement, inspect the exact error and request only the justified scope change.
+
+## 1. Account prerequisites
+
+Before the first preview deployment:
+
+1. Confirm the Cloudflare account owns or manages `lorenztazan.com` DNS.
+2. Configure `lorenztazan.com` as the email routing domain, preserving and reviewing existing mail DNS records. Full paid arbitrary-recipient Email Sending onboarding is not required for this verified-destination-only form.
+3. Add and verify `lorenztazan@gmail.com` as a destination address.
+4. Confirm `portfolio@lorenztazan.com` is permitted as the fixed sender.
+5. Create a Turnstile widget for the production and preview hostnames.
+
+The committed `send_email` binding is restricted to the verified Gmail destination. The visitor’s address is used only as `Reply-To`. Sends to verified destination addresses are free on all plans, including routing-only configurations; see the official pricing reference. Do not upgrade to a paid plan without separate approval.
+
+## 2. Git and Worker connection
+
+Use `AIKUSAN/portfolio`, preserving its existing identity, issues, branches, and history. Replace the application in a normal commit based on the latest original `main`; do not merge legacy implementation files back into Astro or force-push. Keep the dirty legacy checkout and shared `origin` remote unchanged. Disable the legacy Pages workflow before merging the validated PR. Confirm the published Pages site still serves the old application after the source merge. Keep source temporarily public during migration. Grant the Cloudflare GitHub App access only to this existing repository when needed, preserving unrelated grants; obtain approval before any new security-sensitive access grant.
+
+In Workers & Pages, create or select a Worker named exactly:
+
+```text
+lorenztazan-portfolio
 ```
 
-### ✅ Security Files Created
-- [x] `.github/dependabot.yml` - Automated dependency updates
-- [x] `.github/workflows/codeql.yml` - Security scanning
-- [x] `.github/workflows/deploy.yml` - CI/CD pipeline
-- [x] `SECURITY.md` - Responsible disclosure policy
-- [x] `LICENSE` - MIT License with content copyright notice
-- [x] `README.md` - Professional repository documentation
+The dashboard Worker name must match `wrangler.jsonc`. Connect the GitHub repository and configure:
 
----
+| Setting | Value |
+| --- | --- |
+| Production branch | `main` |
+| Build command | `npm run build` |
+| Deploy command | `npx wrangler deploy` |
+| Non-production deploy command | `npx wrangler versions upload` |
+| Root directory | repository root |
+| Non-production branch builds | enabled |
 
-## PHASE 2: Update Sitemap (REQUIRED)
+Cloudflare automatically installs package dependencies before the build. Use Node.js 22 (at least 22.12.0) or a separately validated supported version. Commit `package-lock.json` and keep install behavior reproducible; the manifest uses semver ranges, while the lockfile records the tested dependency versions.
 
-### Update Sitemap Last Modified Dates
+The repository's `.github/workflows/validate.yml` only validates PRs or manual runs. It cannot publish to GitHub Pages. The inherited CodeQL job skips private repositories because an eligible paid license is not assumed or authorized.
 
-**File:** `public/sitemap.xml`
+## 3. Variables and secrets
 
-Change all `<lastmod>` dates from `2026-02-07` to `2026-02-09`:
+Add this public build-time variable under Settings → Build → Build Variables and Secrets:
 
-```bash
-# Quick find/replace in PowerShell:
-(Get-Content public/sitemap.xml) -replace '2026-02-07', '2026-02-09' | Set-Content public/sitemap.xml
+```text
+PUBLIC_TURNSTILE_SITE_KEY=<production-widget-site-key>
 ```
 
-**Rebuild after sitemap update:**
-```bash
-npm run build
+Add this runtime secret under the Worker’s Settings → Variables & Secrets:
+
+```text
+TURNSTILE_SECRET_KEY=<production-widget-secret>
 ```
 
----
-
-## PHASE 3: GitHub Repository Setup
+The non-secret runtime values and the fixed email destination are already declared in `wrangler.jsonc`:
 
-### 1️⃣ Create GitHub Repository
+- `CONTACT_FROM=portfolio@lorenztazan.com`
+- `CONTACT_RECIPIENT=lorenztazan@gmail.com`
+- `TURNSTILE_EXPECTED_HOSTNAME=lorenztazan.com`
 
-**Option A: Via GitHub Web UI**
-1. Go to https://github.com/new
-2. Repository name: `portfolio` (or your preferred name)
-3. Description: "Professional portfolio - Systems Engineer | DevOps & Infrastructure Automation"
-4. Visibility: **Public** (recommended for job seekers)
-5. ✅ Add README file: **NO** (we already have one)
-6. ✅ Add .gitignore: **NO** (we already have one)
-7. ✅ Choose license: **NO** (we already have LICENSE file)
-8. Click **Create repository**
+Build variables are not runtime Worker variables. Keep the site key in the build settings and the secret key in runtime secrets.
 
-**Option B: Via GitHub CLI (gh)**
-```bash
-cd C:\Users\IKE\Downloads\IKE-CV\portfolio
-gh repo create portfolio --public --source=. --remote=origin
-```
-
-### 2️⃣ Initialize Git & Push
+## 4. Preview deployment
 
-```bash
-cd C:\Users\IKE\Downloads\IKE-CV\portfolio
-
-# Initialize git repository
-git init
-
-# Set main branch as default
-git branch -M main
-
-# Add all files
-git add .
-
-# Create initial commit
-git commit -m "Initial commit: Professional portfolio with ATS-optimized positioning
-
-Features:
-- Next.js 16 with React 19 and TypeScript
-- 7 pages: Home, About, Experience, Projects, Skills, Education, Contact
-- Mid-level positioning (Systems Engineer targeting Platform/DevOps/SRE roles)
-- Resume download with work authorization statement
-- Dark/light theme with Framer Motion animations
-- SEO optimized (OpenGraph, Twitter Cards, JSON-LD, sitemap)
-- Security: Dependabot, CodeQL scanning, zero vulnerabilities
-- CI/CD: GitHub Actions automated deployment
-"
+After the source correction, connect the reviewed `main` of `AIKUSAN/portfolio` to Workers Builds. Create the initial Worker without attaching the custom domain and arrange Access protection before exposure. Keep `workers_dev` and `preview_urls` disabled until that protection is configured and verified; explicitly verify anonymous requests are denied. Subsequent non-production builds should run `npm run build` and `npx wrangler versions upload`, producing a protected version preview without promoting it to the active deployment. Verify initial-Worker/bootstrap behavior before triggering a build; an unprotected public preview does not meet acceptance.
 
-# Add GitHub remote (replace AIKUSAN with your GitHub username)
-git remote add origin https://github.com/AIKUSAN/portfolio.git
+Do not attach `lorenztazan.com` at this stage.
 
-# Push to GitHub
-git push -u origin main
-```
+Verify on the preview URL:
 
-**Expected Output:**
-```
-Counting objects: 100% (X files)
-Writing objects: 100% (X files)
-To https://github.com/AIKUSAN/portfolio.git
- * [new branch]      main -> main
-Branch 'main' set up to track remote branch 'main' from 'origin'.
-```
+- all five public routes in light and dark themes;
+- direct support, systems, and platform focus URLs;
+- 375px, 768px, and 1440px layouts with no horizontal overflow;
+- redirects and the `/blog` 410 response;
+- both two-page résumé PDFs and their extracted text;
+- Turnstile validation and successful delivery to the verified inbox;
+- generic 400, 403, and 500 contact failures;
+- Worker logs contain no message body, email address, or other contact-form content;
+- a previous Worker version can be selected for rollback.
 
----
+## 5. Production approval gate
 
-## PHASE 4: Configure GitHub Pages
-
-### 1️⃣ Enable GitHub Pages
-
-Navigate to: **Repository → Settings → Pages**
-
-**Settings:**
-- **Source:** GitHub Actions
-- **Branch:** (not applicable - using Actions workflow)
-- **Custom domain:** `lorenztazan.com`
-- **Enforce HTTPS:** ✅ Enabled (automatic)
+Obtain explicit approval only after all of these are complete:
 
-**Expected Behavior:**
-- GitHub Actions workflow (`.github/workflows/deploy.yml`) will automatically deploy on push to `main`
-- First deployment triggered immediately after setup
+- Cloudflare preview accepted;
+- contact email smoke test received in `lorenztazan@gmail.com`;
+- both résumé PDFs reviewed and approved;
+- evidence/content audit has zero unsupported claims;
+- accessibility and rendered-browser checks pass;
+- Worker rollback has been exercised.
 
-### 2️⃣ Configure Custom Domain
+No production action below is authorized merely by completing the preview.
 
-**Create CNAME file** (if not already exists):
+## 6. Controlled cutover
 
-```bash
-# In C:\Users\IKE\Downloads\IKE-CV\portfolio\public\
-echo "lorenztazan.com" > public/CNAME
-```
+After explicit approval:
 
-**Commit CNAME file:**
-```bash
-git add public/CNAME
-git commit -m "Add custom domain CNAME for lorenztazan.com"
-git push
-```
+1. Record the current GitHub Pages custom-domain configuration, deployed revision, and exact apex/www DNS records (including proxy state), so rollback is reproducible.
+2. Confirm the legacy GitHub Pages deployment workflow remains disabled and its old published site is still available. Astro source should already be merged in the original repository.
+3. Confirm the original repository's Cloudflare production build and active Worker version, then approve its public audience.
+4. Attach `lorenztazan.com` to the Worker using the reviewed DNS change set. Resolve any conflicting legacy DNS records deliberately; do not overwrite mail records.
+5. Configure `www.lorenztazan.com` to redirect to the apex domain.
+6. Verify DNS, TLS, canonical URLs, contact delivery, security headers, and both résumé downloads.
+7. After confirming the custom domain serves the approved Astro release, remove the legacy Pages custom-domain association, disable Pages, and make the same `AIKUSAN/portfolio` repository private. Confirm it remains editable, not archived.
+8. Trigger a harmless follow-up Cloudflare build and verify the Git integration can still read the private repository. Retain source mirrors, the legacy tag, and DNS/Pages records through at least seven days after cutover. Do not change visibility or settings of any public evidence repository.
 
-### 3️⃣ Update DNS Records
+Vercel is not part of the verified current hosting path, so no Vercel changes are required for this migration.
 
-**At your domain registrar (where you bought lorenztazan.com):**
+## 7. Rollback
 
-Add these DNS records:
+If the Cloudflare version fails before domain cutover, leave GitHub Pages and DNS unchanged and return to a previously tested Worker version when one exists.
 
-**For Apex Domain (lorenztazan.com):**
-```
-Type: A
-Name: @
-Value: 185.199.108.153
-TTL: 3600
+After cutover and privatization, use a previously tested Cloudflare Worker version for rollback. Restoring public GitHub Pages would require making the source public again and changing hosting/DNS, so it requires separate explicit approval. Retain the legacy backups for at least seven days and do not invent old DNS targets from memory.
 
-Type: A
-Name: @
-Value: 185.199.109.153
-TTL: 3600
+## References
 
-Type: A
-Name: @
-Value: 185.199.110.153
-TTL: 3600
-
-Type: A
-Name: @
-Value: 185.199.111.153
-TTL: 3600
-```
-
-**For www subdomain (www.lorenztazan.com):**
-```
-Type: CNAME
-Name: www
-Value: AIKUSAN.github.io (replace AIKUSAN with your GitHub username)
-TTL: 3600
-```
-
-**DNS Propagation:**
-- Takes 5 minutes to 48 hours (usually 15-30 minutes)
-- Check status: https://www.whatsmydns.net/#A/lorenztazan.com
-
----
-
-## PHASE 5: GitHub Security Configuration
-
-### 1️⃣ Enable Security Features
-
-Navigate to: **Repository → Settings → Security & analysis**
-
-**Enable ALL:**
-- ✅ Dependency graph
-- ✅ Dependabot alerts
-- ✅ Dependabot security updates
-- ✅ Secret scanning
-- ✅ Code scanning (CodeQL analysis will auto-enable via workflow)
-
-### 2️⃣ Set Up Branch Protection
-
-Navigate to: **Repository → Settings → Branches → Add rule**
-
-**Branch name pattern:** `main`
-
-**Enable:**
-- ✅ Require a pull request before merging
-  - Require approvals: 0 (solo developer)
-- ✅ Require status checks to pass before merging
-  - ✅ Require branches to be up to date
-  - Add status checks: `build`, `security-audit`, `CodeQL`
-- ✅ Require conversation resolution before merging
-- ✅ Include administrators
-- ❌ Allow force pushes (DISABLED)
-- ❌ Allow deletions (DISABLED)
-
-**Click:** Save changes
-
-### 3️⃣ Verify GitHub Actions
-
-Navigate to: **Repository → Actions**
-
-**Check workflows:**
-1. **Build & Deploy** - Should run on every push
-2. **CodeQL Security Scan** - Should run on push/PR + weekly schedule
-
-**Expected Status:** ✅ All passing
-
----
-
-## PHASE 6: Post-Deployment Verification
-
-### 1️⃣ Verify Live Site
-
-**Check deployment:**
-```bash
-# Check GitHub Actions status
-gh run list --limit 5
-
-# View specific run
-gh run view
-```
-
-**Manual verification:**
-1. Visit https://lorenztazan.com
-2. Verify all 7 pages load correctly:
-   - / (Home)
-   - /about
-   - /experience
-   - /projects
-   - /skills
-   - /education
-   - /contact
-3. Test dark/light mode toggle
-4. Test resume download on Contact page
-5. Verify mobile responsiveness
-
-### 2️⃣ Test SEO
-
-**Google Search Console:**
-1. Go to: https://search.google.com/search-console
-2. Add property: `lorenztazan.com`
-3. Verify ownership (DNS TXT record method recommended)
-4. Submit sitemap: `https://lorenztazan.com/sitemap.xml`
-
-**Test OpenGraph:**
-- https://www.opengraph.xyz/
-- Paste: `https://lorenztazan.com`
-- Verify image, title, description appear correctly
-
-**Test Twitter Cards:**
-- https://cards-dev.twitter.com/validator
-- Paste: `https://lorenztazan.com`
-- Verify card renders properly
-
-### 3️⃣ Security Verification
-
-**Check SSL Certificate:**
-```bash
-# Should show valid SSL certificate
-curl -I https://lorenztazan.com | findstr "HTTP/"
-```
-
-**Verify HTTPS Redirect:**
-- Visit http://lorenztazan.com (HTTP)
-- Should auto-redirect to https://lorenztazan.com (HTTPS)
-
-**Check Security Scan:**
-- https://observatory.mozilla.org/
-- Enter: `lorenztazan.com`
-- Review security score
-
----
-
-## PHASE 7: Post-Launch Maintenance
-
-### Weekly Tasks
-- ✅ Review Dependabot PRs (auto-created)
-- ✅ Check GitHub Actions build status
-- ✅ Monitor Google Search Console for crawl errors
-
-### Monthly Tasks
-- ✅ Run `npm audit` locally
-- ✅ Update resume PDF if experience changes
-- ✅ Review CodeQL security findings
-- ✅ Update sitemap last modified dates
-
-### Quarterly Tasks
-- ✅ Update dependencies manually (`npm update`)
-- ✅ Review portfolio content for accuracy
-- ✅ Add new projects to portfolio
-- ✅ Check Google PageSpeed Insights score
-
----
-
-## 🆘 Troubleshooting
-
-### Issue: GitHub Pages 404 Error
-
-**Solution:**
-```bash
-# Ensure CNAME file is in public/ directory (not root)
-ls public/CNAME
-
-# Rebuild to include CNAME in output
-npm run build
-
-# Verify CNAME in out/ directory
-ls out/CNAME
-
-# Commit and push
-git add .
-git commit -m "Fix CNAME placement"
-git push
-```
-
-### Issue: Custom Domain Not Working
-
-**Check:**
-1. DNS propagation complete? (https://www.whatsmydns.net)
-2. CNAME file present in `public/CNAME`?
-3. GitHub Pages settings show custom domain?
-4. Wait 15-30 minutes after DNS changes
-
-### Issue: Build Failing in GitHub Actions
-
-**Solution:**
-```bash
-# Run build locally to check errors
-npm run build
-
-# Check GitHub Actions logs
-gh run view --log
-
-# Common fix: Clear cache and reinstall
-rm -rf node_modules package-lock.json
-npm install
-npm run build
-```
-
-### Issue: Dependabot PRs Not Merging
-
-**Solution:**
-1. Review PR changes in GitHub
-2. Test locally:
-   ```bash
-   git fetch origin
-   git checkout dependabot/npm_and_yarn/package-name-version
-   npm install
-   npm run build
-   npm run dev
-   ```
-3. If tests pass, merge via GitHub UI
-
----
-
-## 📊 Success Metrics
-
-**After 7 days, you should see:**
-- ✅ Google Search Console: Site indexed (5-7 pages)
-- ✅ GitHub Actions: 7+ successful deployments
-- ✅ Security: 0 Dependabot alerts
-- ✅ Analytics: First organic traffic from job boards
-- ✅ Social: LinkedIn preview working with OpenGraph
-
-**After 30 days:**
-- ✅ Google: Appearing in search results for "Lorenz Tazan"
-- ✅ SEO: Site ranking for name + location queries
-- ✅ GitHub: Stars/forks from interested developers
-- ✅ Recruiters: Contacts via portfolio contact page
-
----
-
-## 🎯 Next Steps After Deployment
-
-1. **Share Portfolio:**
-   - Update LinkedIn profile with website link
-   - Add to resume header
-   - Include in job applications
-   - Share on Twitter/X (optional)
-
-2. **Apply to Jobs:**
-   - Target Platform Engineer roles
-   - Target DevOps Engineer positions
-   - Target SRE (Site Reliability Engineer) roles
-   - Focus on hybrid/DMV area positions
-
-3. **Monitor Performance:**
-   - Set up Google Analytics (optional)
-   - Track job application responses
-   - A/B test resume vs. portfolio URL in applications
-
----
-
-**Last Updated:** February 9, 2026  
-**Questions?** Email: lorenztazan@gmail.com
+- [Astro on Cloudflare Workers](https://developers.cloudflare.com/workers/framework-guides/web-apps/astro/)
+- [Cloudflare Workers Builds](https://developers.cloudflare.com/workers/ci-cd/builds/)
+- [Workers Builds configuration](https://developers.cloudflare.com/workers/ci-cd/builds/configuration/)
+- [Turnstile server-side validation](https://developers.cloudflare.com/turnstile/get-started/server-side-validation/)
+- [Email Service send bindings](https://developers.cloudflare.com/email-service/configuration/send-bindings/)
+- [Email routing destinations](https://developers.cloudflare.com/email-service/configuration/email-routing-addresses/)
+- [Email Service pricing](https://developers.cloudflare.com/email-service/platform/pricing/)

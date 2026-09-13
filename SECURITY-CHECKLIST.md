@@ -1,5 +1,7 @@
 # 🔒 SECURITY CHECKLIST - Pre-Push Verification
 
+> Historical record for the February 2026 Next.js/GitHub Pages site, not an audit of the Astro release. Checked boxes and platform claims below must not be used as current acceptance evidence. See `SECURITY.md` and `DEPLOYMENT.md` for the current architecture and release gates.
+
 **Date:** February 9, 2026  
 **Portfolio:** lorenztazan.com  
 **Repository:** github.com/AIKUSAN/portfolio

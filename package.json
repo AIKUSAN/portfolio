@@ -1,42 +1,39 @@
 {
-  "name": "portfolio",
-  "version": "0.1.0",
+  "name": "lorenztazan-portfolio",
+  "version": "1.0.0",
   "private": true,
+  "type": "module",
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "eslint"
+    "dev": "astro dev",
+    "build": "astro check && astro build",
+    "preview": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "lint": "astro check",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:browser": "node scripts/acceptance-browser.mjs",
+    "cf-typegen": "wrangler types"
   },
   "dependencies": {
-    "@supabase/supabase-js": "^2.97.0",
-    "@tailwindcss/cli": "^4.2.1",
-    "clsx": "^2.1.1",
-    "framer-motion": "^12.34.3",
-    "html2canvas": "^1.4.1",
-    "lucide-react": "^0.575.0",
-    "marked": "^17.0.3",
-    "md-to-pdf": "^5.2.5",
-    "next": "^16.1.6",
-    "puppeteer": "^24.37.5",
-    "react": "19.2.4",
-    "react-dom": "19.2.4",
-    "tailwind-merge": "^3.5.0"
+    "@astrojs/cloudflare": "^14.2.5",
+    "@astrojs/sitemap": "^3.6.0",
+    "@fontsource-variable/jetbrains-mono": "^5.3.0",
+    "@fontsource/atkinson-hyperlegible": "^5.3.0",
+    "@fontsource/barlow-condensed": "^5.3.0",
+    "@lucide/astro": "^1.37.0",
+    "astro": "^7.2.9",
+    "three": "^0.185.1"
   },
   "devDependencies": {
-    "@tailwindcss/postcss": "^4",
-    "@types/node": "^25",
-    "@types/react": "^19",
-    "@types/react-dom": "^19",
-    "autoprefixer": "^10.4.27",
-    "babel-plugin-react-compiler": "1.0.0",
-    "eslint": "^10",
-    "eslint-config-next": "16.1.6",
-    "postcss": "^8.5.6",
-    "tailwindcss": "^4.2.1",
-    "typescript": "^5"
+    "@astrojs/check": "^0.9.10",
+    "@types/three": "^0.185.4",
+    "axe-core": "^4.13.0",
+    "playwright": "^1.62.1",
+    "typescript": "^5.9.2",
+    "vitest": "^4.0.0",
+    "wrangler": "^4.127.1"
   },
-  "overrides": {
-    "minimatch": "^10.2.2"
+  "engines": {
+    "node": ">=22.12.0"
   }
 }

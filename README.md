@@ -1,214 +1,86 @@
-# 🌐 Lorenz Tazan - Portfolio Website
+# Lorenz Tazan — Infrastructure Operations Manual
 
-[![Build & Deploy](https://github.com/AIKUSAN/portfolio/actions/workflows/deploy.yml/badge.svg)](https://github.com/AIKUSAN/portfolio/actions/workflows/deploy.yml)
-[![CodeQL Security Scan](https://github.com/AIKUSAN/portfolio/actions/workflows/codeql.yml/badge.svg)](https://github.com/AIKUSAN/portfolio/actions/workflows/codeql.yml)
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+An evidence-led portfolio for IT support, systems, network, infrastructure, and platform roles. The interface uses the approved Infrastructure Operations Manual direction: technical-paper and night-operations themes, an identity rail, an original infrastructure assembly diagram, and project records organized as Situation → Intervention → Verified Result.
 
-Professional portfolio website showcasing **7 years of Systems Engineering** experience with focus on DevOps, Infrastructure Automation, and AI-enhanced workflows.
+## Architecture
 
-🔗 **Live Site:** [lorenztazan.com](https://lorenztazan.com)
+- Astro with strict TypeScript
+- Cloudflare Workers adapter
+- Prerendered public pages with a lazy-loaded Three.js rack inspector on Home
+- One Worker boundary at `POST /api/contact`
+- Cloudflare Turnstile and a restricted Email Service binding
+- No database, Supabase, CMS, authentication, analytics, R2, D1, or remote image dependency
 
----
+The Worker is named `lorenztazan-portfolio` in `wrangler.jsonc`. Astro generates the deployable Worker entry and static-asset binding during `npm run build`; do not replace that with the legacy `dist/_worker.js/index.js` entry.
 
-## ✨ Features
+The sole source repository is `AIKUSAN/portfolio`. This application replaces the legacy Next.js tree in place while preserving repository identity and Git history. The separate-repository strategy is superseded; do not recreate the deleted duplicate. Cloudflare's native Workers Builds integration will own deployment; GitHub Actions is validation-only. The existing Pages deployment stays live with its deployment workflow disabled until approved Cloudflare cutover. The repository remains temporarily public during migration and becomes private only after cutover. Repository privacy does not protect a hosted preview: configure Cloudflare Access separately. See `DEPLOYMENT.md` for the release and approval gates.
 
-- 🎨 **Modern Design** - Next.js 16 with React 19, TypeScript, Tailwind CSS
-- 🌙 **Dark/Light Mode** - Automatic theme switching with persistent preferences
-- 📱 **Responsive** - Mobile-first design, optimized for all devices
-- ⚡ **Performance** - Static site generation, optimized bundle size, fast load times
-- 🔍 **SEO Optimized** - OpenGraph, Twitter Cards, JSON-LD structured data, sitemap
-- ♿ **Accessible** - Semantic HTML, ARIA labels, keyboard navigation support
-- 🎬 **Animations** - Smooth Framer Motion transitions and scroll effects
-- 🔒 **Secure** - Zero npm vulnerabilities, CodeQL scanning, Dependabot enabled
+## Routes
 
----
+| Route | Purpose |
+| --- | --- |
+| `/` | Role-aware overview and strongest evidence records |
+| `/work` | Full evidence register |
+| `/experience` | Employment history and capability matrix |
+| `/about` | Working approach and education |
+| `/contact` | Direct channels and verified contact form |
+| `/blog` | Intentional `410 Gone` response |
 
-## 🚀 Tech Stack
+Legacy `/projects`, `/skills`, and `/education` URLs redirect to their current replacements. Legacy résumé paths redirect to the systems/cloud résumé.
 
-### Core Framework
-- **Next.js 16.1.6** - React framework with static site generation
-- **React 19.2.3** - UI library with React Compiler enabled
-- **TypeScript 5** - Type-safe development
+## Role lenses
 
-### Styling & UI
-- **Tailwind CSS 4** - Utility-first CSS framework
-- **Framer Motion 12** - Animation library
-- **Lucide React** - Icon library
+The query interface is `?focus=support|systems|platform`. A lens changes the headline, project emphasis, supporting copy, and résumé link while leaving the full background visible.
 
-### Development Tools
-- **ESLint** - Code linting
-### Backend & Database
-- **Supabase** - PostgreSQL Database, Authentication, Row-Level Security (RLS)
-- **Next.js API Routes** - Server-side logic and webhooks
+- Support → `/resume/lorenz-tazan-it-support.pdf`
+- Systems and Platform → `/resume/lorenz-tazan-systems-cloud.pdf`
 
-### Automation & AI
-- **Make.com** - Serverless Workflow Automation (Contact Form Integration)
-- **Model Context Protocol (MCP)** - Standardized AI context exchange
-- **n8n** - Workflow automation (Alternative/Legacy)
+Project evidence is explicitly classified as `client-employment`, `independent-business`, `sanitized-architecture`, or `portfolio-lab` in `src/data/site.ts`.
 
----
+## Local development
 
-## 📂 Project Structure
-
-```
-portfolio/
-├── src/
-│   ├── app/                 # Next.js App Router pages
-│   │   ├── page.tsx         # Homepage
-│   │   ├── about/           # About page
-│   │   ├── experience/      # Professional experience timeline
-│   │   ├── projects/        # Project portfolio
-│   │   ├── skills/          # Technical skills matrix
-│   │   ├── education/       # Education & certifications
-│   │   └── contact/         # Contact form & info
-│   ├── components/          # Reusable React components
-│   ├── data/                # Project data and content
-│   └── lib/                 # Utility functions
-├── public/                  # Static assets
-│   ├── resume.pdf           # Downloadable resume
-│   ├── robots.txt           # SEO crawler directives
-│   ├── sitemap.xml          # SEO sitemap
-│   └── CNAME                # Custom domain configuration
-├── .github/
-│   ├── workflows/           # CI/CD pipelines
-│   │   ├── deploy.yml       # Build & deploy to GitHub Pages
-│   │   └── codeql.yml       # Security scanning
-│   └── dependabot.yml       # Automated dependency updates
-└── SECURITY.md              # Security policy
-```
-
----
-
-## 🛠️ Local Development
-
-### Prerequisites
-- Node.js 20.x or higher
-- npm 10.x or higher
-
-### Installation
+Requirements: Node.js 22.12 or newer and npm.
 
 ```bash
-# Clone the repository
-git clone https://github.com/AIKUSAN/portfolio.git
-cd portfolio
-
-# Install dependencies
-npm install
-
-# Start development server
+npm ci
+cp .dev.vars.example .dev.vars
 npm run dev
 ```
 
-Visit [http://localhost:3000](http://localhost:3000) to view the site.
+Cloudflare’s public Turnstile test keys are supplied in `.dev.vars.example`. Real secret values must remain uncommitted.
 
-### Available Scripts
+## Verification
 
 ```bash
-npm run dev      # Start development server (port 3000)
-npm run build    # Build production static site (output: /out)
-npm run start    # Preview production build locally
-npm run lint     # Run ESLint code linting
-npm audit        # Check for dependency vulnerabilities
-```
-
----
-
-## 🚢 Deployment
-
-### GitHub Pages (Current)
-
-Deployed automatically via GitHub Actions on push to `main` branch.
-
-**Custom Domain:** [lorenztazan.com](https://lorenztazan.com)
-
-**Workflow:**
-1. Push to `main` branch
-2. GitHub Actions runs:
-   - Security audit (`npm audit`)
-   - Build (`npm run build`)
-   - Deploy to GitHub Pages
-3. Site available at custom domain within 2-3 minutes
-
-### Alternative Deployments
-
-**Vercel (Recommended for Security Headers):**
-```bash
-npm install -g vercel
-vercel --prod
-```
-
-**Netlify:**
-```bash
+npm run lint
+npm test
 npm run build
-# Upload /out directory to Netlify
+npx wrangler types --check
 ```
 
----
+For rendered-browser checks, install Chromium once, run Astro on the isolated acceptance port, and execute the suite:
 
-## 🔒 Security
+```bash
+npx playwright install chromium
+npm run dev -- --host 127.0.0.1 --port 4329 --strictPort
+npm run test:browser
+```
 
-### Security Features
-✅ Zero npm vulnerabilities  
-✅ Dependabot security updates (weekly)  
-✅ CodeQL security scanning (on every commit)  
-✅ Branch protection rules  
-✅ Secret scanning enabled  
+The browser suite checks role URLs, both themes at 375/768/1440 widths, rack selection and rotation, assembly/reset, keyboard controls, reduced-motion opt-in, WebGL initialization/context-loss fallbacks, horizontal overflow, no-JavaScript readability, axe WCAG rules, redirects, the 410 response, and both résumé downloads. To test the production Worker locally, run `npm run build`, start `npm run preview -- --port 4331`, then run `PORTFOLIO_TEST_URL=http://127.0.0.1:4331 npm run test:browser`.
 
-### Reporting Vulnerabilities
-See [SECURITY.md](SECURITY.md) for responsible disclosure guidelines.
+## 3D rack inspector
 
----
+The homepage rack is procedural WebGL geometry, not clipped image layers. `src/lib/rack-model.ts` owns the four equipment groups and shared geometry/materials; `rack-scene.ts` owns rendering, raycasting and camera controls; `rack-controller.ts` progressively enhances the existing Astro picture and HTML buttons.
 
-## 📊 Portfolio Highlights
+- Drag or use arrow keys on the canvas to rotate. Use the zoom controls or plus/minus keys to zoom; Home restores the camera.
+- Hover/focus highlights a capability without moving it. Picking uses only solid equipment surfaces, never decorative outlines or guides. Click a chassis or its label to lock and pull it forward; click again or press Escape to clear it.
+- Assemble closes the stack; Reset view restores the exploded arrangement and camera.
+- Rendering is demand-driven and pauses offscreen. Repeated hardware details are instanced, pixel density is capped, and model resources are disposed when switching to the static illustration.
+- The responsive AVIF/WebP/PNG poster remains the no-JavaScript/WebGL fallback. Reduced-motion and data-saving preferences default to the poster with an explicit 3D opt-in; reduced-motion opt-in has no animated assembly or camera damping.
+- Light and dark materials follow the existing theme controller without changing role focus or evidence content. No external model, texture, animation framework, or React island is used.
 
-**Systems Engineering Excellence:**
-- 🎯 **99.9% Uptime** - 24-server distributed platform (300+ concurrent users)
-- ⚡ **96% Performance Gain** - Database query optimization (800ms → 35ms)
-- 💰 **65% Cost Reduction** - Infrastructure optimization
-- 🚀 **93% Deployment Speed** - CI/CD automation (30min → <2min)
+## Contact boundary
 
-**AI-Powered Automation:**
-- 🤖 Multi-LLM orchestration (Gemini, Claude, GPT-4)
-- 🔄 Agentic workflows with n8n
-- 📊 RAG-based documentation systems
-- 🔍 Proactive monitoring with LLMs
+`POST /api/contact` accepts `name`, `email`, `message`, optional `focus`, the Turnstile token, and an invisible honeypot. It enforces input limits, exact same-origin requests, Turnstile action/hostname verification, HTML escaping, and generic public responses. Messages are sent only through the `EMAIL` binding to the configured verified destination and are never stored.
 
-**Security & Compliance:**
-- 🛡️ NIST 800-171 compliant network design (DoD contractor)
-- 🔐 Zero-trust architecture implementation
-- ✅ 0 audit findings on government projects
-
----
-
-## 📜 License
-
-This project is licensed under the **MIT License** - see [LICENSE](LICENSE) file for details.
-
-**Portfolio Content:** © 2026 Lorenz Tazan. All rights reserved.  
-**Code & Design:** Open source under MIT License.
-
----
-
-## 📞 Contact
-
-**Lorenz Tazan**  
-Systems Engineer | DevOps & Infrastructure Automation
-
-- 🌐 Website: [lorenztazan.com](https://lorenztazan.com)
-- 📧 Email: [lorenztazan@gmail.com](mailto:lorenztazan@gmail.com)
-- 💼 LinkedIn: [linkedin.com/in/lorenztazan](https://linkedin.com/in/lorenztazan)
-- 🐙 GitHub: [@AIKUSAN](https://github.com/AIKUSAN)
-
----
-
-## 🙏 Acknowledgments
-
-- **Next.js Team** - Amazing React framework
-- **Vercel** - Excellent hosting platform
-- **Tailwind CSS** - Utility-first CSS framework
-- **Framer Motion** - Smooth animations library
-
----
-
-**Last Updated:** February 9, 2026  
-**Built with** ❤️ **using Next.js & TypeScript**
+See `DEPLOYMENT.md` for the staged Cloudflare Builds setup and production cutover gate.

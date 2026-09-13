@@ -1,0 +1,55 @@
+---
+import { ArrowRight, ExternalLink } from '@lucide/astro';
+import type { ProjectRecord } from '@/types/site';
+import ProjectEvidence from './ProjectEvidence.astro';
+
+interface Props {
+  project: ProjectRecord;
+  index: number;
+  variant?: 'summary' | 'full';
+}
+
+const { project, index, variant = 'full' } = Astro.props;
+const lab = project.provenance === 'portfolio-lab';
+const primaryEvidence = project.evidence?.[0];
+---
+
+<article
+  id={variant === 'full' ? project.id : undefined}
+  class:list={['operation-record', { 'record-compact': variant === 'summary' }]}
+  data-project-id={project.id}
+  data-project-focus={project.focus.join(' ')}
+  data-project-index={index}
+  data-provenance={project.provenance}
+>
+  <header class="record-header">
+    <span class="record-number" aria-hidden="true">{String(index).padStart(2, '0')}</span>
+    <div>
+      <span class="provenance-tag">{project.provenanceLabel}</span>
+      <h2>{project.title}</h2>
+      {variant === 'full' && <p>{project.summary}</p>}
+    </div>
+  </header>
+  <div class="record-overview">
+    <p class="record-result"><span>{lab ? 'Implemented work' : 'Result'}</span>{project.verifiedResult}</p>
+    <ul class="tech-list" aria-label="Technologies">
+      {project.technologies.slice(0, variant === 'summary' ? 3 : undefined).map(tech => <li>{tech}</li>)}
+    </ul>
+    <div class="record-links">
+      {variant === 'summary' && <a class="inline-icon-link" href={`/work#${project.id}`}>{project.evidence?.length ? 'Explore contribution & evidence' : 'Read contribution & approach'}<span class="sr-only"> — {project.title}</span> <ArrowRight aria-hidden="true" size={20} stroke-width={1.5} /></a>}
+      {variant === 'full' && primaryEvidence && <a class="source-link inline-icon-link" href={primaryEvidence.sourceUrl}>{primaryEvidence.label} <ExternalLink aria-hidden="true" size={20} stroke-width={1.5} /></a>}
+    </div>
+  </div>
+  {variant === 'full' && (
+    <details class="record-details">
+      <summary>{project.evidence?.length ? 'Contribution, decisions & evidence' : 'Contribution & approach'} <span class="sr-only">— {project.title}</span></summary>
+      <div class="record-sequence">
+        <section><h3>My contribution</h3><p>{project.contribution ?? project.situation}</p></section>
+        <section><h3>{lab || project.evidence?.length ? 'Implementation decisions' : 'Work approach'}</h3><ul>{(project.decisionNotes ?? project.intervention).map(item => <li>{item}</li>)}</ul></section>
+        {project.evidence?.length && <section class="record-evidence"><h3>Inspect the work</h3><ProjectEvidence evidence={project.evidence} projectId={project.id} /></section>}
+        {project.scopeNote && <section class="record-scope"><h3>Scope</h3><p>{project.scopeNote}</p></section>}
+      </div>
+      <p class="record-collaboration"><strong>Collaboration</strong> {project.collaborators}</p>
+    </details>
+  )}
+</article>

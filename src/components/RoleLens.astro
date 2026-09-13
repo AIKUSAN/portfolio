@@ -1,0 +1,22 @@
+---
+import { focusCopy } from '@/data/site';
+import { ArrowRight } from '@lucide/astro';
+---
+
+<nav class="role-lens" aria-label="Explore through a role lens">
+  <span class="role-indicator-viewport" aria-hidden="true">
+    <span class="role-indicator" data-role-indicator hidden></span>
+  </span>
+  {(Object.entries(focusCopy) as [keyof typeof focusCopy, (typeof focusCopy)[keyof typeof focusCopy]][]).map(([key, copy], index) => (
+    <a href={`?focus=${key}`} data-focus-link={key} aria-current={key === 'systems' ? 'true' : 'false'}>
+      <span class="lens-index">0{index + 1}</span>
+      <svg aria-hidden="true" viewBox="0 0 44 44">
+        {key === 'support' && <><rect x="7" y="8" width="30" height="10" rx="1"/><rect x="7" y="26" width="30" height="10" rx="1"/><path d="M12 13h3M12 31h3M21 18v8"/></>}
+        {key === 'systems' && <><circle cx="22" cy="9" r="4"/><circle cx="9" cy="32" r="4"/><circle cx="35" cy="32" r="4"/><path d="M20 13 11 28M24 13l9 15M13 32h18"/></>}
+        {key === 'platform' && <><path d="M22 5 36 11v10c0 9-6 15-14 18C14 36 8 30 8 21V11z"/><path d="M22 11v22M15 21h14"/></>}
+      </svg>
+      <span><strong>{copy.label}</strong><small>{copy.introduction}</small></span>
+      <span class="lens-arrow" aria-hidden="true"><ArrowRight size={18} stroke-width={1.5} /></span>
+    </a>
+  ))}
+</nav>

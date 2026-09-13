@@ -16,6 +16,8 @@ concurrency:
 # PR/manual-only validation avoids duplicating every native Cloudflare build.
 jobs:
   validate:
+    # Preserve the existing required check; this job validates but never publishes.
+    name: Build Portfolio
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:

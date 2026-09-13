@@ -1,0 +1,54 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import ProjectRecord from '@/components/ProjectRecord.astro';
+import RackDiagram from '@/components/RackDiagram.astro';
+import RoleLens from '@/components/RoleLens.astro';
+import { ArrowRight, Download } from '@lucide/astro';
+import { focusCopy, projects } from '@/data/site';
+
+const featured = projects.filter((project) => project.featured);
+---
+
+<BaseLayout
+  title="Lorenz Tazan — IT Systems & Infrastructure Professional"
+  description="Role-focused evidence across IT support, systems and network operations, infrastructure documentation, and platform automation labs."
+  currentPath="/"
+>
+  <section class="hero-manual" aria-labelledby="hero-title">
+    <div class="hero-copy">
+      <h1 id="hero-title" data-focus-value
+        data-support={focusCopy.support.headline}
+        data-systems={focusCopy.systems.headline}
+        data-platform={focusCopy.platform.headline}
+      >{focusCopy.systems.headline}</h1>
+      <p class="hero-intro" data-focus-value
+        data-support={focusCopy.support.introduction}
+        data-systems={focusCopy.systems.introduction}
+        data-platform={focusCopy.platform.introduction}
+      >{focusCopy.systems.introduction}</p>
+      <span class="manual-label">Explore by role</span>
+      <RoleLens />
+      <div class="hero-actions">
+        <a class="button-manual primary" href={focusCopy.systems.resume} data-resume-link><span>View résumé <small data-resume-label>Systems & Cloud · PDF</small></span><Download aria-hidden="true" size={20} stroke-width={1.5} /></a>
+        <a class="button-manual" href="/work">Selected work <ArrowRight aria-hidden="true" size={20} stroke-width={1.5} /></a>
+      </div>
+      <section class="featured-evidence" aria-label="Relevant work">
+        <p class="evidence-heading">Relevant work</p>
+        <div data-featured-slot>
+          {featured.filter(project => project.focus.includes('systems')).map(project => <ProjectRecord project={project} index={projects.indexOf(project) + 1} variant="summary" />)}
+        </div>
+      </section>
+    </div>
+    <RackDiagram />
+  </section>
+
+  <section class="records-section" aria-labelledby="featured-records">
+    <div class="records-heading">
+      <h2 id="featured-records">More selected work</h2>
+      <a class="inline-icon-link" href="/work">View all work <ArrowRight aria-hidden="true" size={20} stroke-width={1.5} /></a>
+    </div>
+    <div class="records-grid" data-additional-records>
+      {featured.filter(project => !project.focus.includes('systems')).map(project => <ProjectRecord project={project} index={projects.indexOf(project) + 1} variant="summary" />)}
+    </div>
+  </section>
+</BaseLayout>

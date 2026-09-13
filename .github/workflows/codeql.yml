@@ -17,6 +17,8 @@ on:
 jobs:
   analyze:
     name: Analyze Code
+    # Private CodeQL requires an eligible paid license; do not enable a paid service.
+    if: github.event.repository.private == false
     runs-on: ubuntu-latest
     permissions:
       actions: read

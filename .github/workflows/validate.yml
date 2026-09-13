@@ -1,0 +1,32 @@
+name: Validate portfolio
+
+on:
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: validation-${{ github.ref }}
+  cancel-in-progress: true
+
+# Publishing belongs to Cloudflare Workers Builds, not GitHub Pages.
+# PR/manual-only validation avoids duplicating every native Cloudflare build.
+jobs:
+  validate:
+    # Preserve the existing required check; this job validates but never publishes.
+    name: Build Portfolio
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci
+      - run: npm test
+      - run: npm run build
+      - run: npm audit --audit-level=high

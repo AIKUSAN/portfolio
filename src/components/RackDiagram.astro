@@ -1,0 +1,118 @@
+---
+import { RotateCcw, Plus, Minus } from '@lucide/astro';
+import rackDark from '@/assets/infrastructure-rack-dark.png';
+import rackDark480Avif from '@/assets/infrastructure-rack-dark-480.avif';
+import rackDark480Webp from '@/assets/infrastructure-rack-dark-480.webp';
+import rackDark800Avif from '@/assets/infrastructure-rack-dark-800.avif';
+import rackDark800Webp from '@/assets/infrastructure-rack-dark-800.webp';
+import rackDark1200Avif from '@/assets/infrastructure-rack-dark-1200.avif';
+import rackDark1200Webp from '@/assets/infrastructure-rack-dark-1200.webp';
+import rackDark1600Avif from '@/assets/infrastructure-rack-dark-1600.avif';
+import rackDark1600Webp from '@/assets/infrastructure-rack-dark-1600.webp';
+import rackLight from '@/assets/infrastructure-rack-light.png';
+import rackLight480Avif from '@/assets/infrastructure-rack-light-480.avif';
+import rackLight480Webp from '@/assets/infrastructure-rack-light-480.webp';
+import rackLight800Avif from '@/assets/infrastructure-rack-light-800.avif';
+import rackLight800Webp from '@/assets/infrastructure-rack-light-800.webp';
+import rackLight1200Avif from '@/assets/infrastructure-rack-light-1200.avif';
+import rackLight1200Webp from '@/assets/infrastructure-rack-light-1200.webp';
+import rackLight1600Avif from '@/assets/infrastructure-rack-light-1600.avif';
+import rackLight1600Webp from '@/assets/infrastructure-rack-light-1600.webp';
+
+const widths = [480, 800, 1200, 1600];
+const buildSrcset = (assets: { src: string }[]) => assets.map((asset, index) => `${encodeURI(asset.src)} ${widths[index]}w`).join(', ');
+
+const lightAvif = buildSrcset([rackLight480Avif, rackLight800Avif, rackLight1200Avif, rackLight1600Avif]);
+const lightWebp = buildSrcset([rackLight480Webp, rackLight800Webp, rackLight1200Webp, rackLight1600Webp]);
+const darkAvif = buildSrcset([rackDark480Avif, rackDark800Avif, rackDark1200Avif, rackDark1600Avif]);
+const darkWebp = buildSrcset([rackDark480Webp, rackDark800Webp, rackDark1200Webp, rackDark1600Webp]);
+---
+
+<figure class="rack-plate" aria-labelledby="rack-title rack-caption">
+  <figcaption>
+    <span id="rack-title">Infrastructure assembly plate</span>
+    <button class="rack-reset" type="button" data-rack-reset disabled>
+      <RotateCcw aria-hidden="true" size={16} stroke-width={1.5} />
+      Reset view
+    </button>
+  </figcaption>
+  <div class="rack-stage" data-rack-stage data-active-layer="">
+    <ol class="rack-callouts" aria-label="Infrastructure capability layers">
+      <li>
+        <button type="button" data-rack-control data-layer="compute" aria-pressed="false" disabled>
+          <span class="rack-index">01</span>
+          <span><strong>Compute layer</strong><small>Supported operations</small></span>
+        </button>
+      </li>
+      <li>
+        <button type="button" data-rack-control data-layer="network" aria-pressed="false" disabled>
+          <span class="rack-index">02</span>
+          <span><strong>Network fabric</strong><small>Routing and access</small></span>
+        </button>
+      </li>
+      <li>
+        <button type="button" data-rack-control data-layer="storage" aria-pressed="false" disabled>
+          <span class="rack-index">03</span>
+          <span><strong>Storage and data</strong><small>Service continuity</small></span>
+        </button>
+      </li>
+      <li>
+        <button type="button" data-rack-control data-layer="power" aria-pressed="false" disabled>
+          <span class="rack-index">04</span>
+          <span><strong>Power and recovery</strong><small>Runbook mindset</small></span>
+        </button>
+      </li>
+    </ol>
+
+    <div class="rack-artwork" data-rack-artwork data-mode="static">
+      <picture class="rack-picture rack-picture-base" data-rack-picture data-rack-base>
+        <source
+          type="image/avif"
+          srcset={lightAvif}
+          sizes="(max-width: 620px) 92vw, (max-width: 900px) 76vw, 38vw"
+          data-light-srcset={lightAvif}
+          data-dark-srcset={darkAvif}
+        />
+        <source
+          type="image/webp"
+          srcset={lightWebp}
+          sizes="(max-width: 620px) 92vw, (max-width: 900px) 76vw, 38vw"
+          data-light-srcset={lightWebp}
+          data-dark-srcset={darkWebp}
+        />
+        <img
+          src={rackLight.src}
+          width={rackLight.width}
+          height={rackLight.height}
+          alt="Detailed exploded technical illustration of compute, network, storage, and power infrastructure layers."
+          decoding="async"
+          fetchpriority="high"
+          data-light-src={rackLight.src}
+          data-dark-src={rackDark.src}
+        />
+      </picture>
+      <div class="rack-webgl-host" data-rack-webgl></div>
+    </div>
+
+    <div class="rack-approval" aria-label="Illustrative model">
+      <svg aria-hidden="true" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m8 12 2.5 2.5L16 9"/></svg>
+      <span>Illustrative<br />model</span>
+    </div>
+  </div>
+  <div class="rack-toolbar" aria-label="3D rack controls">
+    <p id="rack-view-help" data-rack-status role="status">Static illustration</p>
+    <div class="rack-view-actions">
+      <button type="button" class="rack-tool" data-rack-assemble aria-pressed="false" disabled>Assemble</button>
+      <button type="button" class="rack-tool rack-tool-icon" data-rack-zoom="out" aria-label="Zoom out" disabled><Minus size={18} aria-hidden="true" /></button>
+      <button type="button" class="rack-tool rack-tool-icon" data-rack-zoom="in" aria-label="Zoom in" disabled><Plus size={18} aria-hidden="true" /></button>
+      <button type="button" class="rack-tool" data-rack-toggle disabled>Enable 3D view</button>
+    </div>
+  </div>
+  <p id="rack-caption">Illustrative assembly: a visual index of Lorenz’s support, systems, network, and automation practice—not a claim about one production environment.</p>
+</figure>
+
+<script>
+  import { bootRackInspector } from '@/lib/rack-controller';
+  const figure = document.querySelector<HTMLElement>('.rack-plate');
+  if (figure) bootRackInspector(figure);
+</script>

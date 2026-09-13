@@ -1,73 +1,22 @@
-# Security Policy
+# Security policy
 
-## Supported Versions
+## Report a vulnerability
 
-This is a personal portfolio website. The latest deployed version is always supported.
+Email `lorenztazan@gmail.com` with the subject `[SECURITY] Portfolio Vulnerability Report`. Include reproduction steps and impact; do not post credentials or visitor information publicly. Email is also the public reporting channel when the source repository is private.
 
-| Version | Supported          |
-| ------- | ------------------ |
-| Latest (main branch) | ✅ |
+## Current architecture
 
-## Reporting a Vulnerability
+- Astro prerenders the portfolio pages. A Cloudflare Worker handles `POST /api/contact`.
+- The contact handler validates input, origin, and Turnstile responses; formats escaped email; restricts delivery to the configured verified destination; and returns generic errors.
+- Messages are not stored in a database. Logs must never include contact bodies, visitor addresses, tokens, or secrets.
+- Runtime secrets belong in Cloudflare, not Git. Local `.env*` and `.dev.vars` files are ignored. `.dev.vars.example` contains public test keys only.
+- Response security headers are defined in `public/_headers`; verify actual Worker/API responses separately during hosted acceptance.
+- Dependencies are lockfile-controlled. PR/manual validation runs tests, Astro checks, a build, and a production dependency audit. Cloudflare Workers Builds owns deployments.
 
-If you discover a security vulnerability in this portfolio website, please report it responsibly:
+## Verification boundaries
 
-### 🔒 Private Disclosure (Preferred)
+Local tests do not prove production configuration or email delivery. Before the domain cutover, verify real Turnstile keys, allowed hostnames, the restricted email binding and verified inbox, preview access protection, response headers, logs, and rollback.
 
-1. **Email:** lorenztazan@gmail.com
-2. **Subject:** `[SECURITY] Portfolio Vulnerability Report`
-3. **Include:**
-   - Description of the vulnerability
-   - Steps to reproduce
-   - Potential impact
-   - Suggested fix (if applicable)
+No claim is made that branch protection, hosted secret scanning, or paid CodeQL is enabled. The legacy CodeQL workflow skips private repositories unless a separately approved eligible setup replaces it. Do not enable paid services without approval.
 
-**Response Time:** I aim to respond within 48 hours and provide a fix within 7 days for critical issues.
-
-### 🔓 Public Disclosure (Low-Severity Only)
-
-For low-severity issues (typos, broken links, minor UI bugs):
-- Open a GitHub Issue: [github.com/AIKUSAN/portfolio/issues](https://github.com/AIKUSAN/portfolio/issues)
-
-## Security Measures
-
-This portfolio implements the following security practices:
-
-✅ **Dependency Management**
-- Weekly automated security updates via Dependabot
-- CodeQL security scanning on all commits
-- Zero known vulnerabilities (verified via `npm audit`)
-
-✅ **Repository Security**
-- Branch protection on `main` branch
-- Secret scanning enabled
-- Signed commits encouraged (GPG)
-
-✅ **Static Site Security**
-- No server-side code execution
-- No database connections
-- No API endpoints
-- Content Security Policy headers (when deployed to Vercel/Netlify)
-
-✅ **Third-Party Dependencies**
-- Minimal external dependencies
-- Regular updates to latest stable versions
-- All dependencies from trusted sources (npm official registry)
-
-## Out of Scope
-
-The following are **not** security vulnerabilities:
-
-- Missing security headers on GitHub Pages (platform limitation)
-- Publicly visible source code (intentional - open source portfolio)
-- Email address visibility (public contact information)
-- Lack of authentication (static portfolio site, no auth needed)
-
-## Acknowledgments
-
-Security researchers who responsibly disclose vulnerabilities will be acknowledged here (with permission).
-
----
-
-**Last Updated:** February 9, 2026  
-**Contact:** Lorenz Tazan | lorenztazan@gmail.com | [GitHub](https://github.com/AIKUSAN)
+`SECURITY-CHECKLIST.md` is a historical Next.js audit, not current release evidence.

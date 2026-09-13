@@ -1,0 +1,257 @@
+---
+import '@fontsource/barlow-condensed/latin-600.css';
+import '@fontsource/barlow-condensed/latin-700.css';
+import '@fontsource/atkinson-hyperlegible/latin-400.css';
+import '@fontsource/atkinson-hyperlegible/latin-700.css';
+import displayFont from '@fontsource/barlow-condensed/files/barlow-condensed-latin-700-normal.woff2?url';
+import labelFont from '@fontsource/barlow-condensed/files/barlow-condensed-latin-600-normal.woff2?url';
+import bodyFont from '@fontsource/atkinson-hyperlegible/files/atkinson-hyperlegible-latin-400-normal.woff2?url';
+import dataFont from '@fontsource-variable/jetbrains-mono/files/jetbrains-mono-latin-wght-normal.woff2?url';
+import '@fontsource-variable/jetbrains-mono';
+import { ArrowRight, ContactRound, Download, FileText, Mail, Menu, Moon, Sun, X } from '@lucide/astro';
+import '@/styles/global.css';
+
+interface Props {
+  title: string;
+  description: string;
+  currentPath?: string;
+  noindex?: boolean;
+}
+
+const {
+  title,
+  description,
+  currentPath = Astro.url.pathname,
+  noindex = false
+} = Astro.props;
+
+const canonical = new URL(currentPath, Astro.site);
+const navItems = [
+  { href: '/', label: 'Home' },
+  { href: '/work', label: 'Work' },
+  { href: '/experience', label: 'Experience' },
+  { href: '/about', label: 'About' },
+  { href: '/contact', label: 'Contact' }
+];
+
+const personSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: 'Lorenz Tazan',
+  url: 'https://lorenztazan.com',
+  email: 'mailto:lorenztazan@gmail.com',
+  sameAs: ['https://github.com/AIKUSAN'],
+  jobTitle: 'IT Systems & Infrastructure Professional',
+  knowsAbout: ['IT support', 'systems administration', 'network operations', 'infrastructure automation']
+};
+---
+
+<!doctype html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#f1efe5" />
+    <meta name="color-scheme" content="light dark" />
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preload" href={displayFont} as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href={bodyFont} as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href={labelFont} as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href={dataFont} as="font" type="font/woff2" crossorigin />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:site_name" content="Lorenz Tazan — Infrastructure Operations Manual" />
+    <meta name="twitter:card" content="summary" />
+    <title>{title}</title>
+    <script is:inline>
+      (() => {
+        let saved;
+        try { saved = localStorage.getItem('portfolio-theme'); } catch { /* System theme remains available. */ }
+        const preferred = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        const theme = saved === 'dark' || saved === 'light' ? saved : preferred;
+        document.documentElement.dataset.theme = theme;
+        document.querySelector('meta[name="theme-color"]')?.setAttribute('content', theme === 'dark' ? '#0c151c' : '#f1efe5');
+      })();
+    </script>
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(personSchema)} />
+  </head>
+  <body>
+    <!--
+      THESIS: A recruiter reads infrastructure evidence as an inspected operations manual, not as a generic hero-and-card portfolio.
+      OWN-WORLD: Technical vellum or night drafting film, navy rules, oxide annotations, condensed headings, measured mono labels, and square evidence plates.
+      STORY: Identify Lorenz, choose a role lens, inspect provenance-labelled interventions and verified results, then open the matching resume or contact him.
+      FIRST VIEWPORT: A narrow identity rail anchors the left; a large designation and role controls fill center-left; an exploded system plate and evidence readouts dominate the right.
+      FORM: Infrastructure Operations Manual, selected fusion direction, seed fusion-operations-manual.
+      FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, DESIGN.md, and every shipping raster carrying its provenance
+    -->
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <div class="site-frame">
+      <aside class="identity-rail" aria-label="Portfolio identity and primary links">
+        <a class="monogram" href="/" aria-label="LT — Lorenz Tazan home"><span>L</span><span>T</span></a>
+        <div class="rail-name" aria-hidden="true">LORENZ<br />TAZAN</div>
+        <div class="rail-location">
+          <span class="target-mark" aria-hidden="true"></span>
+          <span>OPEN TO OPPORTUNITIES</span>
+        </div>
+        <nav class="rail-actions" aria-label="Direct links">
+          <a href="/resume/lorenz-tazan-systems-cloud.pdf" data-resume-link aria-label="Resume PDF">
+            <FileText aria-hidden="true" size={24} stroke-width={1.5} />
+            <span>Resume</span><b>01</b>
+          </a>
+          <a href="mailto:lorenztazan@gmail.com" aria-label="Email Lorenz Tazan">
+            <Mail aria-hidden="true" size={24} stroke-width={1.5} />
+            <span>Email</span><b>02</b>
+          </a>
+          <a href="https://github.com/AIKUSAN" rel="me" aria-label="GitHub profile">
+            <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-3 19.5v-2.1c-2.4.5-3-1-3-1-.4-1.1-1.1-1.4-1.1-1.4-.9-.6.1-.6.1-.6 1 0 1.5 1 1.5 1 .9 1.5 2.4 1.1 3 .8.1-.7.4-1.1.6-1.4-1.9-.2-3.9-.9-3.9-4.4 0-1 .3-1.8 1-2.5-.1-.2-.4-1.2.1-2.5 0 0 .8-.3 2.7 1a9.4 9.4 0 0 1 5 0c1.9-1.3 2.7-1 2.7-1 .5 1.3.2 2.3.1 2.5.7.7 1 1.5 1 2.5 0 3.5-2 4.2-4 4.4.4.3.7.9.7 1.8v2.8A10 10 0 0 0 12 2z" /></svg>
+            <span>GitHub</span><b>03</b>
+          </a>
+          <a href="/contact" aria-label="Contact Lorenz Tazan">
+            <ContactRound aria-hidden="true" size={24} stroke-width={1.5} />
+            <span>Contact</span><b>04</b>
+          </a>
+        </nav>
+        <div class="rail-stamp" aria-label="Field manual version 1.0">
+          <span>FIELD MANUAL</span>
+          <span>IDENTITY RAIL</span>
+          <span>VERSION 1.0</span>
+          <span>ISSUED 08/2026</span>
+        </div>
+      </aside>
+
+      <div class="manual-body">
+        <header class="site-header">
+          <a class="manual-title" href="/">INFRASTRUCTURE OPERATIONS MANUAL</a>
+          <button class="nav-toggle" type="button" aria-controls="primary-navigation" aria-expanded="false" aria-label="Open menu" hidden>
+            <Menu class="nav-icon-open" aria-hidden="true" size={20} stroke-width={1.5} />
+            <X class="nav-icon-close" aria-hidden="true" size={20} stroke-width={1.5} />
+            <span data-nav-label>Menu</span>
+          </button>
+          <nav id="primary-navigation" aria-label="Primary navigation">
+            {navItems.map((item) => (
+              <a href={item.href} aria-current={currentPath === item.href ? 'page' : undefined}>{item.label}</a>
+            ))}
+          </nav>
+          <button class="theme-toggle" type="button" aria-label="Switch to dark mode" aria-pressed="false">
+            <Sun class="theme-icon theme-icon-light" aria-hidden="true" size={18} stroke-width={1.5} />
+            <Moon class="theme-icon theme-icon-dark" aria-hidden="true" size={18} stroke-width={1.5} />
+            <span>Theme</span>
+          </button>
+        </header>
+        <script is:inline>
+          (() => {
+            const header = document.querySelector('.site-header');
+            const button = header?.querySelector('.nav-toggle');
+            const nav = header?.querySelector('#primary-navigation');
+            const theme = header?.querySelector('.theme-toggle');
+            if (!header || !button || !nav || !theme) return;
+            try {
+              const mobile = matchMedia('(max-width: 620px)');
+              const stacked = matchMedia('(max-width: 1180px)');
+              const label = button.querySelector('[data-nav-label]');
+              let expanded = false;
+              const setExpanded = (value) => {
+                expanded = mobile.matches && value;
+                button.setAttribute('aria-expanded', String(expanded));
+                button.setAttribute('aria-label', expanded ? 'Close menu' : 'Open menu');
+                label.textContent = expanded ? 'Close' : 'Menu';
+                nav.hidden = mobile.matches && !expanded;
+              };
+              const adapt = () => {
+                const active = document.activeElement;
+                // Match the reading order to the header's one- or two-row layout.
+                if (stacked.matches) header.append(nav);
+                else header.insertBefore(nav, theme);
+                button.hidden = !mobile.matches;
+                setExpanded(false);
+                if (mobile.matches && nav.contains(active)) button.focus();
+                if (!mobile.matches && active === button) nav.querySelector('[aria-current="page"]')?.focus();
+                else if (!mobile.matches && nav.contains(active)) active.focus();
+              };
+              button.addEventListener('click', () => setExpanded(!expanded));
+              header.addEventListener('keydown', (event) => {
+                if (event.key !== 'Escape' || !expanded) return;
+                event.preventDefault();
+                setExpanded(false);
+                button.focus();
+              });
+              header.addEventListener('focusout', (event) => {
+                if (event.relatedTarget && !header.contains(event.relatedTarget)) setExpanded(false);
+              });
+              document.addEventListener('click', (event) => {
+                if (!header.contains(event.target)) setExpanded(false);
+              });
+              mobile.addEventListener('change', adapt);
+              stacked.addEventListener('change', adapt);
+              adapt();
+            } catch {
+              // An initialization failure must never remove the navigation.
+              button.hidden = true;
+              nav.hidden = false;
+            }
+          })();
+        </script>
+
+        <main id="main-content"><slot /></main>
+
+        <section class="closing-actions" aria-labelledby="closing-title">
+          <div><h2 id="closing-title">Let’s talk about your team.</h2><p>Open to opportunities in support, systems, networking, and platform operations.</p></div>
+          <div class="closing-links">
+            <a class="button-manual primary" href={currentPath === '/contact' ? 'mailto:lorenztazan@gmail.com' : '/contact'}>{currentPath === '/contact' ? 'Email Lorenz' : 'Get in touch'} <ArrowRight aria-hidden="true" size={20} stroke-width={1.5} /></a>
+            <a class="button-manual" href="/resume/lorenz-tazan-systems-cloud.pdf" data-resume-link><span>View résumé <small data-resume-label>Systems & Cloud · PDF</small></span><Download aria-hidden="true" size={20} stroke-width={1.5} /></a>
+          </div>
+        </section>
+
+        <footer class="site-footer">
+          <span>DOC. NO. LT-IOM-2026-01</span>
+          <span>CLASSIFICATION: PUBLIC</span>
+          <span>REV. A</span>
+        </footer>
+      </div>
+    </div>
+    <p class="sr-only" role="status" aria-live="polite" aria-atomic="true" data-role-status></p>
+    <script>
+      import { bootRoleLenses } from '@/lib/role-controller';
+      bootRoleLenses();
+      document.documentElement.dataset.manualMotion = 'ready';
+
+
+      const openLinkedRecord = () => {
+        let id: string;
+        try { id = decodeURIComponent(location.hash.slice(1)); } catch { return; }
+        const record = document.getElementById(id);
+        const details = record?.querySelector<HTMLDetailsElement>('.record-details');
+        if (details) {
+          details.open = true;
+          record?.scrollIntoView({ block: 'start', behavior: 'instant' });
+        }
+      };
+      openLinkedRecord();
+      window.addEventListener('hashchange', openLinkedRecord);
+      window.addEventListener('popstate', openLinkedRecord);
+
+      const toggle = document.querySelector<HTMLButtonElement>('.theme-toggle');
+      const setToggleState = () => {
+        if (!toggle) return;
+        const dark = document.documentElement.dataset.theme === 'dark';
+        toggle.setAttribute('aria-pressed', String(dark));
+        toggle.setAttribute('aria-label', dark ? 'Switch to light mode' : 'Switch to dark mode');
+      };
+      setToggleState();
+      toggle?.addEventListener('click', () => {
+        const next = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+        document.documentElement.dataset.theme = next;
+        try { localStorage.setItem('portfolio-theme', next); } catch { /* Theme still works for this visit. */ }
+        document.querySelector('meta[name="theme-color"]')?.setAttribute('content', next === 'dark' ? '#0c151c' : '#f1efe5');
+        setToggleState();
+        document.dispatchEvent(new CustomEvent('portfolio:themechange', { detail: { theme: next } }));
+      });
+    </script>
+  </body>
+</html>

@@ -13,9 +13,11 @@
 # testing
 /coverage
 
-# next.js
-/.next/
-/out/
+# Astro and Cloudflare
+/.astro/
+/dist/
+/.wrangler/
+/resume-sources/*.pdf
 
 # production
 /build
@@ -30,15 +32,15 @@ yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
 
-# env files (can opt-in for committing if needed)
+# environment files
 .env*
-
-# vercel
-.vercel
+.dev.vars
 
 # typescript
 *.tsbuildinfo
-next-env.d.ts
+
+# Impeccable local review captures
+.impeccable/review/
 
 # Antigravity Agent State Files
 plan.md

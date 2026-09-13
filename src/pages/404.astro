@@ -1,0 +1,8 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { ArrowRight } from '@lucide/astro';
+---
+
+<BaseLayout title="Not found — Lorenz Tazan" description="The requested portfolio record was not found." currentPath="/404" noindex>
+  <section class="not-found-page"><div><span class="status-code">404</span><h1>Record not found</h1><p>The requested manual plate does not exist.</p><a class="button-manual primary" href="/">Return to identity plate <ArrowRight aria-hidden="true" size={18} stroke-width={1.5} /></a></div></section>
+</BaseLayout>

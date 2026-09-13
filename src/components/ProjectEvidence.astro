@@ -1,0 +1,54 @@
+---
+import { ExternalLink } from '@lucide/astro';
+import type { ProjectEvidence } from '@/types/site';
+import NetworkEvidencePlate from './NetworkEvidencePlate.astro';
+
+interface Props { evidence: ProjectEvidence[]; projectId: string; }
+const { evidence, projectId } = Astro.props;
+const kinds = { source: 'Source code', tests: 'Test cases', configuration: 'Configuration', topology: 'Architecture source', sql: 'Profiling SQL' };
+---
+
+<div class="evidence-register" data-evidence-register>
+  {evidence.map((item, index) => (
+    <figure class:list={['evidence-artifact', { 'evidence-illustrated': !!item.illustration }]} data-evidence-kind={item.kind}>
+      <figcaption>
+        <span class="artifact-kind">{kinds[item.kind]}</span>
+        <h4><a class="inline-icon-link" href={item.sourceUrl} data-evidence-link>{item.label} <ExternalLink aria-hidden="true" size={20} stroke-width={1.5} /></a></h4>
+        <p>{item.caption}</p>
+        <span class="artifact-revision">Pinned source · {item.sourceUrl.split('/blob/')[1]?.slice(0, 7)}</span>
+      </figcaption>
+      {item.illustration === 'regional-network' && <div class="artifact-illustration"><NetworkEvidencePlate /></div>}
+      {item.excerpt && (
+        <div class="artifact-excerpt">
+          <span class="artifact-kind" id={`${projectId}-excerpt-${index}`}>{item.excerpt.language} · source excerpt</span>
+          <pre tabindex="0" aria-labelledby={`${projectId}-excerpt-${index}`}><code>{item.excerpt.text}</code></pre>
+        </div>
+      )}
+    </figure>
+  ))}
+</div>
+
+<style>
+  .evidence-register { display: grid; gap: 1rem; }
+  .evidence-artifact { min-width: 0; margin: 0; border: 1px solid var(--rule-soft); border-left: 2px solid var(--blueprint); }
+  figcaption { min-width: 0; padding: 1rem 1.2rem; }
+  .artifact-kind, .artifact-revision { display: block; color: var(--ink-soft); font: 500 0.75rem/1.5 var(--font-data); }
+  .artifact-kind { text-transform: uppercase; }
+  h4 { margin: 0.2rem 0 0.4rem; font: 600 1.2rem/1.4 var(--font-body); }
+  h4 a { min-height: 44px; color: var(--blueprint); text-underline-offset: 0.25em; }
+  h4 svg { flex: 0 0 auto; }
+  p { max-width: 70ch; margin: 0; font-size: 1rem; line-height: 1.6; }
+  .artifact-revision { margin-top: 0.8rem; }
+  .artifact-illustration { padding: 1rem; background: color-mix(in srgb, var(--blueprint) 4%, transparent); }
+  .artifact-excerpt { min-width: 0; padding: 1rem 1.2rem; border-top: 1px solid var(--rule-soft); background: color-mix(in srgb, var(--blueprint) 4%, transparent); }
+  pre { max-width: 100%; overflow-x: auto; margin: 0.75rem 0 0; padding: 0.25rem 0 0.75rem; color: var(--ink); font: 400 0.8125rem/1.65 var(--font-data); tab-size: 4; }
+  code { font: inherit; }
+  @media (min-width: 900px) {
+    .evidence-illustrated { display: grid; grid-template-columns: minmax(0, 1fr) minmax(240px, 0.8fr); align-items: center; }
+    .artifact-illustration { border-left: 1px solid var(--rule-soft); }
+  }
+  @media (max-width: 619px) {
+    figcaption, .artifact-excerpt { padding: 1rem; }
+    h4 { font-size: 1.1rem; }
+  }
+</style>

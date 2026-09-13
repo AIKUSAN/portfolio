@@ -1,0 +1,11 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { ArrowRight } from '@lucide/astro';
+
+export const prerender = false;
+Astro.response.status = 410;
+---
+
+<BaseLayout title="Blog retired — Lorenz Tazan" description="The previous blog route has been retired." currentPath="/blog" noindex>
+  <section class="gone-page"><div><span class="status-code">410</span><h1>Record retired</h1><p>The previous blog contained no maintained publication record. Continue to the evidence-backed work register.</p><a class="button-manual primary" href="/work">Open work records <ArrowRight aria-hidden="true" size={18} stroke-width={1.5} /></a></div></section>
+</BaseLayout>

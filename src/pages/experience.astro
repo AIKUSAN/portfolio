@@ -1,0 +1,36 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import RoleLens from '@/components/RoleLens.astro';
+import { capabilities, experience } from '@/data/site';
+---
+
+<BaseLayout
+  title="Experience & Capabilities — Lorenz Tazan"
+  description="A factual chronology of IT support, systems, network, deployment, and operational experience."
+  currentPath="/experience"
+>
+  <div class="page-shell">
+    <header class="page-heading">
+      <div>
+        <h1>Experience</h1>
+      </div>
+      <p>10+ years of hands-on IT experience spanning support, network operations, and deployments. Choose a role to highlight the relevant capabilities and résumé, with the full work history below.</p>
+    </header>
+    <div class="page-role-lens"><RoleLens /></div>
+    <section id="capabilities" class="capability-matrix" aria-label="Capabilities by role lens">
+      <div class="capability-column" data-capability-focus="support"><h2>IT Support</h2><span class="capability-selected" data-capability-selected hidden>Selected role</span><ul class="capability-list">{capabilities.support.map(item => <li>{item}</li>)}</ul></div>
+      <div class="capability-column" data-capability-focus="systems" data-focus-match><h2>Systems & Network</h2><span class="capability-selected" data-capability-selected>Selected role</span><ul class="capability-list">{capabilities.systems.map(item => <li>{item}</li>)}</ul></div>
+      <div class="capability-column" data-capability-focus="platform"><h2>Cloud & Platform</h2><span class="capability-selected" data-capability-selected hidden>Selected role</span><ul class="capability-list">{capabilities.platform.map(item => <li>{item}</li>)}</ul></div>
+    </section>
+    <section class="timeline" aria-label="Professional experience timeline">
+      {experience.map((entry) => (
+        <article class="timeline-entry">
+          <time>{entry.period}</time>
+          <header><h2>{entry.role}</h2><p>{entry.organization}</p></header>
+          <ul>{entry.bullets.map((bullet) => <li>{bullet}</li>)}</ul>
+        </article>
+      ))}
+    </section>
+
+  </div>
+</BaseLayout>

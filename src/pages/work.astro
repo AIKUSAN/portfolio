@@ -1,0 +1,25 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import ProjectRecord from '@/components/ProjectRecord.astro';
+import RoleLens from '@/components/RoleLens.astro';
+import { projects } from '@/data/site';
+---
+
+<BaseLayout
+  title="Work Records — Lorenz Tazan"
+  description="Evidence-labelled support, systems, network, automation, and platform work records with clear provenance."
+  currentPath="/work"
+>
+  <div class="page-shell">
+    <header class="page-heading">
+      <div>
+        <h1>Work records</h1>
+      </div>
+      <p>Client work, network operations and independent projects. Choose a role, then open a record to explore my contribution, implementation decisions and supporting work.</p>
+    </header>
+    <div class="page-role-lens"><RoleLens /></div>
+    <section class="records-list" aria-label="Project operation records">
+      {projects.map((project, index) => <ProjectRecord project={project} index={index + 1} />)}
+    </section>
+  </div>
+</BaseLayout>

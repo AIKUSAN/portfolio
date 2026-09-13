@@ -1,0 +1,30 @@
+<svg class="network-evidence-plate" viewBox="0 0 340 430" role="img" aria-labelledby="network-plate-title network-plate-description">
+  <title id="network-plate-title">Simplified regional network architecture</title>
+  <desc id="network-plate-description">A conceptual sequence from upstream connectivity through MikroTik core routing, pfSense policy controls and distribution to subscriber access. This is a simplified reading of the published documentation, not an as-built topology.</desc>
+  <g fill="none" stroke="currentColor" stroke-width="1.5">
+    <path class="plate-trace" d="M170 64v28m0 52v28m0 52v28m0 52v28" />
+    <path class="plate-accent" d="m165 82 5 5 5-5m-10 80 5 5 5-5m-10 80 5 5 5-5m-10 80 5 5 5-5" />
+    <rect x="36" y="12" width="268" height="52" rx="2" />
+    <rect x="36" y="92" width="268" height="52" rx="2" />
+    <rect x="36" y="172" width="268" height="52" rx="2" />
+    <rect x="36" y="252" width="268" height="52" rx="2" />
+    <rect x="36" y="332" width="268" height="52" rx="2" />
+    <path class="plate-trace" d="M20 12H8v372h12M320 12h12v372h-12" stroke-dasharray="3 5" />
+    <circle class="plate-accent" cx="170" cy="411" r="7" />
+    <path class="plate-accent" d="M159 411h22m-11-11v22" />
+  </g>
+  <g fill="currentColor" text-anchor="middle" dominant-baseline="middle">
+    <text x="170" y="38">Upstream connectivity</text>
+    <text x="170" y="118">MikroTik · core routing</text>
+    <text x="170" y="198">pfSense · policy controls</text>
+    <text x="170" y="278">Distribution</text>
+    <text x="170" y="358">Subscriber access</text>
+  </g>
+</svg>
+
+<style>
+  .network-evidence-plate { display: block; width: 100%; max-width: 340px; height: auto; margin-inline: auto; color: var(--ink); }
+  text { font: 18px var(--font-body); }
+  .plate-trace { color: var(--blueprint); }
+  .plate-accent { color: var(--oxide-deep); }
+</style>

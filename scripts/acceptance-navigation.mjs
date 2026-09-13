@@ -143,7 +143,8 @@ export async function verifyPrimaryNavigation(browser, baseUrl, axeSource, revie
     assert(await staticPage.locator('#primary-navigation').isVisible(), 'Fallback lost navigation');
     await staticPage.locator('#primary-navigation').getByRole('link', { name: 'Experience', exact: true }).click();
     await staticPage.waitForLoadState('networkidle');
-    assert.equal(new URL(staticPage.url()).pathname, '/experience', 'Fallback navigation failed');
+    // Worker static assets canonicalize prerendered directories with a trailing slash.
+    assert.match(new URL(staticPage.url()).pathname, /^\/experience\/?$/, 'Fallback navigation failed');
     await fallback.close();
   }
   assert.deepEqual(report.consoleErrors, []);

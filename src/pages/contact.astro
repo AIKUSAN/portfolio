@@ -1,8 +1,11 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import { Mail, Send } from '@lucide/astro';
+import { PUBLIC_TURNSTILE_SITE_KEY } from 'astro:env/client';
+import { resolveTurnstileSiteKey } from '@/lib/turnstile.mjs';
 
-const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY ?? '1x00000000000000000000AA';
+// Hosted builds validate this in npm's prebuild step, before prerendering.
+const turnstileSiteKey = resolveTurnstileSiteKey(PUBLIC_TURNSTILE_SITE_KEY, false);
 ---
 
 <BaseLayout
@@ -67,6 +70,10 @@ const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY ?? '1x0000000
 
     const loadTurnstile = () => {
       if (!slot || document.querySelector('script[data-turnstile-script]')) return;
+      if (!slot.dataset.turnstileSitekey) {
+        showStatus('error', 'Verification could not load. Your message is still here. Please reload when ready or email me directly.');
+        return;
+      }
       const script = document.createElement('script');
       script.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit';
       script.async = true;

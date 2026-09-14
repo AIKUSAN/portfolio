@@ -26,6 +26,8 @@ The user has now authorized the protected-preview launch plan. The `cloudflare-p
 
 Native Workers Builds sets `WORKERS_CI=1`, which enables the real-site-key deployment guard. Never override it to bypass validation, embed dummy keys, or reintroduce the `dummy-key-pass` hostname. Contact tests must mock external services and send no messages. The runtime secret is never a public build variable.
 
+The first native build succeeded on 2026-09-13 local time. The real Worker now has per-Worker **All traffic** Access protection with **Cloudflare account members — Allow**, confirmed before the reviewed URL-enablement change. Preserve that external Access application when deploying; Wrangler's URL flags do not provide authentication themselves. The narrow `portfolio-workers-builds` token is registered and working; do not repeat token creation or registration. Gmail destination status is verified, but this does not authorize mail DNS changes or a real contact send. Consult the latest hosted-bootstrap record in `DEPLOYMENT.md` before using historical preparation notes.
+
 ## Dependency maintenance
 
 Scheduled Dependabot version-update PRs and automatic security-update PRs are disabled by user choice. Keep vulnerability alerts, dependency visibility, secret scanning, CodeQL, and CI dependency audits enabled. Do not reintroduce Dependabot configuration or weaken required checks without approval. The twelve legacy update PRs were closed without merging; their branches and discussions remain preserved, and closure is not evidence that a vulnerability was fixed.

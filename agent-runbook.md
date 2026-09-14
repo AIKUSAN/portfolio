@@ -30,6 +30,12 @@ The first native build succeeded on 2026-09-13 local time. The real Worker now h
 
 The latest domain-launch checkpoint records the completed single-record SPF repair and the unresolved Cloudflare One onboarding/custom-domain DNS conflict. Do not repeat token setup or assume an exact-hostname Access application exists. Keep domain attachment, redirects, and Access dashboard-managed; omit Wrangler route declarations and preserve the existing narrow token. Stop for required onboarding, destructive DNS confirmation, contact-send approval, and public-cutover confirmation rather than bypassing those gates.
 
+## Security and metadata verification
+
+Use the user's selected Codex Security workflow, not Claude Code or the removed security-guidance plugin. Keep private scan artifacts outside this temporarily public repository. A completed source scan is not certification of hosted Access, mail delivery or domain readiness. Preserve scan evidence and test the actual-byte contact boundary before public cutover. Test both form encodings, missing/understated size headers, cancellation and legitimate submissions with external services mocked.
+
+Keep metadata in initial HTML, truthful and canonical: Person plus Home WebSite, About ProfilePage and Contact ContactPage. Do not add unsupported ratings, jobs, location, dates or social accounts. Run the CSP-enabled local security/schema smoke script in addition to presentation acceptance; never treat a bypassCSP browser context as policy enforcement evidence.
+
 ## Dependency maintenance
 
 Scheduled Dependabot version-update PRs and automatic security-update PRs are disabled by user choice. Keep vulnerability alerts, dependency visibility, secret scanning, CodeQL, and CI dependency audits enabled. Do not reintroduce Dependabot configuration or weaken required checks without approval. The twelve legacy update PRs were closed without merging; their branches and discussions remain preserved, and closure is not evidence that a vulnerability was fixed.

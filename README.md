@@ -7,7 +7,7 @@ An evidence-led portfolio for IT support, systems, network, infrastructure, and 
 - Astro with strict TypeScript
 - Cloudflare Workers adapter
 - Prerendered public pages with a lazy-loaded Three.js rack inspector on Home
-- One Worker boundary at `POST /api/contact`
+- One Worker serving `POST /api/contact` and the retired `/blog` 410 response
 - Cloudflare Turnstile and a restricted Email Service binding
 - No database, Supabase, CMS, authentication, analytics, R2, D1, or remote image dependency
 
@@ -71,6 +71,12 @@ npm run test:browser
 
 The browser suite checks role URLs, both themes at 375/768/1440 widths, rack selection and rotation, assembly/reset, keyboard controls, reduced-motion opt-in, WebGL initialization/context-loss fallbacks, horizontal overflow, no-JavaScript readability, axe WCAG rules, redirects, the 410 response, and both résumé downloads. To test the production Worker locally, run `npm run build`, start `npm run preview -- --port 4331`, then run `PORTFOLIO_TEST_URL=http://127.0.0.1:4331 npm run test:browser`.
 
+`scripts/acceptance-security-schema.mjs` adds local-only Chromium, Firefox and WebKit smoke checks with CSP enforcement enabled. Start Wrangler with `--local-protocol https`, set `PORTFOLIO_TEST_URL` to the HTTPS loopback Worker and `PORTFOLIO_REVIEW_DIR` to an external review directory. HTTPS lets WebKit honor `upgrade-insecure-requests`; the runner accepts only this local development certificate and does not certify hosted TLS. It checks effective static/dynamic response headers, canonical JSON-LD, themes, reflow and axe; Turnstile is fixture-only and no contact is submitted. Install the test browser binaries separately if they are unavailable.
+
+## Structured data
+
+Initial HTML contains Schema.org JSON-LD from `src/lib/structured-data.ts`: the approved Person, a Home-only WebSite, About ProfilePage and Contact ContactPage. Stable entity IDs and canonical URLs exclude role query parameters. Retired/noindex pages emit no schema. Serialization escapes HTML script delimiters. No new career claims, ratings, review counts, location, LinkedIn profile, search action or visitor JavaScript are added. Structured data does not guarantee rankings or rich results.
+
 ## 3D rack inspector
 
 The homepage rack is procedural WebGL geometry, not clipped image layers. `src/lib/rack-model.ts` owns the four equipment groups and shared geometry/materials; `rack-scene.ts` owns rendering, raycasting and camera controls; `rack-controller.ts` progressively enhances the existing Astro picture and HTML buttons.
@@ -85,6 +91,8 @@ The homepage rack is procedural WebGL geometry, not clipped image layers. `src/l
 ## Contact boundary
 
 `POST /api/contact` accepts `name`, `email`, `message`, optional `focus`, the Turnstile token, and an invisible honeypot. It enforces input limits, exact same-origin requests, Turnstile action/hostname verification, HTML escaping, and generic public responses. Messages are sent only through the `EMAIL` binding to the configured verified destination and are never stored.
+
+The handler caps actual encoded body bytes at 12,000 before form parsing, including ignored fields and multipart overhead. Content-Length is only an early rejection hint. Overflow, read failures and parse failures retain generic `400` responses; valid multipart and URL-encoded inputs retain their existing behavior. Dynamic route headers match `public/_headers` through a tested policy module; framework-generated responses still require separate hosted verification.
 
 Native Workers Builds requires a real `PUBLIC_TURNSTILE_SITE_KEY` at build time. `PORTFOLIO_DEPLOYMENT_CHECK=1 npm run build` runs that same deployment check locally. The runtime `TURNSTILE_SECRET_KEY` is separate and must be configured in Worker secrets, never public build variables. Missing or dummy secrets fail closed with the existing generic failure response; an ordinary successful local/PR build does not certify contact readiness.
 

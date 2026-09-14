@@ -55,6 +55,8 @@ const checks = [
   { name: 'cross-origin', expected: 403, origin: 'https://example.com' },
   { name: 'invalid-input', expected: 400, fields: { message: 'short' } },
   { name: 'oversized-input', expected: 400, fields: { message: 'x'.repeat(13_000) } },
+  { name: 'streamed-ignored-overflow', expected: 400, streamed: true, fields: { ignored: 'x'.repeat(12_001) } },
+  { name: 'streamed-valid-form', expected: 500, streamed: true },
   { name: 'honeypot', expected: 200, fields: { website: 'bot.example.com' } },
   { name: 'unsupported-method', expected: 405, method: 'GET' }
 ];
@@ -66,13 +68,16 @@ const checks = [
 for (const check of checks) {
   await withLocalWorker(async baseUrl => {
     const method = check.method ?? 'POST';
+    const body = check.streamed ? new Request(`${baseUrl}/api/contact`, { method, body: form(check.fields) }) : null;
     const response = await fetch(`${baseUrl}/api/contact`, {
-      method, headers: { origin: check.origin ?? baseUrl },
-      ...(method === 'POST' ? { body: form(check.fields) } : {}), redirect: 'manual'
+      method, headers: { origin: check.origin ?? baseUrl, ...(body ? { 'content-type': body.headers.get('content-type') } : {}) },
+      ...(method === 'POST' ? { body: body?.body ?? form(check.fields), ...(body ? { duplex: 'half' } : {}) } : {}), redirect: 'manual'
     });
     assert.equal(response.status, check.expected, check.name);
     // Astro can reject cross-origin requests before our JSON handler runs.
     if (check.name === 'cross-origin') { await response.body?.cancel(); return; }
+    assert.equal(response.headers.get('x-content-type-options'), 'nosniff', check.name);
+    assert.match(response.headers.get('content-security-policy') ?? '', /frame-ancestors 'none'/, check.name);
     if (method === 'GET') {
       assert.equal(response.headers.get('allow'), 'POST');
       await response.body?.cancel();
@@ -84,4 +89,4 @@ for (const check of checks) {
   });
   console.log(`Local Worker: ${check.name} passed.`);
 }
-console.log('6 isolated contact contract checks passed; fixture secret forced; no messages sent.');
+console.log(`${checks.length} isolated contact contract checks passed; fixture secret forced; no messages sent.`);

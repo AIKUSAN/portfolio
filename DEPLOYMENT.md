@@ -2,6 +2,14 @@
 
 ## Current state
 
+### Security and schema release preparation — 2026-09-14 UTC
+
+The source checkpoint for this change is `7f376c60de729acb21b681aaf5ca5badc8f56513`. Its active deployment was confirmed by personal-account MCP as Worker version `9afc8464-98fd-448a-9072-ae1caf4f81a0`, deployment `e5788f71-c120-4801-9a3c-c6de293dbd85`. These remain rollback identifiers, not an assertion that a later build uses them.
+
+Codex Security source review identified a pre-parser contact body-budget issue. The change enforces actual streamed bytes before parsing, preserves the existing response contract and adds focused regression tests. Dynamic route security headers now mirror the existing static policy. Schema metadata adds only truthful page/entity descriptions and safe script-context serialization. Cross-browser checks also exposed stale inherited text colors after WebKit theme switches; explicit bindings to the existing tokens correct record headings/results and résumé sublabels, including hover. The approved palette/layout, résumé PDFs, role mapping and contact delivery configuration are unchanged. Private scan and review artifacts are retained outside Git with the source checkpoint.
+
+Required release evidence includes unit/type/build checks, isolated Worker fixtures, dependency audit, deployment dry run, browser regressions, and the CSP-enabled Chromium/Firefox/WebKit schema/header smoke checks. Those tests are local fixtures, not proof of inbox delivery. Public cutover still requires Cloudflare One onboarding, the exact-hostname preview protection, protected custom-domain acceptance, an approved contact smoke test and explicit public-release confirmation. This source change does not alter DNS, Access, deployment-token scope or repository visibility.
+
 ### Domain-launch preparation — 2026-09-13 (2026-09-14 UTC)
 
 The current approved application was verified from `main` at `d1d20a1b85f361f61a2f59599af4b3db80ec0af6`. Native build `4f660af8-75fb-435a-aa85-bbf6c5d04611` produced Worker version `b32e4824-ae11-491d-a8f1-89aabcb11a7d`. A rollback to `90a612d5-13ed-47c0-82d7-dfd5bd1de171` and restoration were exercised; deployment `0f59cf2c-4c0f-45c5-a300-bbc9e56a55e6` restores the approved version at 100%. These are checkpoint IDs, not a claim that later deployments have these same IDs.

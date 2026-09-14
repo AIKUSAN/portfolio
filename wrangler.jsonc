@@ -2,9 +2,10 @@
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "lorenztazan-portfolio",
   "account_id": "ab8306e92557d6b7fcfd56774bb9c2e5",
-  // Bootstrap without public routes; enable only after preview access is protected.
-  "workers_dev": false,
-  "preview_urls": false,
+  // Per-Worker Access was verified for all traffic before enabling these URLs.
+  // Keep the personal-account-members policy attached; no custom domain yet.
+  "workers_dev": true,
+  "preview_urls": true,
   "compatibility_date": "2026-08-30",
   "compatibility_flags": ["nodejs_compat"],
   "observability": {

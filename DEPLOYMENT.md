@@ -2,6 +2,21 @@
 
 ## Current state
 
+### Domain-launch preparation — 2026-09-13 (2026-09-14 UTC)
+
+The current approved application was verified from `main` at `d1d20a1b85f361f61a2f59599af4b3db80ec0af6`. Native build `4f660af8-75fb-435a-aa85-bbf6c5d04611` produced Worker version `b32e4824-ae11-491d-a8f1-89aabcb11a7d`. A rollback to `90a612d5-13ed-47c0-82d7-dfd5bd1de171` and restoration were exercised; deployment `0f59cf2c-4c0f-45c5-a300-bbc9e56a55e6` restores the approved version at 100%. These are checkpoint IDs, not a claim that later deployments have these same IDs.
+
+The user approved preparing `lorenztazan.com` as a Worker Custom Domain behind **All traffic** Access, followed by a separately confirmed public release. This authorization includes only the specified legacy apex/www DNS replacement and the SPF repair; it does not authorize PTC changes, paid services, repository privatization, a Pages project, or a real contact send.
+
+- All 14 DNS records, active deployment IDs, the existing Access application/policy, and the redirect-rule inventory were recorded outside Git before changes. Retain the local `Portfolio Migration Backups/domain-launch-g32MOt` checkpoint through at least seven days after actual cutover.
+- The existing single apex SPF record was updated in place from `v=spf1 -all` to `v=spf1 include:_spf.mx.cloudflare.net ~all`. The authoritative Cloudflare nameserver returns the new value. Email Routing shows Enabled; Settings shows the correct SPF without missing/conflicting records. MX, DKIM, strict DMARC, Google verification, and GitHub verification were preserved. A healthy DNS display is not proof of delivered email.
+- The custom-domain wizard rejected attachment because the four legacy GitHub Pages A records still exist. No custom domain was attached and none of those records was deleted. Confirm the exact four-record removal at the destructive browser step, then retry attachment while **All traffic** remains active.
+- The personal account's Cloudflare One Applications screen requires an active plan. Its plan page offers **Zero Trust Free, $0/seat/month** and a setup sequence including payment details and review. User participation is required for onboarding or agreement acceptance. No plan was activated. The existing per-Worker Access protection remains in place, but the additional exact-hostname application has not been created.
+- The existing `www` CNAME remains unchanged; its proposed conversion to an originless proxied A record was cancelled. No redirect rule was submitted.
+- Fresh local checks passed: 72 unit tests, Astro check (47 files; zero errors/warnings/hints), guarded production build, six isolated Worker fixtures, dependency audit (zero vulnerabilities), and Wrangler deployment dry run. Browser/performance results and real hosted contact acceptance must be recorded separately; a local build is not public launch approval.
+
+The sections below retain historical migration evidence. This domain-launch record and the controlled-cutover procedure supersede older instructions implying automatic privatization or that all DNS records are still unchanged.
+
 The sole portfolio repository is `AIKUSAN/portfolio` (repository ID `1154119236`). On 2026-09-13 the user superseded the separate-repository strategy and authorized an in-place replacement with the approved Astro source at `130a375a8726561e3916e0b912139229859ca03d`, preserving history through a normal integration branch and PR. The extra `AIKUSAN/portfolio-astro` (ID `1368189361`) was deleted through the authenticated Chrome interface after verified backups. Do not recreate it or formally archive the original repository. The first native Cloudflare build has succeeded; protected hosted acceptance and domain cutover remain pending.
 
 ### Hosted bootstrap verified on 2026-09-13 (2026-09-14 UTC)
@@ -150,16 +165,19 @@ No production action below is authorized merely by completing the preview.
 
 ## 6. Controlled cutover
 
-After explicit approval:
+Private preparation and public release are separate stages:
 
-1. Reinspect and record the exact apex/www DNS records (including proxy state). Preserve the pre-retirement Pages configuration and legacy source backups; Pages is no longer a live fallback.
-2. Confirm GitHub Pages and its legacy publishing workflow remain disabled. Astro source should already be merged in the original repository; do not restore the old site as a cutover prerequisite.
-3. Confirm the original repository's Cloudflare production build and active Worker version, then approve its public audience.
-4. Attach `lorenztazan.com` to the Worker using the reviewed DNS change set. Resolve any conflicting legacy DNS records deliberately; do not overwrite mail records.
-5. Configure `www.lorenztazan.com` to redirect to the apex domain.
-6. Verify DNS, TLS, canonical URLs, contact delivery, security headers, and both résumé downloads.
-7. After confirming the custom domain serves the approved Astro release, reconfirm that Pages and its repository custom-domain association remain disabled, then make the same `AIKUSAN/portfolio` repository private. Confirm it remains editable, not archived. Preserve the account-level verified domain and TXT record.
-8. Trigger a harmless follow-up Cloudflare build and verify the Git integration can still read the private repository. Retain source mirrors, the legacy tag, and DNS/Pages records through at least seven days after cutover. Do not change visibility or settings of any public evidence repository.
+1. Reinspect and record all DNS records, Worker versions, Access policies, and redirect rules. Preserve the pre-retirement Pages configuration and legacy source backups; Pages is no longer a live fallback. Keep GitHub Pages and its legacy workflow disabled.
+2. Complete any required Cloudflare One **Free** onboarding with the user. Create an exact-hostname self-hosted Access application for `lorenztazan-portfolio.lorenztazan.workers.dev`, using the existing personal-account-members policy. Do not add Everyone, account-wide bypasses, or additional recipients.
+3. Keep per-Worker **All traffic** Access during custom-domain attachment. Remove only the four verified apex A records for `185.199.108.153`, `185.199.109.153`, `185.199.110.153`, and `185.199.111.153`, then attach `lorenztazan.com` through the Worker's **Domains → Add Domain** dashboard flow. Let Cloudflare manage DNS and TLS. Do not touch mail or ownership-verification records.
+4. Replace the legacy `www` CNAME with a proxied A record targeting `192.0.2.0`. Configure one Single Redirect with exact match `(http.host eq "www.lorenztazan.com")`, dynamic target `concat("https://lorenztazan.com", http.request.uri.path)`, status **301**, and **Preserve query string** enabled. This rule must not match the apex or unrelated hostnames.
+5. Verify the protected custom domain, valid HTTPS, five routes, role queries, résumé files, contact failures, and anonymous denial on stable/version Worker URLs. A real inbox smoke test requires separate approval and confirmed receipt, including the fixed sender and visitor Reply-To. Do not solve a Turnstile challenge or send a message without the required confirmation.
+6. Present acceptance results and obtain explicit public-cutover confirmation, including any unresolved acceptance exception. Only then change per-Worker Access from **All traffic** to **Previews only**. The exact-hostname application must continue protecting the stable Worker URL. Immediately test anonymous public access on the apex, correct www path/query redirects, and anonymous denial on stable and version-preview Worker URLs. If preview protection fails, immediately restore **All traffic**.
+7. Trigger a harmless reviewed native Git build and verify it preserves dashboard-managed custom-domain attachment and Access. Record the new commit/build/version/deployment IDs. Retain snapshots and rollback records for at least seven days after cutover.
+
+**Dashboard ownership:** omit route and custom-domain declarations from `wrangler.jsonc`. Domain attachment, redirect rules, and Access are externally managed Cloudflare resources. The installed Wrangler 4.131.1 deploy path does not publish custom domains when none are declared; verify this behavior after upgrades and with the follow-up native build. Do not add DNS, zone-route, storage, or PTC permissions to the working build token.
+
+Repository visibility remains unchanged during this launch. Any later privatization of the same `AIKUSAN/portfolio` repository requires separate approval and a private-repository native-build verification; never privatize or modify public evidence repositories as a side effect.
 
 Vercel is not part of the verified current hosting path, so no Vercel changes are required for this migration.
 
@@ -178,3 +196,7 @@ After cutover and privatization, use a previously tested Cloudflare Worker versi
 - [Email Service send bindings](https://developers.cloudflare.com/email-service/configuration/send-bindings/)
 - [Email routing destinations](https://developers.cloudflare.com/email-service/configuration/email-routing-addresses/)
 - [Email Service pricing](https://developers.cloudflare.com/email-service/platform/pricing/)
+- [Email DNS troubleshooting](https://developers.cloudflare.com/email-service/reference/troubleshooting/)
+- [Worker Custom Domains](https://developers.cloudflare.com/workers/configuration/routing/custom-domains/)
+- [Per-Worker Cloudflare Access](https://developers.cloudflare.com/workers/configuration/cloudflare-access/)
+- [Redirect a domain](https://developers.cloudflare.com/fundamentals/manage-domains/redirect-domain/)

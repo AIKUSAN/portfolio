@@ -59,6 +59,15 @@ for (const [name, engine] of Object.entries({ chromium, firefox, webkit })) {
         for (const theme of ['dark', 'light']) {
           await page.getByRole('button', { name: `Switch to ${theme} mode` }).click();
           assert.equal(await page.locator('html').getAttribute('data-theme'), theme);
+          await page.evaluate(() => new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve))));
+          // Assert inherited foregrounds have caught up with the changed theme.
+          // Attribute mutation alone can precede descendant style invalidation.
+          await page.waitForFunction(() => {
+            const selectors = '[data-nav-label], .theme-toggle > span, .button-manual > span, .record-links a, .tech-list li';
+            return [...document.querySelectorAll(selectors)].every(element =>
+              getComputedStyle(element).color === getComputedStyle(element.parentElement).color
+            );
+          }, undefined, { timeout: 5000 });
           const violations = await page.evaluate(async () => (await axe.run(document, {
             runOnly: { type: 'tag', values: ['wcag2a', 'wcag2aa', 'wcag21aa', 'wcag22aa'] }
           })).violations.map(item => ({ id: item.id, targets: item.nodes.map(node => node.target) })));

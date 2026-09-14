@@ -1,9 +1,46 @@
 import { contactEmailContent, isSameOrigin, validateContactForm } from '@/lib/contact';
 import { isConfiguredTurnstileKey } from '@/lib/turnstile.mjs';
+import { securityHeaders } from '@/lib/security-headers';
+
+const MAX_CONTACT_BODY_BYTES = 12_000;
+
+async function readContactForm(request: Request): Promise<FormData> {
+  const contentLength = Number(request.headers.get('content-length') ?? 0);
+  if (contentLength > MAX_CONTACT_BODY_BYTES) {
+    void request.body?.cancel().catch(() => {});
+    throw new Error('Invalid contact body');
+  }
+  if (!request.body) throw new Error('Invalid contact body');
+
+  // Bound retained bytes, including multipart overhead and ignored fields,
+  // before giving any data to the native form parser.
+  const bytes = new Uint8Array(MAX_CONTACT_BODY_BYTES);
+  const reader = request.body.getReader();
+  let size = 0;
+  try {
+    while (true) {
+      const { done, value } = await reader.read();
+      if (done) break;
+      if (value.byteLength > MAX_CONTACT_BODY_BYTES - size) {
+        void reader.cancel().catch(() => {});
+        throw new Error('Invalid contact body');
+      }
+      bytes.set(value, size);
+      size += value.byteLength;
+    }
+  } finally {
+    reader.releaseLock();
+  }
+
+  return new Response(bytes.subarray(0, size), {
+    headers: { 'content-type': request.headers.get('content-type') ?? '' }
+  }).formData();
+}
 
 const json = (body: { ok: boolean }, status: number) => new Response(JSON.stringify(body), {
   status,
   headers: {
+    ...securityHeaders,
     'content-type': 'application/json; charset=utf-8',
     'cache-control': 'no-store'
   }
@@ -12,12 +49,9 @@ const json = (body: { ok: boolean }, status: number) => new Response(JSON.string
 export const handleContact = async (request: Request, env: PortfolioEnv): Promise<Response> => {
   if (!isSameOrigin(request)) return json({ ok: false }, 403);
 
-  const contentLength = Number(request.headers.get('content-length') ?? 0);
-  if (contentLength > 12_000) return json({ ok: false }, 400);
-
   let form: FormData;
   try {
-    form = await request.formData();
+    form = await readContactForm(request);
   } catch {
     return json({ ok: false }, 400);
   }

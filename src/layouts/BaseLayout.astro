@@ -10,6 +10,7 @@ import dataFont from '@fontsource-variable/jetbrains-mono/files/jetbrains-mono-l
 import '@fontsource-variable/jetbrains-mono';
 import { ArrowRight, ContactRound, Download, FileText, Mail, Menu, Moon, Sun, X } from '@lucide/astro';
 import '@/styles/global.css';
+import { portfolioStructuredData, serializeStructuredData } from '@/lib/structured-data';
 
 interface Props {
   title: string;
@@ -34,16 +35,7 @@ const navItems = [
   { href: '/contact', label: 'Contact' }
 ];
 
-const personSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'Person',
-  name: 'Lorenz Tazan',
-  url: 'https://lorenztazan.com',
-  email: 'mailto:lorenztazan@gmail.com',
-  sameAs: ['https://github.com/AIKUSAN'],
-  jobTitle: 'IT Systems & Infrastructure Professional',
-  knowsAbout: ['IT support', 'systems administration', 'network operations', 'infrastructure automation']
-};
+const structuredData = portfolioStructuredData(currentPath, title, description, noindex);
 ---
 
 <!doctype html>
@@ -79,7 +71,7 @@ const personSchema = {
         document.querySelector('meta[name="theme-color"]')?.setAttribute('content', theme === 'dark' ? '#0c151c' : '#f1efe5');
       })();
     </script>
-    <script is:inline type="application/ld+json" set:html={JSON.stringify(personSchema)} />
+    {structuredData && <script is:inline type="application/ld+json" set:html={serializeStructuredData(structuredData)} />}
   </head>
   <body>
     <!--

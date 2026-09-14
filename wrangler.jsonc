@@ -3,7 +3,7 @@
   "name": "lorenztazan-portfolio",
   "account_id": "ab8306e92557d6b7fcfd56774bb9c2e5",
   // Per-Worker Access was verified for all traffic before enabling these URLs.
-  // Keep the personal-account-members policy attached; no custom domain yet.
+  // Keep account-members Access attached; custom domain and redirects are dashboard-managed.
   "workers_dev": true,
   "preview_urls": true,
   "compatibility_date": "2026-08-30",

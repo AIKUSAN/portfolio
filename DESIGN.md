@@ -82,6 +82,12 @@ components:
 
 ## Approved UI refinement — September 2026
 
+### Recruiter footer and contact answers
+
+The closing résumé/contact action remains primary. Below it, the shared footer reuses the five-route navigation and adds compact Connect and Information groups, followed by a copyright and document-revision strip. Meaningful footer labels are at least 12px; links use 16px body type and 44px targets. The groups wrap or stack in document order without introducing a second mobile-menu controller.
+
+Contact's “For hiring teams” section uses four independent native disclosures: role interests, explicit résumé-track choices, project provenance, and contact channels. The two explicit PDF links are not role-controlled. The form has a visible, associated contact privacy note describing Turnstile verification and forwarding through Cloudflare to Gmail, without retention or compliance promises. Footer deep links retain the selected role and their anchors. These sections are static HTML; no FAQ schema, new JavaScript, tracking, page, or backend is introduced. The generated Impeccable sidecar remains untouched.
+
 ### Impeccable usability follow-up
 
 The mobile header uses a labeled Menu / Close disclosure at 620px and below, next to the theme control. Its five links open in document flow as full-width 48px rows with a clear current-page state. Escape returns focus to the menu button; leaving the header closes the disclosure. Navigation DOM order follows the rendered header rows across breakpoints. Initialization is synchronous before the page content; without JavaScript or if enhancement fails, all links remain visible. Tablet and desktop navigation retain their existing presentation. No framework or animation dependency is added.

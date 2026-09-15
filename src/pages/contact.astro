@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
+import HiringFaq from '@/components/HiringFaq.astro';
 import { Mail, Send } from '@lucide/astro';
 import { PUBLIC_TURNSTILE_SITE_KEY } from 'astro:env/client';
 import { resolveTurnstileSiteKey } from '@/lib/turnstile.mjs';
@@ -23,12 +24,15 @@ const turnstileSiteKey = resolveTurnstileSiteKey(PUBLIC_TURNSTILE_SITE_KEY, fals
     <a class="contact-email inline-icon-link" href="mailto:lorenztazan@gmail.com"><Mail aria-hidden="true" size={20} stroke-width={1.5} />lorenztazan@gmail.com</a>
 
     <div class="contact-grid">
-      <form class="contact-form" action="/api/contact" method="post" data-contact-form>
+      <form id="contact-form" class="contact-form" action="/api/contact" method="post" aria-label="Contact Lorenz" aria-describedby="contact-privacy-text" data-contact-form>
         <div class="form-field"><label for="name">Name</label><input id="name" name="name" autocomplete="name" required minlength="2" maxlength="80" placeholder="Your name" /></div>
         <div class="form-field"><label for="email">Email address</label><input id="email" name="email" type="email" autocomplete="email" required maxlength="254" placeholder="you@company.com" /></div>
         <div class="form-field"><label for="focus">Role focus <span>(optional)</span></label><select id="focus" name="focus" aria-describedby="focus-help"><option value="">Not specified</option><option value="support">IT Support / Service Desk</option><option value="systems">Systems / Network</option><option value="platform">Cloud / Platform</option></select><p id="focus-help" class="form-help">Based on your selected role. You can change it here.</p></div>
         <div class="form-field"><label for="message">Message</label><textarea id="message" name="message" required minlength="20" maxlength="4000" aria-describedby="message-help" placeholder="Tell me about the role, team, and what you need help operating."></textarea><p id="message-help" class="form-help">20–4,000 characters. Please do not include sensitive credentials or personal records.</p></div>
         <div class="honeypot" aria-hidden="true"><label for="website">Website</label><input id="website" name="website" tabindex="-1" autocomplete="off" /></div>
+        <div id="contact-privacy" class="contact-privacy" role="note">
+          <p id="contact-privacy-text"><strong>Contact privacy.</strong> Cloudflare Turnstile provides spam verification. Your name, email, optional role focus, and message are forwarded through Cloudflare to my Gmail inbox. Please do not include passwords, API keys, or sensitive personal records.</p>
+        </div>
         <div class="turnstile-slot" data-turnstile-sitekey={turnstileSiteKey} role="group" aria-label="Spam protection verification"></div>
         <p class="form-status" role="status" aria-live="polite" data-form-status></p>
         <a class="form-recovery inline-icon-link" href="mailto:lorenztazan@gmail.com" data-form-recovery hidden><Mail aria-hidden="true" size={20} stroke-width={1.5} />Email Lorenz instead</a>
@@ -46,6 +50,7 @@ const turnstileSiteKey = resolveTurnstileSiteKey(PUBLIC_TURNSTILE_SITE_KEY, fals
         </div>
       </aside>
     </div>
+    <HiringFaq />
   </div>
   <script>
     import { resolveFocus } from '@/lib/role-focus';

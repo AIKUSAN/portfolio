@@ -37,4 +37,12 @@ describe('role journeys', () => {
     expect(orderByFocus(items, 'support', item => item.focus).map(item => item.id)).toEqual(['b', 'c', 'a']);
     expect(items.map(item => item.id)).toEqual(['a', 'b', 'c']);
   });
+  it.each(['support', 'systems', 'platform'] as const)('preserves footer anchors and explicit resume choices for %s', focus => {
+    for (const anchor of ['hiring-faq', 'contact-privacy']) {
+      expect(withRoleFocus(`/contact?focus=systems#${anchor}`, focus)).toBe(`/contact?focus=${focus}#${anchor}`);
+    }
+    for (const href of ['/resume/lorenz-tazan-it-support.pdf', '/resume/lorenz-tazan-systems-cloud.pdf', '#contact-form']) {
+      expect(withRoleFocus(href, focus)).toBe(href);
+    }
+  });
 });

@@ -10,6 +10,7 @@ import dataFont from '@fontsource-variable/jetbrains-mono/files/jetbrains-mono-l
 import '@fontsource-variable/jetbrains-mono';
 import { ArrowRight, ContactRound, Download, FileText, Mail, Menu, Moon, Sun, X } from '@lucide/astro';
 import '@/styles/global.css';
+import SiteFooter from '@/components/SiteFooter.astro';
 import { portfolioStructuredData, serializeStructuredData } from '@/lib/structured-data';
 
 interface Props {
@@ -200,11 +201,7 @@ const structuredData = portfolioStructuredData(currentPath, title, description, 
           </div>
         </section>
 
-        <footer class="site-footer">
-          <span>DOC. NO. LT-IOM-2026-01</span>
-          <span>CLASSIFICATION: PUBLIC</span>
-          <span>REV. A</span>
-        </footer>
+        <SiteFooter navItems={navItems} currentPath={currentPath} />
       </div>
     </div>
     <p class="sr-only" role="status" aria-live="polite" aria-atomic="true" data-role-status></p>

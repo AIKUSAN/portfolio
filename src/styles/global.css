@@ -1221,6 +1221,38 @@ main {
   caret-color: var(--oxide-deep);
 }
 
+.select-field { position: relative; min-width: 0; }
+.select-field select {
+  appearance: none;
+  -webkit-appearance: none;
+  color-scheme: light;
+  min-height: 48px;
+  padding-inline-end: 3.5rem;
+  background: var(--paper-raised);
+  font-size: 1rem;
+  cursor: pointer;
+}
+:root[data-theme='dark'] .select-field select { color-scheme: dark; }
+.select-field option { color: var(--ink); background: var(--paper-raised); }
+.select-indicator {
+  position: absolute;
+  inset-block: 1px;
+  inset-inline-end: 1px;
+  width: 44px;
+  display: grid;
+  place-items: center;
+  border-inline-start: 1px solid var(--rule-soft);
+  color: var(--blueprint);
+  pointer-events: none;
+}
+.select-field select:hover { border-color: var(--blueprint); }
+.select-field:focus-within .select-indicator { color: var(--oxide-deep); }
+.select-field select:open + .select-indicator svg { transform: rotate(180deg); }
+@media (forced-colors: active) {
+  .select-field select { appearance: auto; -webkit-appearance: auto; padding-inline-end: 0.75rem; }
+  .select-indicator { display: none; }
+}
+
 .form-field textarea {
   min-height: 190px;
   resize: vertical;

@@ -2,7 +2,20 @@
 
 ## Current state
 
-### Protected custom domain connected — 2026-09-14 UTC
+### Public launch — 2026-09-20 UTC
+
+After final user confirmation, `https://lorenztazan.com` is public. This section supersedes the protected-launch gates in the historical checkpoints below. The launch release is `main` at `4bcb246ea5e25a9c44b331c44474137ba30ec605`, native build `a85fc6d5-ec0a-453d-9f67-38233283c70b`, Worker version `747fd924-4f6c-4bc4-ac7d-68215d7ab4a4`, deployment `21c38e46-6e9f-4e22-be85-38a23a7d6875` at 100%. Subsequent documentation-only builds have separate IDs recorded in the external launch checkpoint.
+
+- Worker-managed Access application `01621fd7-ec49-4216-b214-c946955eec08` is **Previews only**, retaining the personal-account-members policy. Exact-hostname application `232b22e7-4bc1-453c-832f-335cae529f09` continues protecting `lorenztazan-portfolio.lorenztazan.workers.dev`. No bypass policy was added.
+- Anonymous HTTPS checks returned 200 for all five public pages and both unchanged résumé PDFs; stable and version-preview Worker URLs returned Access login redirects for both root and a direct static asset. Legacy redirects, custom 404, `/blog` 410, robots/sitemap and malformed contact rejection passed. `www` preserves paths and query strings with a 301.
+- Public Home/Contact browser checks at 375, 768 and 1440px in light/dark themes passed without overflow or axe violations. Prior tests are reused only for unchanged source. Performance reports and any measurement exceptions are retained with the launch checkpoint.
+- The dependency audit reported zero vulnerabilities and the resolved `js-yaml` version is 4.3.2. GitHub alerts 82/83 remain open; they were not automatically dismissed. Known residual limits remain inline-script CSP permissions, no application-level rate limiter, and partial prior security-scan coverage. This is not a claim of complete security.
+- Reuse previously confirmed inbox delivery; no further real contact email was sent during launch. DNS, mail, credentials, repository visibility and paid-plan settings were not changed.
+- Dashboard ownership is unchanged: keep custom-domain routing and Access out of Wrangler. A documentation-only native Git build must preserve the public apex and private Worker preview surfaces.
+- Restore **All traffic** immediately for preview exposure or a launch-blocking security issue. For an application regression, restore the previous verified Worker version `f4d292ad-1179-4b0e-a359-95a5add3ddd6`; do not restore GitHub Pages automatically. Configuration and application rollback are separate operations.
+- Configuration snapshots, measurement reports and follow-up build IDs are retained outside Git in `Portfolio Migration Backups/public-launch-20260920-pXS9AQ`. Retain them until at least 2026-09-27 UTC (seven days after public cutover).
+
+### Protected custom domain connected — historical checkpoint, 2026-09-14 UTC
 
 `lorenztazan.com` is attached to `lorenztazan-portfolio` in the personal account as a dashboard-managed Worker Custom Domain. This is a **protected acceptance deployment, not a public launch**. The approved application release is `main` at `89e522c0c00912c98be01c9cd9fa50c0b5903981`, native build `a15b0aea-bb0c-46da-ac4c-c48b33043e51`, Worker version `23a942dd-a6a1-43cf-adab-dd1187c1408f`, deployment `7dc8fa6c-a0b4-4a89-99c2-5b2ada974b2a`. These are the domain-attachment checkpoint IDs; record subsequent native-build IDs separately.
 

@@ -13,7 +13,9 @@ An evidence-led portfolio for IT support, systems, network, infrastructure, and 
 
 The Worker is named `lorenztazan-portfolio` in `wrangler.jsonc`. Astro generates the deployable Worker entry and static-asset binding during `npm run build`; do not replace that with the legacy `dist/_worker.js/index.js` entry.
 
-The sole source repository is `AIKUSAN/portfolio`. This application replaces the legacy Next.js tree in place while preserving repository identity and Git history. The separate-repository strategy is superseded; do not recreate the deleted duplicate. Cloudflare's native Workers Builds integration owns deployment; GitHub Actions is validation-only. On 2026-09-13, the user explicitly approved retiring GitHub Pages before the Cloudflare replacement is verified, accepting public-site downtime. Pages publishing and its repository-level custom-domain association are disabled; the legacy publishing workflow remains disabled. Do not automatically restore Pages. The later domain-launch plan authorizes only the specified protected-domain preparation and SPF repair; public exposure and real contact delivery retain separate approval gates. Repository visibility remains unchanged during this launch; later privatization requires separate approval. Repository privacy does not protect a hosted preview: configure Cloudflare Access separately. See `DEPLOYMENT.md` for the current state, dashboard ownership of domain/Access settings, and release gates.
+The public source repository is `AIKUSAN/portfolio`, and the live website is https://lorenztazan.com. Cloudflare's native Workers Builds integration owns deployment; GitHub Actions is validation-only. GitHub Pages is disabled. Preview protection is configured separately through Cloudflare Access. See `DEPLOYMENT.md` for configuration ownership and release checks.
+
+Only the approved downloadable résumé PDFs are public; editable sources and internal review artifacts are maintained in private local backups outside this repository. Tests pin the approved PDF digests. Changes to a résumé require reviewing the replacement PDF before updating its digest.
 
 Dependabot's scheduled version-update PRs and automatic security-update PRs are disabled. Vulnerability alerts, dependency visibility, secret scanning, CodeQL, and CI dependency audits remain enabled. Dependency upgrades now require an intentional reviewed change; closing an old update PR does not mean its reported vulnerability is fixed.
 
@@ -90,10 +92,10 @@ The homepage rack is procedural WebGL geometry, not clipped image layers. `src/l
 
 ## Contact boundary
 
-`POST /api/contact` accepts `name`, `email`, `message`, optional `focus`, the Turnstile token, and an invisible honeypot. It enforces input limits, exact same-origin requests, Turnstile action/hostname verification, HTML escaping, and generic public responses. Messages are sent only through the `EMAIL` binding to the configured verified destination and are never stored.
+`POST /api/contact` accepts `name`, `email`, `message`, optional `focus`, the Turnstile token, and an invisible honeypot. It enforces input limits, exact same-origin requests, Turnstile action/hostname verification, HTML escaping, and generic public responses. Messages are forwarded through the `EMAIL` binding to the configured Gmail destination. The application has no message database; this is not a promise about provider or inbox retention.
 
 The handler caps actual encoded body bytes at 12,000 before form parsing, including ignored fields and multipart overhead. Content-Length is only an early rejection hint. Overflow, read failures and parse failures retain generic `400` responses; valid multipart and URL-encoded inputs retain their existing behavior. Dynamic route headers match `public/_headers` through a tested policy module; framework-generated responses still require separate hosted verification.
 
 Native Workers Builds requires a real `PUBLIC_TURNSTILE_SITE_KEY` at build time. `PORTFOLIO_DEPLOYMENT_CHECK=1 npm run build` runs that same deployment check locally. The runtime `TURNSTILE_SECRET_KEY` is separate and must be configured in Worker secrets, never public build variables. Missing or dummy secrets fail closed with the existing generic failure response; an ordinary successful local/PR build does not certify contact readiness.
 
-See `DEPLOYMENT.md` for the staged Cloudflare Builds setup and production cutover gate.
+See `DEPLOYMENT.md` for Cloudflare Builds configuration and release checks.

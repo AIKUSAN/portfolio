@@ -43,4 +43,4 @@ Titles, technology labels, summaries, contributions, decision notes and artifact
 
 All evidence is generated into local static pages. Excerpts use Astro text escaping, with no executable examples, iframe, runtime GitHub request or added client island. The metric-free SVG has a title, description and caption, and uses the existing theme tokens. Client records render contribution/approach/scope without an empty evidence section. LinkedIn and private location/immigration copy remain excluded.
 
-See `DESIGN.md` for the authored presentation contract. The stale Impeccable sidecar is intentionally untouched.
+See `DESIGN.md` for the authored presentation contract. Editable résumé sources are maintained privately; the approved PDFs remain public.

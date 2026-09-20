@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { readFileSync } from 'node:fs';
+import { createHash } from 'node:crypto';
 import { education, experience, focusCopy, projects } from './site';
 
 const roleFocusValues = ['support', 'systems', 'platform'] as const;
@@ -58,22 +59,13 @@ describe('approved public career baseline', () => {
     expect(education.coursework).toEqual(['Computer Systems Architecture', 'Network Engineering', 'Database Management', 'Data Structures & Algorithms']);
   });
 
-  it.each(['it-support', 'systems-cloud'])('keeps the %s résumé aligned with public facts and privacy boundaries', (track) => {
-    const source = readFileSync(new URL(`../../resume-sources/lorenz-tazan-${track}.md`, import.meta.url), 'utf8');
-    for (const required of [
-      '10+ years', 'Land of Promise (Patrick Bezalel Pte Ltd)', 'June 2024–Present',
-      'DigiHwy — Land of Promise Project', '2023–June 2024', 'Lead Developer / Platform Support',
-      'Network Infrastructure Consultant (Contract)', '700+ concurrent subscribers',
-      'EDUCATION & PROFESSIONAL DEVELOPMENT', education.degree, education.institution,
-      education.completion, education.status, education.study,
-      'mailto:lorenztazan@gmail.com', 'tel:2402562410'
-    ]) expect(source).toContain(required);
-    for (const retired of [
-      '7+ years', '2023–Present', '100+ clients', '20+ clients', '300+ daily users',
-      'IT Support Technician (Contract)', 'Remote IT Support Specialist',
-      'undergraduate coursework', 'permanent resident', 'immigration', 'sponsorship',
-      'security clearance', 'RESUME_SOURCE_NOTES', 'MASTER_REVIEW', 'Approved Baselines',
-      'tenant administration', 'SharePoint migration'
-    ]) expect(source.toLowerCase()).not.toContain(retired.toLowerCase());
+  it.each([
+    ['it-support', '61c47c9d23860994f1644348a860bd7413f259db634261fba884f973356f5337'],
+    ['systems-cloud', '652f8d0d498499be9bba8f0799cf906553c398993c583644a5d525fe7e5d8772']
+  ])('preserves the approved public %s résumé PDF', (track, approvedHash) => {
+    // Editable sources are private. Update the digest only after reviewing a replacement PDF.
+    const pdf = readFileSync(new URL(`../../public/resume/lorenz-tazan-${track}.pdf`, import.meta.url));
+    expect(pdf.subarray(0, 5).toString()).toBe('%PDF-');
+    expect(createHash('sha256').update(pdf).digest('hex')).toBe(approvedHash);
   });
 });

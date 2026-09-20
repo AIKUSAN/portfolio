@@ -20,4 +20,8 @@ Local tests do not prove production configuration or email delivery. Before the 
 
 No claim is made that branch protection, hosted secret scanning, or paid CodeQL is enabled. The legacy CodeQL workflow skips private repositories unless a separately approved eligible setup replaces it. Do not enable paid services without approval.
 
-`SECURITY-CHECKLIST.md` is a historical Next.js audit, not current release evidence.
+Public source must exclude credentials, private client records, editable résumé sources and internal review artifacts. Approved downloadable résumé PDFs remain public. Review supporting documents as well as files served by Astro.
+
+Removing a tracked file does not erase earlier commits, forks or cached copies. Suspected credential exposure requires separate revocation and historical-remediation review.
+
+Residual limitations include inline-script CSP permissions, no application-level rate limiter, and limited source-scan coverage. Passing checks are not a claim of complete security.

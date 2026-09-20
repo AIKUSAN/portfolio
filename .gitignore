@@ -17,7 +17,7 @@
 /.astro/
 /dist/
 /.wrangler/
-/resume-sources/*.pdf
+/resume-sources/
 
 # production
 /build
@@ -25,6 +25,9 @@
 # misc
 .DS_Store
 *.pem
+*.key
+*.p12
+*.pfx
 
 # debug
 npm-debug.log*
@@ -39,9 +42,8 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 
-# Impeccable local review captures
-.impeccable/review/
-
-# Antigravity Agent State Files
+# Local planning and private working files
+/.local/
+/private-backups/
 plan.md
 skills.md
